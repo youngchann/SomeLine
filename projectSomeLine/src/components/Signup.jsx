@@ -41,6 +41,7 @@ const Signup = () => {
                 placeholder="비밀번호 확인"
                 onChange={onChange}
             ></input>
+        
             <input
                 className="signup_name_box"
                 id="id"
@@ -48,6 +49,7 @@ const Signup = () => {
                 placeholder="이름"
                 onChange={onChange}
             ></input>
+            
             <input
                 className="signup_date_box"
                 id="id"
@@ -56,8 +58,15 @@ const Signup = () => {
                 onChange={onChange}
             ></input>
             <div className='gender_box'>
-                <a href="#" className="signup_wan_btn">남성</a>
-                <a href="#" className="signup_wan_btn">여성</a>
+                <h3 className='gender_box_name'>⁃ 성별</h3>
+                <form className='gender_choice' action="action.jsp">
+                    <div className='male_choice'><input type="radio" name="sex" value="male" ></input>남성</div>
+                    <div className='male_choice'><input type="radio" name="sex" value="female"></input>여성</div>
+                </form>
+            </div>
+            <div className='my_infomation'>
+                <a href="#" className="my_infomation_wan_btn">사진업로드</a>
+                <a href="#" className="my_infomation_wan_btn">사진업로드</a>
             </div>
             <a href="#" className="login_wan_btn">가입하기</a>
         </div>

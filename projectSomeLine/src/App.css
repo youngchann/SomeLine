@@ -375,7 +375,7 @@
   align-items: center;
   background-color: #e6b8c42a;
   width: 400px;
-  height: 520px;
+  height: 540px;
   border-radius: 10px;
   position: relative;
   backdrop-filter: blur(40px);
@@ -462,7 +462,7 @@
   background-color: #64646438;
 }
 .signup_date_box{
-  margin: 10px;
+  margin-top: 10px;
   padding-left: 10px;
   width: 90%;
   height: 40px;
@@ -481,10 +481,89 @@
   outline: 1px solid #f8f8ff;
   background-color: #64646438;
 }
-.gender_box{
+/* 인포메이션 두개 : */
+.my_infomation{
   display: flex;
   width: 96%;
 }
+.my_infomation_wan_btn{
+  position: relative;
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 92%;
+  height: 40px;
+  color: #f8f8ff;
+
+  border-top: 1px solid #f8f8ff7f;
+  border-bottom: 1px solid #f8f8ff7f;
+  /* 배경 색임. */
+  background: rgba(255, 255, 255, 0.05);
+  transition: 0.9s;
+  text-align: center;
+  text-justify: center;
+  font-size: 30px;
+  font-weight: bold;
+  border-radius: 25px;
+  text-decoration: none;
+  transition-duration: 0.5s;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+  /* backdrop-filter: blur(40px); */
+  overflow: hidden;
+}
+.my_infomation_wan_btn:hover{
+  font-size: 30.5px;
+  transition: 0.8s;
+  box-shadow: 0 0 20px rgba(0, 0, 0, .5);
+}
+.my_infomation_wan_btn::before{
+  content: '';
+  position: absolute;
+  transition: 0.8s;
+  top: 0;
+  left: 0;
+  width: 30%;
+  height: 100%;
+  background: linear-gradient(to left, rgba(255,255,255,0.30),transparent);
+  transform: skewX(45deg) translateX(0);
+}
+.my_infomation_wan_btn:hover::before{
+  transform: skewX(45deg) translateX(300%);
+  box-sizing: border-box;
+  transition: 0.5s;
+}
+
+
+
+
+/* 성별 구분 박스 */
+.gender_choice{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.gender_box{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 70px;
+}
+.male_choice{
+  margin-left: 30px;
+  font-size: 25px;
+  display: flex;
+  font-weight: 800;
+  color: #f8f8ff;
+}
+
+.gender_box_name{
+  color: #f8f8ff;
+  font-size: 30px;
+  margin-right: 30px;
+}
+/* ------------------------------------------------ */
 .signup_wan_btn {
   position: relative;
   margin: 10px;
