@@ -552,7 +552,7 @@
 }
 .male_choice{
   margin-left: 30px;
-  font-size: 22px;
+  font-size: 24px;
   display: flex;
   font-weight: 800;
   color: #f8f8ff;
@@ -560,7 +560,7 @@
 
 .gender_box_name{
   color: #f8f8ff;
-  font-size: 28px;
+  font-size: 29px;
   margin-right: 30px;
 }
 /* ------------------------------------------------ */
