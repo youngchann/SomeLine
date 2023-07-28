@@ -630,17 +630,21 @@
   height: 600px;
   border-radius: 20px;
   background-color: #ffffff44;
-  /* background:transparent; */
   backdrop-filter: blur(60px);
   box-shadow: 0 0 40px rgba(0, 0, 0, .6);
 }
+
 .chatbox_contents{
   color: #f8f8ff;
-  padding: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
   padding-top: 80px;
-  overflow: auto;     /*아래 픽셀 기준으로 스트롤이 생기게 함*/
-  height: 442px;
+  overflow: auto;     /* 박스를 스크롤 가능하게 함 */
+  height: 440px;
+  white-space: pre-wrap; /* CSS3 */   
+  word-wrap: break-word; /* Internet Explorer 5.5+ */
 }
+
 /* 스크롤바 */
 .chatbox_contents::-webkit-scrollbar {
   width: 16px;
