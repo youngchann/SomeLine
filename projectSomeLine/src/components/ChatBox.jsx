@@ -35,6 +35,12 @@ const ChatBox = () => {
       setChat(oldChat => [...oldChat, message]);
       socketRef.current.emit("chat message", message);
       setMessage("");
+      // Ensure the chat box scrolls down to show the new message
+      setTimeout(() => {
+        if(chatEndRef.current){
+          chatEndRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 0);
     }
   };
 
