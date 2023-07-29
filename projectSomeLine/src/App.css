@@ -7,7 +7,7 @@
 .body {
   margin: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
 }
 
 
@@ -19,7 +19,6 @@
   left: 0;
   right: 0;
 
-  /* z-index: 2; */
   width: 100%;
   background-color: none;
   height: 70px;
@@ -85,7 +84,6 @@
   font-size: 22px;
 }
 
-
 /* ---------------------------------------------- 메인 컨테이너 */
 .main_container2{
   display: flex;
@@ -137,7 +135,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: center; */
   background-color: transparent;
   width: 400px;
   height: 370px;
@@ -146,13 +143,7 @@
   box-shadow: 0 0 40px rgba(0, 0, 0, .6);
   border-radius: 10px;
 }
-/* .logo{
-  position: absolute;
-  top:6px;
-  width: 140px;
-  height: 70px;
-  z-index: 100;
-} */
+
 .login_box_header_name{
   width: 90%;
   height: 80px;
@@ -448,7 +439,7 @@
   position: relative;
   margin-left: 10px;
   margin-right: 10px;
-  width: 92%;
+  width: 100%;
   height: 40px;
   color: #f8f8ff;
 
@@ -489,8 +480,6 @@
   box-sizing: border-box;
   transition: 0.5s;
 }
-
-
 
 
 /* 성별 구분 박스 */
@@ -572,7 +561,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: row;
   /* width: 100%;
   height: 100vh; */
 }
@@ -589,22 +577,18 @@
   height: 600px;
   border-radius: 20px;
   background-color: #ffffff44;
+  /* background:transparent; */
   backdrop-filter: blur(60px);
   box-shadow: 0 0 40px rgba(0, 0, 0, .6);
 }
-
 .chatbox_contents{
   color: #f8f8ff;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 20px;
   padding-top: 80px;
-  overflow: auto;     /* 박스를 스크롤 가능하게 함 */
-  height: 440px;
-  white-space: pre-wrap; /* CSS3 */   
-  word-wrap: break-word; /* Internet Explorer 5.5+ */
+  overflow: auto;     /*�꾨옒 �쎌� 湲곗��쇰줈 �ㅽ듃濡ㅼ씠 �앷린寃� ��*/
+  height: 442px;
 }
-
-/* 스크롤바 */
+/* �ㅽ겕濡ㅻ컮 */
 .chatbox_contents::-webkit-scrollbar {
   width: 16px;
 }
@@ -673,13 +657,23 @@
 
 
 .you_chat_Profil{
+  position: relative;
+
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  text-align: center;
+  margin-top: 500px;
+  margin-right: 30px;
+}
+.my_chat_Profil{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 500px;
+  margin-left: 30px;
 }
 .chat_Profil_img{
-  position: relative;
-  margin-left: 45px;
   width: 120px;
   height: 120px;
   border-radius: 60px;
@@ -694,20 +688,11 @@
 }
 .you_chat_Profil_name{
   color: #f8f8ffb6;
-  margin-left: 50px;
+}
+.my_chat_Profil_name{
+  color: #f8f8ffb6;
 }
 
-
-.chatbox_side_box{
-  display: flex;
-  flex-direction:column;
-  justify-content:space-between;
-  margin-top: 120px;
-  width:20%;
-  height: 600px;
-  border-radius: 20px;
-  
-}
 
 
 
@@ -876,7 +861,17 @@
 }
 
 /* ------------------------------------------사이드 메뉴 바 */
+.side_menu_box{
+  position: fixed;
+  width: 100px;
+  height: 200px;
+  right: 50px;
+  top: 100px;
+}
 .side_menu_list{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   list-style: none;
 }
 .side_menus_menu{
@@ -884,11 +879,11 @@
   
   position: relative;
   margin-top: 10px;
-  width: 130px;
+  width: 120px;
   height: 40px;
   background-color: #e6abba58;
   backdrop-filter: blur(10px);
-  display: block;
+  display: inline-block;
   padding: 4px 4px;
   color: #d721f3d5;
   font-size: 28px;
@@ -908,6 +903,80 @@
   box-shadow:  0 0 10px #d721f3d5, 0 0 40px #d721f3d5, 0 0 80px #d721f3d5;
   /* transition-delay: 0.25s; d721f3d5 */
 }
+/* ------------------------------------------- */
+.matching_bg{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.matching_box{
+  width: 500px;
+  height: 500px;
+
+}
+.mat_box{
+  height: 100px;
+  width: 80px;
+
+}
+
+
+.swiper {
+  width: 240px;
+  height: 320px;
+}
+
+.swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.swiper-slide:nth-child(1n) {
+  background-color: rgb(206, 17, 17);
+}
+
+.swiper-slide:nth-child(2n) {
+  background-color: rgb(0, 140, 255);
+}
+
+.swiper-slide:nth-child(3n) {
+  background-color: rgb(10, 184, 111);
+}
+
+.swiper-slide:nth-child(4n) {
+  background-color: rgb(211, 122, 7);
+}
+
+.swiper-slide:nth-child(5n) {
+  background-color: rgb(118, 163, 12);
+}
+
+.swiper-slide:nth-child(6n) {
+  background-color: rgb(180, 10, 47);
+}
+
+.swiper-slide:nth-child(7n) {
+  background-color: rgb(35, 99, 19);
+}
+
+.swiper-slide:nth-child(8n) {
+  background-color: rgb(0, 68, 255);
+}
+
+.swiper-slide:nth-child(9n) {
+  background-color: rgb(218, 12, 218);
+}
+
+.swiper-slide:nth-child(10n) {
+  background-color: rgb(54, 94, 77);
+}
 
 
 
@@ -926,6 +995,7 @@
   .nav_login_btn {
     width: 100px;
   }
+  /* --------------------------------------諛섏쓳�� 踰꾪듉 */
   .secret_menu{
     display: flex;
   }
@@ -942,28 +1012,26 @@
   .my_chat_Profil{
     display: none;
   }
-  .chatbox_bg{
-    flex-direction:column-reverse;
-  }
   .chatbox_box{
     width: 90%;
     margin-top: -40px;
-    transition-duration: 0.3s;
-
     /* transition-duration: 0.3s; */
   }
-  .side_menu_list{
+  .chatlist_box{
+    margin-top: -60px;
+  }
+  .side_menu_box{
+    position: relative;
     width: 90%;
+  }
+  .side_menu_list{
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-direction: row;
     list-style: none;
-  }
-  .chatbox_side_box{
-    width: 98%;
-    height: 80px;
-    margin: 60px;
+    margin-left: 10px;
   }
   .side_menu_bg{
     display: flex;
@@ -972,35 +1040,22 @@
     justify-content: center;
   }
   .side_menus_menu{
-    width: 30%
-  }
-  .chatlist_bg{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  .chatlist_bg{
-    flex-direction:column-reverse;
-  }
-  .chatlist_box{
-    margin-top: -45px;
+    margin-top: -40px;
+    width: 30%;
   }
 }
 @media (max-width: 680px) {
   .chatbox_box{
     width: 98%;
     transition-duration: 0.3s;
-    margin-top: -50px;
+    margin-top: -60px;
   }
   .chatlist_box{
     width: 98%;
   }
   .main_popup_page{
+    margin-top: -400px;
     width: 98%;
     height: 80%;
-  }
-  .side_menu_list{
-    margin-left: -16px;
   }
 }

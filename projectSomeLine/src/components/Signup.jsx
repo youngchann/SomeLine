@@ -66,7 +66,7 @@ const Signup = () => {
             </div>
             <div className='my_infomation'>
                 <a href="#" className="my_infomation_wan_btn">사진업로드</a>
-                <a href="#" className="my_infomation_wan_btn">사진업로드</a>
+                {/* <a href="#" className="my_infomation_wan_btn">사진업로드</a> */}
             </div>
             <a href="#" className="login_wan_btn">가입하기</a>
         </div>
