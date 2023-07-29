@@ -83,50 +83,8 @@
   transform: scale(1.1);
   transition-duration: 0.5s;
   font-size: 22px;
-
-}
-/* -------------------------------------------- 배너 */
-.swiper {
-  width: 100%;
-  height: 400px;
-  transition-duration: 0.4s;
-  /* z-index: 1; */
 }
 
-.swiper-slide {
-  text-align: center;
-  height: auto;
-
-  justify-content: center;
-  align-items: center;
-}
-
-.swiper-slide img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-/* -------------------------------------------- 메인 */
-/* 슬라이드 박스들 */
-.box1{
-  background-color: #C6AFC2;
-}
-.box2{
- background-color: #F5B3C2;
-}
-.box3{
-  background-color: #FFBCA8;
-}
-.box4{
-  background-color: #FFD483;
-}
-.box5{
-  background-color: #F9F871;
-}
-.box6{
-  background-color: #7FD1AE;
-}
 
 /* ---------------------------------------------- 메인 컨테이너 */
 .main_container2{
@@ -753,9 +711,6 @@
 
 
 
-
-
-
 /* ------------------------------------------footer */
 .footer{
   padding-top: 50px;
@@ -920,71 +875,6 @@
   display: none;
 }
 
-
-
-/* -----------------------------------------매칭 페이지 */
-.matching_page_bg{
-  width: 100%;
-  height: 100vh;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-}
-.matching_page_box{
-  width: 70%;
-  height: 70%;
-  display: flex;
-  border-radius: 10px;
-  background-color: transparent;
-}
-.matching_w_box{
-  display: flex;
-  width: 50%;
-  height: 90%;
-  margin-top: 5%;
-  flex-direction: column;
-  align-items: center;
-  border: 1px solid #f8f8ff9c;
-  margin: 20px;
-  border-radius: 20px;
-  padding-top: 30px;
-  backdrop-filter: blur(40px);
-  box-shadow: 0 0 30px rgba(0, 0, 0, .5);
-}
-.matching_m_box{
-  display: flex;
-  width: 50%;
-  height: 90%;
-  margin-top: 5%;
-  flex-direction: column;
-  align-items: center;
-  border: 1px solid #f8f8ff9c;
-  margin: 20px;
-  padding-top: 30px;
-  border-radius: 20px;
-  backdrop-filter: blur(40px);
-  box-shadow: 0 0 30px rgba(0, 0, 0, .5);
-}
-.matching_w_photo_box{
-  border-left: 1px solid #f8f8ffdc;
-  border-right: 1px solid #f8f8ffdc;
-  border-radius: 10px;
-  width: 200px;
-  height: 200px;
-  background-color: #603961;
-  border-radius: 100px;
-  box-shadow: 0 0 30px rgba(0, 0, 0, .5);
-}
-.matching_m_photo_box{
-  border-left: 1px solid #f8f8ffdc;
-  border-right: 1px solid #f8f8ffdc;
-  border-radius: 10px;
-  width: 200px;
-  height: 200px;
-  background-color: #603961;
-  border-radius: 100px;
-  box-shadow: 0 0 30px rgba(0, 0, 0, .5);
-}
 /* ------------------------------------------사이드 메뉴 바 */
 .side_menu_list{
   list-style: none;
