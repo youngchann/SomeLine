@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import socketIOClient from "socket.io-client";
+import SideMenu from "./SideMenu";
 
 const ENDPOINT = "http://localhost:3004/chatbox"; 
 
@@ -52,7 +53,6 @@ const ChatBox = () => {
             <source src='videos/mainmain8.mp4' type='video/mp4' />
         </video>
         </div>
-      <div className='you_chat_Profil'><div className='chat_Profil_img'></div><h2 className='you_chat_Profil_name'>Kim Daun</h2></div>
       <div className='chatbox_box'>
         <div className='chatbox_contents'>
           <p>접속되었습니다. -- 대화를 시작합니다.</p>
@@ -74,7 +74,10 @@ const ChatBox = () => {
           </button>
         </form>
       </div>
-      {/* <div className='my_chat_Profil'><div  className='chat_Profil_img'></div><h2 className='my_chat_Profil_name'>chanyong</h2></div> */}
+      <div className='chatbox_side_box'>
+        <SideMenu/>
+        <div className='you_chat_Profil'><div className='chat_Profil_img'></div><h2 className='you_chat_Profil_name'>Kim Daun</h2></div>
+      </div>
     </div>
   )
 }

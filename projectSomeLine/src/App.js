@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+
 import './App.css';
 
 // import Baenner from './components/Baenner';
@@ -10,22 +10,16 @@ import ChatBox from './components/ChatBox';
 // import Baenner from './components/Baenner';
 import ChatList from './components/ChatList';
 import Matching from './components/Matching';
-import SideMenu from './components/SideMenu';
 
 import { Route, Routes, useLocation } from 'react-router-dom';
 
 
 function App() {
 
-  const location = useLocation();
-  const showSideMenu = location.pathname === '/chatbox' || location.pathname === '/chatlist';
-
   return (
     <div className="body">
       <Header/>
       {/* <Baenner/> */}
-
-      {showSideMenu && <SideMenu/>}
 
       <Routes>
         <Route path='/signup' element={<Signup/>}></Route>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import VanillaTilt from 'vanilla-tilt';
+import SideMenu from './SideMenu';
 
 /* 바닐라 틸트를 실행시키기 위한 함수입니다. - 작업자: 이찬용
 틸트안에 속성을 줌으로서 바닐라 틸트 제작자가 만든 기능들을 활용합니다.
@@ -85,6 +86,9 @@ const ChatList = () => {
             ))}
           </div>
         </div>
+      </div>
+      <div className='chatbox_side_box'>
+        <SideMenu/>
       </div>
     </div>
   )
