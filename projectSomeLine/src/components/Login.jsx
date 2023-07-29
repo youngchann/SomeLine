@@ -21,7 +21,7 @@ const Login = () => {
             <button className='main_popup_page_close' onClick={closePopup}>X</button>
             <div className='main_popup_page_text'>
               <h1>안녕하세요. 반가워요.</h1><br/>
-              <p>저희는 App반의 OS팀입니다. </p>
+              <p>저희는 <strong>App</strong>반의 <strong>OS</strong>팀입니다. </p>
               <p>저희가 제작한 웹서비스는 소개팅 웹입니다.</p>
               <p>AI를 이용하여 취향을 분석한 뒤 딱 맞는 이성에게 매칭해 드립니다.</p>
               <p>사랑해 주셔서 감사합니다.</p><br/>

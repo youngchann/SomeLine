@@ -74,7 +74,7 @@ const ChatBox = () => {
           </button>
         </form>
       </div>
-      <div className='my_chat_Profil'><div  className='chat_Profil_img'></div><h2 className='my_chat_Profil_name'>chanyong</h2></div>
+      {/* <div className='my_chat_Profil'><div  className='chat_Profil_img'></div><h2 className='my_chat_Profil_name'>chanyong</h2></div> */}
     </div>
   )
 }
