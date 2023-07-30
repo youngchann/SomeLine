@@ -11,7 +11,7 @@ import {
   orderBy,
 } from "firebase/firestore";
 
-const ChatBox = () => {
+const ChatBox = ({room}) => {
   // const [chat, setChat] = useState([]);
   // const [message, setMessage] = useState("");
   // const chatEndRef = useRef(null);
@@ -23,7 +23,7 @@ const ChatBox = () => {
   useEffect(() => {
     const queryMessages = query(
       messagesRef,
-      where("room", "==", "여행 좋아하는 남자"),
+      where("room", "==", room),
       orderBy("createdAt")
     );
     const unsuscribe = onSnapshot(queryMessages, (snapshot) => {
@@ -46,7 +46,7 @@ const ChatBox = () => {
       text: newMessage,
       createdAt: serverTimestamp(),
       user: auth.currentUser.displayName,
-      room : "여행 좋아하는 남자"
+      room : "치킨 왕자 && 감자 공주"
     });
 
     setNewMessage("");
