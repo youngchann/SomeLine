@@ -20,80 +20,14 @@ import {
 
 const Matching = () => {
 
-  const { currentUser } = useContext(AuthContext);
-
   const [isVisiblePopup, setIsVisiblePopup] = useState(true);
   const matClosePopup = () => {
     setIsVisiblePopup(false);
   };
 
-  const swiperRef = useRef(null);
-
-  let chatList = []
-  const goNextSlide = () => {
-    if (swiperRef.current && swiperRef.current.swiper) {
-      const currentSlideIndex = swiperRef.current.swiper.activeIndex;
-      const currentUserToAdd = matchUsers[currentSlideIndex] 
-      swiperRef.current.swiper.slideNext();
-
-      // chatList.push(currentUserToAdd.name)
-      // console.log(chatList);
-
-      
-
-
-    }
-  };
-
-  const [users, setUsers] = useState([])
-  const [matchUsers, setMatchUsers] = useState([])
-  const userRef = collection(db, "users") 
-    
-  useEffect(()=>{
-    if (currentUser && currentUser.email) {
-        const queryUsers = query(
-            userRef, where("id", "==", currentUser.email)
-        )
-
-        const unsuscribe = onSnapshot(queryUsers, (snapshot)=>{
-            let users=[]
-            snapshot.forEach((doc)=>{
-                users.push({...doc.data(), id: doc.id})
-            })
-            setUsers(users)
-        })
-        return ()=> unsuscribe()
-    }
-  },[currentUser])
-
-  useEffect(() => {
-    if (users.length > 0 && users[0].matchId) {
-      const matchIdQueries = users[0].matchId.map((id) => (
-        query(userRef, where("id", "==", id))
-      ));
-
-      Promise.all(matchIdQueries.map((q) => getDocs(q)))
-        .then((querySnapshots) => {
-          const matchedUsers = [];
-          querySnapshots.forEach((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-              if (doc.exists()) {
-                matchedUsers.push({ ...doc.data(), id: doc.id });
-              }
-            });
-          });
-          setMatchUsers(matchedUsers);
-        });
-    }
-
-    
-    
-},[users])
-
-  
   return (
     <div className='matching_bg'>
-        <div className={isVisiblePopup ? 'mat_popup' : 'hidden'}>
+        <div className={`mat_popup ${isVisiblePopup ? '' : 'hidden'}`}>
           <button className='mat_popup_close' onClick={matClosePopup}>X</button>
           <div className='mat_popup_text'>
             <h4>💬 알림.</h4>
