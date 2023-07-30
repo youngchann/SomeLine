@@ -9,20 +9,8 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
 const Matching = () => {
 
-  const [isVisiblePopup, setIsVisiblePopup] = useState(true);
-  const matClosePopup = () => {
-    setIsVisiblePopup(false);
-  };
-
   return (
     <div className='matching_bg'>
-        <div className={`mat_popup ${isVisiblePopup ? '' : 'hidden'}`}>
-          <button className='mat_popup_close' onClick={matClosePopup}>X</button>
-          <div className='mat_popup_text'>
-            <h4>💬 알림.</h4>
-            <p>이찬용님, 설레이는 새로운 메세지가 도착했어요!</p>
-          </div>
-        </div>
         <div className="login_bgm_b">
             <video className="login_bgm" autoPlay muted loop>
               <source src='videos/mainmain10.mp4' type='video/mp4' />
