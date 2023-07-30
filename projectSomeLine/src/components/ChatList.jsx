@@ -1,5 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import VanillaTilt from 'vanilla-tilt';
+import { db, auth } from "../firebase-config";
+import {
+  collection,
+  where,
+  onSnapshot,
+  query,
+  orderBy,
+} from "firebase/firestore";
 
 /* 바닐라 틸트를 실행시키기 위한 함수입니다. - 작업자: 이찬용
 틸트안에 속성을 줌으로서 바닐라 틸트 제작자가 만든 기능들을 활용합니다.

@@ -1,25 +1,56 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect} from 'react';
+
+import { db, auth } from "../firebase-config";
+import {
+  collection,
+  addDoc,
+  where,
+  serverTimestamp,
+  onSnapshot,
+  query,
+  orderBy,
+} from "firebase/firestore";
 
 const ChatBox = () => {
-  const [chat, setChat] = useState([]);
-  const [message, setMessage] = useState("");
-  const chatEndRef = useRef(null);
+  // const [chat, setChat] = useState([]);
+  // const [message, setMessage] = useState("");
+  // const chatEndRef = useRef(null);
+
+  const [messages, setMessages] = useState([]);
+  const [newMessage, setNewMessage] = useState("");
+  const messagesRef = collection(db, "messages");
 
   useEffect(() => {
-    if(chatEndRef.current){
-      chatEndRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, [chat]);
+    const queryMessages = query(
+      messagesRef,
+      where("room", "==", "여행 좋아하는 남자"),
+      orderBy("createdAt")
+    );
+    const unsuscribe = onSnapshot(queryMessages, (snapshot) => {
+      let messages = [];
+      snapshot.forEach((doc) => {
+        messages.push({ ...doc.data(), id: doc.id });
+      });
+      console.log(messages);
+      setMessages(messages);
+    });
 
-  const chatContents = chat.map((message, index) => <p key={index}>{message}</p>);
+    return () => unsuscribe();
+  }, []);
 
-  const sendMessage = useCallback((e) => {
-    e.preventDefault();
-    if (message) {
-      setChat(oldChat => [...oldChat, message]);
-      setMessage("");
-    }
-  }, [message]);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    if (newMessage === "") return;
+    await addDoc(messagesRef, {
+      text: newMessage,
+      createdAt: serverTimestamp(),
+      user: auth.currentUser.displayName,
+      room : "여행 좋아하는 남자"
+    });
+
+    setNewMessage("");
+  };
 
   return (
     <div className='chatbox_bg'>
@@ -29,19 +60,21 @@ const ChatBox = () => {
             <source src='videos/mainmain8.mp4' type='video/mp4' />
         </video>
       </div>
-      <div className='you_chat_Profil'><div className='chat_Profil_img'></div><h2 className='you_chat_Profil_name'>Kim Daun</h2></div>
+      <div className='you_chat_Profil'><div className='chat_Profil_img'></div><h2 className='you_chat_Profil_name'>상대방</h2></div>
       <div className='chatbox_box'>
-        <div className='chatbox_contents'>
-          <p>접속되었습니다. -- 대화를 시작합니다.</p>
-          {chatContents}
-          <div ref={chatEndRef}></div> {/* A reference to the end of chat */}
+        <div className='messages'>
+          {messages.map((message) => (
+            <div key={message.id} className={`message ${message.user === auth.currentUser.displayName ? "my-message" : "other-message"}`}>
+                <span className="user">{message.text}</span> 
+            </div>
+          ))}
         </div>
-        <form className='chatbox_input' onSubmit={sendMessage}>
+        <form className='chatbox_input' onSubmit={handleSubmit}>
           <input 
             className='chat_input_text' 
             type="text" 
-            value={message} 
-            onChange={e => setMessage(e.target.value)} 
+            value={newMessage}
+            onChange={(event) => setNewMessage(event.target.value)}
           />
           <button 
             className="chat_send_btn" 
@@ -51,7 +84,9 @@ const ChatBox = () => {
           </button>
         </form>
       </div>
-      <div className='my_chat_Profil'><div  className='chat_Profil_img'></div><h2 className='my_chat_Profil_name'>chanyong</h2></div>
+      <div className='my_chat_Profil'>
+        <div  className='chat_Profil_img'>
+      </div><h2 className='my_chat_Profil_name'>{auth.currentUser.displayName}</h2></div>
     </div>
   )
 }

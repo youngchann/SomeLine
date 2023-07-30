@@ -1,23 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase-config";
 
 const Login = () => {
+
+  const [err, setErr] = useState(false);
+  const nav = useNavigate();
 
   // 팝업창을 끄기 위해 만든 함수안에 들어가는 변수를 담기위한 것.-작업자 : 이찬용 
   const [isVisible, setIsVisible] = useState(true);
 
-  // 인풋 내용을 바꾸기 위한 함수 - 작업자 : 이찬용
-  const onChange = (e) => {
-      console.log(e.target);
-  }
-
+  
   // main_popup_page_close 안에 들어가는 함수, 팝업창을 끄기 위한 함수.-작업자 : 이찬용
   const closePopup = () => {
       setIsVisible(false);
   }
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const email = e.target[0].value;
+    const password = e.target[1].value;
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      nav('/matching')
+    } catch (err) {
+      alert('이메일 혹은 비밀번호가 틀렸습니다!')
+      setErr(true);
+    }
+  };
+
   return (
     <div className='login_page'>
-          <div className={`main_popup_page ${isVisible ? '' : 'hidden'}`}>
+          <div className={isVisible ? 'main_popup_page' : 'hidden'}>
             <button className='main_popup_page_close' onClick={closePopup}>X</button>
             <div className='main_popup_page_text'>
               <h1>안녕하세요. 반가워요.</h1><br/>
@@ -38,24 +54,22 @@ const Login = () => {
             <div className="login_box_header_name">
               <h1>Login</h1>
             </div>
-            <input
-            className="id_box"
-            id="id"
-            name="id"
-            placeholder="아이디.."
-            onChange={onChange}
-            ></input>
-
-            <input
-            className="ps_box"
-            id="password"
-            name="password"
-            type="password"
-            placeholder="비밀번호.."
-            onChange={onChange}
-            ></input>
-            <a href="#" className="login_wan_btn">Login</a>
-            <a href='#' className="find_ps_id">비밀번호 찾기 / 아이디 찾기</a>
+            <form onSubmit={handleSubmit}>
+              <input
+              className="id_box"
+              id="id"
+              placeholder="이메일.."
+              ></input>
+              <input
+              className="ps_box"
+              id="password"
+              type="password"
+              placeholder="비밀번호.."
+              
+              ></input>
+              <button className="login_wan_btn">Login</button>
+            </form>
+            {/* <a href='#' className="find_ps_id">비밀번호 찾기 / 아이디 찾기</a> */}
         </div> 
     </div>
   )

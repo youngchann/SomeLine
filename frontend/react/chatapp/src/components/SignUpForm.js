@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { db, storage } from "../firebase-config";
 import "../styles/SignUpForm.css";
 import { collection, addDoc } from "firebase/firestore";
-import { ref, uploadBytes } from "firebase/storage"
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
 import {v4} from 'uuid'
 
 const SignUpForm = ({ setIsInSignUp, setShowSignUpForm, showSignUpForm }) => {
@@ -13,6 +13,7 @@ const SignUpForm = ({ setIsInSignUp, setShowSignUpForm, showSignUpForm }) => {
     const [gender, setGender] = useState("");
     const [age, setAge] = useState("");
     const usersRef = collection(db, "users");
+    const [profileUrl, setProfileUrl] = useState("")
 
   
   useEffect(() => {
@@ -31,8 +32,11 @@ const SignUpForm = ({ setIsInSignUp, setShowSignUpForm, showSignUpForm }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const imageRef = ref(storage, `images/${name + v4()}`)
-    uploadBytes(imageRef, profileImage).then(()=>{
-        alert("Image Up")
+    uploadBytes(imageRef, profileImage).then((snapshot)=>{
+        getDownloadURL(snapshot.ref).then((url)=>{
+          setProfileUrl(url)
+          alert(url)
+        })
     })
     if (isFormValid()) {
         // 여기서 Firebase에 데이터를 보내는 로직을 작성하세요.
@@ -41,7 +45,8 @@ const SignUpForm = ({ setIsInSignUp, setShowSignUpForm, showSignUpForm }) => {
             pw : password,
             name : name,
             gender : gender,
-            age : age
+            age : age,
+            profileUrl : profileUrl
           });
   
         // 회원가입이 완료되면 회원가입 프로세스를 종료하고 로그인 화면으로 돌아감

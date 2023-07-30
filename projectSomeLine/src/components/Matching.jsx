@@ -1,22 +1,99 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useContext, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/effect-cards';
 import { EffectCards } from 'swiper/modules';
+import { AuthContext } from "../context/AuthContext";
 
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
+import { db, firebase } from "../firebase-config";
+import {
+  collection,
+  where,
+  onSnapshot,
+  query,
+  orderBy,
+  getDocs
+} from "firebase/firestore";
+
 
 const Matching = () => {
+
+  const { currentUser } = useContext(AuthContext);
 
   const [isVisiblePopup, setIsVisiblePopup] = useState(true);
   const matClosePopup = () => {
     setIsVisiblePopup(false);
   };
 
+  const swiperRef = useRef(null);
+
+  let chatList = []
+  const goNextSlide = () => {
+    if (swiperRef.current && swiperRef.current.swiper) {
+      const currentSlideIndex = swiperRef.current.swiper.activeIndex;
+      const currentUserToAdd = matchUsers[currentSlideIndex] 
+      swiperRef.current.swiper.slideNext();
+
+      // chatList.push(currentUserToAdd.name)
+      // console.log(chatList);
+
+      
+
+
+    }
+  };
+
+  const [users, setUsers] = useState([])
+  const [matchUsers, setMatchUsers] = useState([])
+  const userRef = collection(db, "users") 
+    
+  useEffect(()=>{
+    if (currentUser && currentUser.email) {
+        const queryUsers = query(
+            userRef, where("id", "==", currentUser.email)
+        )
+
+        const unsuscribe = onSnapshot(queryUsers, (snapshot)=>{
+            let users=[]
+            snapshot.forEach((doc)=>{
+                users.push({...doc.data(), id: doc.id})
+            })
+            setUsers(users)
+        })
+        return ()=> unsuscribe()
+    }
+  },[currentUser])
+
+  useEffect(() => {
+    if (users.length > 0 && users[0].matchId) {
+      const matchIdQueries = users[0].matchId.map((id) => (
+        query(userRef, where("id", "==", id))
+      ));
+
+      Promise.all(matchIdQueries.map((q) => getDocs(q)))
+        .then((querySnapshots) => {
+          const matchedUsers = [];
+          querySnapshots.forEach((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+              if (doc.exists()) {
+                matchedUsers.push({ ...doc.data(), id: doc.id });
+              }
+            });
+          });
+          setMatchUsers(matchedUsers);
+        });
+    }
+
+    
+    
+},[users])
+
+  
   return (
     <div className='matching_bg'>
-        <div className={`mat_popup ${isVisiblePopup ? '' : 'hidden'}`}>
+        <div className={isVisiblePopup ? 'mat_popup' : 'hidden'}>
           <button className='mat_popup_close' onClick={matClosePopup}>X</button>
           <div className='mat_popup_text'>
             <h4>💬 알림.</h4>
@@ -34,16 +111,32 @@ const Matching = () => {
             grabCursor={true}
             modules={[EffectCards]}
             className="mySwiper"
+            ref={swiperRef}
           >
-            <SwiperSlide><div className='mat_info_card'><div className='info_img_box'></div><div className='info_info_box'><p>이름1 이영자</p><p>광주, 56세</p><a href='#'>버튼</a></div></div></SwiperSlide>
-            <SwiperSlide><div className='mat_info_card'><div className='info_img_box'></div><div className='info_info_box'><p>이름2</p><a href='#'>버튼</a></div></div></SwiperSlide>
-            <SwiperSlide><div className='mat_info_card'><div className='info_img_box'></div><div className='info_info_box'><p>이름3</p><a href='#'>버튼</a></div></div></SwiperSlide>
-            <SwiperSlide><div className='mat_info_card'><div className='info_img_box'></div><div className='info_info_box'><p>이름4</p><a href='#'>버튼</a></div></div></SwiperSlide>
-            <SwiperSlide><div className='mat_info_card'><div className='info_img_box'></div><div className='info_info_box'><p>이름5</p><a href='#'>버튼</a></div></div></SwiperSlide>
-            <SwiperSlide><div className='mat_info_card'><div className='info_img_box'></div><div className='info_info_box'><p>이름6</p><a href='#'>버튼</a></div></div></SwiperSlide>
-            <SwiperSlide><div className='mat_info_card'><div className='info_img_box'></div><div className='info_info_box'><p>이름7</p><a href='#'>버튼</a></div></div></SwiperSlide>
+            {matchUsers.map((user)=>
+              <SwiperSlide key={user.name}>
+                <div className='mat_info_card'>
+                  <div className='info_img_box'>
+                  </div>
+                  <div className='info_info_box'>
+                    {matchUsers.length > 0 && matchUsers[0] ? (
+                      <>
+                        <p>이름: {user.name}</p>
+                        <p>나이: {user.age}</p>
+                        <button onClick={goNextSlide}>추가</button>
+                      </>
+                    ) : (
+                      <p>Loading or no matched users found.</p>
+                    )}
+                  </div>
+                </div>
+              </SwiperSlide>
+            )}
+  
           </Swiper>
+          
         </div>
+        
     </div>
   )
 }

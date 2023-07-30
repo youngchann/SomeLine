@@ -1,28 +1,29 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const SideMenu = () => {
   return (
     <div className='side_menu_bg'>
         <div className='side_menu_box'>
             <ul className='side_menu_list'>
-                <a href="#" className='side_menus_menu menu11'>
+                <Link to='/matching' className='side_menus_menu menu11'>
                     <span></span>
                     <span></span>
                     <span></span>
                     <span></span>
-                    매칭</a>
-                <a href="#" className='side_menus_menu menu22'>
+                    매칭</Link>
+                <Link to='/chatlist' className='side_menus_menu menu22'>
                     <span></span>
                     <span></span>
                     <span></span>
                     <span></span>
-                    채팅</a>
-                <a href="#" className='side_menus_menu menu33'>
+                    채팅 리스트</Link>
+                <Link to='/chatbox' className='side_menus_menu menu33'>
                     <span></span>
                     <span></span>
                     <span></span>
                     <span></span>
-                    설정</a>
+                    챗봇</Link>
             </ul>
         </div>
     </div>
