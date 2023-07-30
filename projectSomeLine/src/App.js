@@ -18,7 +18,7 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 function App() {
 
   const location = useLocation();
-  const showSideMenu = location.pathname === '/chatbox' || location.pathname === '/chatlist';
+  const showSideMenu = location.pathname === '/chatbox' || location.pathname === '/chatlist' || location.pathname === '/matching';
 
   return (
     <div className="body">

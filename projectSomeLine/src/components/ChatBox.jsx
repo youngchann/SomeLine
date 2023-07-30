@@ -1,25 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
-import socketIOClient from "socket.io-client";
-
-const ENDPOINT = "http://localhost:3004/chatbox"; 
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 
 const ChatBox = () => {
   const [chat, setChat] = useState([]);
   const [message, setMessage] = useState("");
-  const socketRef = useRef();
   const chatEndRef = useRef(null);
-
-  useEffect(() => {
-    socketRef.current = socketIOClient(ENDPOINT);
-
-    socketRef.current.on("FromAPI", data => {
-      if(data !== message) {
-        setChat(oldChat => [...oldChat, data]);
-      }
-    });
-
-    return () => socketRef.current.disconnect();
-  }, [message]);
 
   useEffect(() => {
     if(chatEndRef.current){
@@ -29,14 +13,13 @@ const ChatBox = () => {
 
   const chatContents = chat.map((message, index) => <p key={index}>{message}</p>);
 
-  const sendMessage = (e) => {
+  const sendMessage = useCallback((e) => {
     e.preventDefault();
     if (message) {
       setChat(oldChat => [...oldChat, message]);
-      socketRef.current.emit("chat message", message);
       setMessage("");
     }
-  };
+  }, [message]);
 
   return (
     <div className='chatbox_bg'>
@@ -45,7 +28,7 @@ const ChatBox = () => {
         <video className="login_bgm" autoPlay muted loop>
             <source src='videos/mainmain8.mp4' type='video/mp4' />
         </video>
-        </div>
+      </div>
       <div className='you_chat_Profil'><div className='chat_Profil_img'></div><h2 className='you_chat_Profil_name'>Kim Daun</h2></div>
       <div className='chatbox_box'>
         <div className='chatbox_contents'>
@@ -73,4 +56,4 @@ const ChatBox = () => {
   )
 }
 
-export default ChatBox;
+export default React.memo(ChatBox);

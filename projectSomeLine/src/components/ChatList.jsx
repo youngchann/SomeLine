@@ -24,14 +24,14 @@ const ChatList = () => {
     setIsVisible(false);
   };
 
-  // 바닐라 틸트를 실행시키기 위한 함수입니다. -작업자 : 이찬용
+  // VanillaTilt를 실행시키기 위한 함수입니다. -작업자 : 이찬용
   const options = {
     scale: 1.01,
     speed: 1000,
     max: 5
   };
 
-  // chat 데이터의 초기화
+  // chat 데이터의 초기화 - 작업자 : 이찬용
   const [chats, setChats] = useState([
     { name: '김춘자', content: '대화내용입니다.' },
     { name: '이향자', content: '대화내용입니다.' },
@@ -39,17 +39,17 @@ const ChatList = () => {
     { name: '이영자', content: '대화내용입니다.' },
   ]);
 
-  // chats 상태 값이 변화할 때마다 실행되는 useEffect를 추가했습니다. 
-  // 이로써 새로운 채팅이 추가될 때마다 isVisible 상태 값을 true로 변경하여 팝업창을 띄웁니다.
-  // chats의 이전 값을 기억하기 위한 ref입니다.
+  // chats 상태 값이 변화할 때마다 실행되는 useEffect를 추가했습니다. - 작업자 : 이찬용
+  // 이로써 새로운 채팅이 추가될 때마다 isVisible 상태 값을 true로 변경하여 팝업창을 띄웁니다.  - 작업자 : 이찬용
+  // chats의 이전 값을 기억하기 위한 ref입니다.  - 작업자 : 이찬용
   const prevChats = useRef(chats);
 
   useEffect(() => {
-    // 만약 chats의 이전 값과 현재 값이 다르다면 (즉, 새로운 메시지가 추가되었다면) isVisible을 true로 설정합니다.
+    // 만약 chats의 이전 값과 현재 값이 다르다면 (즉, 새로운 메시지가 추가되었다면) isVisible을 true로 설정합니다. - 작업자 : 이찬용
     if (prevChats.current !== chats) {
       setIsVisible(true);
     }
-    // useEffect의 cleanup 함수에서 현재 chats 값을 이전 값으로 설정합니다.
+    // useEffect의 cleanup 함수에서 현재 chats 값을 이전 값으로 설정합니다. - 작업자 : 이찬용
     return () => {
       prevChats.current = chats;
     };
@@ -58,12 +58,12 @@ const ChatList = () => {
   return (
     <div className='chatlist_bg'>
       <div className={`chatlist_popup_page ${isVisible ? '' : 'hidden'}`}>
-          <button className='chatlist_popup_page_close' onClick={closePopup}>X</button>
-          <div className='chatlist_popup_page_text'>
-            <h4>💬 알림.</h4>
-            <p>이찬용님, 설레이는 새로운 메세지가 도착했어요!</p>
-          </div>
+        <button className='chatlist_popup_page_close' onClick={closePopup}>X</button>
+        <div className='chatlist_popup_page_text'>
+          <h4>💬 알림.</h4>
+          <p>이찬용님, 설레이는 새로운 메세지가 도착했어요!</p>
         </div>
+      </div>
 
       <div className="login_bgm_b">
         <video className="login_bgm" autoPlay muted loop>

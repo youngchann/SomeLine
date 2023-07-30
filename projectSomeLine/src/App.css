@@ -35,16 +35,20 @@
   height: 70px;
 }
 /* 상단바 우측의 로고 글씨 */
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@100&display=swap');
+
 .top_logo_text {
+  font-family: 'Exo 2', sans-serif;
   margin-left: 20px;
   color: #f8f8ff;
   
-  font-size: 30px;
+  font-size: 40px;
   font-weight: bold;
   text-decoration: none;
 }
 .top_logo_text:hover{
-  color: #f8f8ffb0;
+  color: #f8f8ff;
+  text-shadow: 0 0 20px #d721f3d5, 0 0 50px #d721f3d5, 0 0 100px #d721f3d5;;
 }
 /* -------------------------------------------- 상단바 우측 아이콘들 */
 /* 상단바 메뉴들. */
@@ -433,14 +437,14 @@
 /* 인포메이션 두개 : */
 .my_infomation{
   display: flex;
-  width: 96%;
+  width: 97%;
 }
 .my_infomation_wan_btn{
   position: relative;
   margin-left: 10px;
   margin-right: 10px;
   width: 100%;
-  height: 40px;
+  height: 45px;
   color: #f8f8ff;
 
   border-top: 1px solid #f8f8ff7f;
@@ -561,15 +565,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* width: 100%;
-  height: 100vh; */
 }
 
-/* .login_bgm_b img {
-  width: 100%;
-  height: 100vh;
-  object-fit: cover;
-} */
 
 .chatbox_box{
   margin-top: 120px;
@@ -585,10 +582,10 @@
   color: #f8f8ff;
   padding: 20px;
   padding-top: 80px;
-  overflow: auto;     /*�꾨옒 �쎌� 湲곗��쇰줈 �ㅽ듃濡ㅼ씠 �앷린寃� ��*/
+  overflow: auto;     /* 여기서 스크롤 범위 조절*/
   height: 442px;
 }
-/* �ㅽ겕濡ㅻ컮 */
+
 .chatbox_contents::-webkit-scrollbar {
   width: 16px;
 }
@@ -610,7 +607,6 @@
 }
 
 .chatbox_input{
-  /* position: absolute; */
   display: flex;
   align-items: center;
   width: 100%;
@@ -856,6 +852,7 @@
   text-align: center
 }
 
+/*  팝업을 숨기기  위한 장치. */
 .hidden {
   display: none;
 }
@@ -874,9 +871,18 @@
   flex-direction: column;
   list-style: none;
 }
+@font-face {
+  font-family: 'HakgyoansimWoojuR';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/HakgyoansimWoojuR.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
 .side_menus_menu{
   text-align: center;
   
+  font-family: 'HakgyoansimWoojuR';
+
   position: relative;
   margin-top: 10px;
   width: 120px;
@@ -886,7 +892,7 @@
   display: inline-block;
   padding: 4px 4px;
   color: #d721f3d5;
-  font-size: 28px;
+  font-size: 35px;
   transition: 0.2s;
   border-radius: 20px;
   text-decoration: none;
@@ -903,7 +909,7 @@
   box-shadow:  0 0 10px #d721f3d5, 0 0 40px #d721f3d5, 0 0 80px #d721f3d5;
   /* transition-delay: 0.25s; d721f3d5 */
 }
-/* ------------------------------------------- */
+/* ------------------------------------------- 매칭페이지*/
 .matching_bg{
   width: 100%;
   height: 100vh;
@@ -911,78 +917,110 @@
   justify-content: center;
   align-items: center;
 }
-.matching_box{
-  width: 500px;
-  height: 500px;
+.matching_in_box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border-radius: 10px;
+  border: 1px solid #f8f8ff97;
+
+  backdrop-filter: blur(30px);
+  box-shadow: 0 0 40px rgba(0, 0, 0, .5);
+  width: 600px;
+  height: 600px;
+
+  overflow:hidden;
+
+  position: relative;
+  top: 10px;
 
 }
-.mat_box{
-  height: 100px;
-  width: 80px;
-
-}
-
 
 .swiper {
-  width: 240px;
-  height: 320px;
+  width: 360px;
+  height: 480px;
 }
 
 .swiper-slide {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 18px;
-  font-size: 22px;
+  border-radius: 10px;
+  font-size: 17px;
   font-weight: bold;
   color: #fff;
 }
+.mat_info_card{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 
-.swiper-slide:nth-child(1n) {
-  background-color: rgb(206, 17, 17);
+  background-color: #eadcdc;
+
 }
-
-.swiper-slide:nth-child(2n) {
-  background-color: rgb(0, 140, 255);
+.info_img_box{
+  width: 90%;
+  height: 60%;
+  background-color: #ae6464;
+  border-radius: 10px;
 }
-
-.swiper-slide:nth-child(3n) {
-  background-color: rgb(10, 184, 111);
+.info_info_box{
+  width: 100%;
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #4d4d4d;
 }
+/* 매칭 팝업 */
+.mat_popup{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-.swiper-slide:nth-child(4n) {
-  background-color: rgb(211, 122, 7);
+  width: 380px;
+  height: 140px;
+
+  background-color: #e6abba58;
+  border-radius: 10px;
+  z-index: 21;
+
+  backdrop-filter: blur(40px);
+  box-shadow: 0 0 80px rgba(0, 0, 0, .5);
 }
-
-.swiper-slide:nth-child(5n) {
-  background-color: rgb(118, 163, 12);
+/* 챗 리스트 안에 있는 팝업 페이지를 끄기 위한 장치입니다. */
+.mat_popup_close{
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  background: transparent;
+  border: none !important;
+  box-shadow: none !important;
 }
+.mat_popup_close:hover{
+  border-radius:9px;
+  background-color: #68686875;
+  backdrop-filter: blur(90px);
 
-.swiper-slide:nth-child(6n) {
-  background-color: rgb(180, 10, 47);
 }
-
-.swiper-slide:nth-child(7n) {
-  background-color: rgb(35, 99, 19);
+.mat_popup_text {
+  text-align: center
 }
-
-.swiper-slide:nth-child(8n) {
-  background-color: rgb(0, 68, 255);
-}
-
-.swiper-slide:nth-child(9n) {
-  background-color: rgb(218, 12, 218);
-}
-
-.swiper-slide:nth-child(10n) {
-  background-color: rgb(54, 94, 77);
-}
-
-
-
 
 /* ------------------------------------------media */
 @media (max-width: 800px) {
+  .swiper {
+    width: 330px;
+    height: 440px;
+  }
+  .matching_in_box{
+    width: 98%;
+  }
   .menuicon {
     display: none;
   }
@@ -995,16 +1033,11 @@
   .nav_login_btn {
     width: 100px;
   }
-  /* --------------------------------------諛섏쓳�� 踰꾪듉 */
   .secret_menu{
     display: flex;
   }
   .menu_list_open{
     display: flex;
-  }
-  .swiper {
-    height: 340px;
-    transition-duration: 0.4s;
   }
   .you_chat_Profil{
     display: none;
@@ -1014,15 +1047,18 @@
   }
   .chatbox_box{
     width: 90%;
-    margin-top: -40px;
-    /* transition-duration: 0.3s; */
+    margin-top: 80px;
   }
   .chatlist_box{
-    margin-top: -60px;
+    margin-top: 70px;
   }
   .side_menu_box{
     position: relative;
     width: 90%;
+
+    height: 70px;
+    right: 50px;
+    top: 100px;
   }
   .side_menu_list{
     width: 100%;
@@ -1048,13 +1084,12 @@
   .chatbox_box{
     width: 98%;
     transition-duration: 0.3s;
-    margin-top: -60px;
+    margin-top: 70px;
   }
   .chatlist_box{
     width: 98%;
   }
   .main_popup_page{
-    margin-top: -400px;
     width: 98%;
     height: 80%;
   }

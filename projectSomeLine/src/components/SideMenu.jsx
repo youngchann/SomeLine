@@ -10,19 +10,19 @@ const SideMenu = () => {
                     <span></span>
                     <span></span>
                     <span></span>
-                    List</a>
+                    매칭</a>
                 <a href="#" className='side_menus_menu menu22'>
                     <span></span>
                     <span></span>
                     <span></span>
                     <span></span>
-                    Chat</a>
+                    채팅</a>
                 <a href="#" className='side_menus_menu menu33'>
                     <span></span>
                     <span></span>
                     <span></span>
                     <span></span>
-                    Option</a>
+                    설정</a>
             </ul>
         </div>
     </div>
