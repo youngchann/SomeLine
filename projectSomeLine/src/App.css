@@ -29,7 +29,7 @@
   justify-content: center;
 }
 /* -------------------------------------------- 상단바 좌측 아이콘들 */
-.top_logo{
+.top_logo_left{
   display: flex;
   justify-content: left;
   align-items: center;
@@ -39,7 +39,7 @@
 /* 상단바 우측의 로고 글씨 */
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@100&display=swap');
 
-.top_logo_text {
+.top_logo_text_left{
   font-family: 'Exo 2', sans-serif;
   margin-left: 20px;
   color: #f8f8ff;
@@ -54,7 +54,7 @@
 }
 /* -------------------------------------------- 상단바 우측 아이콘들 */
 /* 상단바 메뉴들. */
-.top_nav {
+.top_nav_right{
   display: flex;
   justify-content: right;
   align-items: center;
@@ -765,7 +765,7 @@
   margin: 10px;
 }
 /* ------------------------------------------채팅창 리스트 */
-.chatlist_bg{
+.chatlist_background{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -811,7 +811,7 @@
   box-shadow: inset 2px 2px 5px 0 rgba(#fff, 0.5);
   border-radius: 100px;
 }
-/* -------------------------------------------------durl sadasdadasd */
+/* -------------------------------------------------채팅창 공간 내 박스 효과 */
 .chatlist_list_header{
   display: flex;
   justify-content: center;
@@ -842,7 +842,7 @@
   font-size: 20px;
   font-weight: 700;
 }
-.chat_con_miri{
+.chat_list_talk{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -858,7 +858,7 @@
   background-color: #d1d1d157;
   border-radius: 10px;
 }
-.chat_list_pro_img{
+.chat_list_profile_img{
   width: 50px;
   height: 50px;
   border-radius: 25px;
@@ -1089,6 +1089,7 @@
     align-items: center;
     width: 100%;
     justify-content: center;
+    
   }
   .side_menus_menu{
     margin-top: -40px;

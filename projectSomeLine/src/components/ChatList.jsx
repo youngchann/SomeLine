@@ -11,7 +11,7 @@ import {
 
 /* 바닐라 틸트를 실행시키기 위한 함수입니다. - 작업자: 이찬용
 틸트안에 속성을 줌으로서 바닐라 틸트 제작자가 만든 기능들을 활용합니다.
-이 바닐라 틸트는 채팅창 대화 미리보가에 적용 되었습니다.*/
+이 바닐라 틸트는 채팅창 대화 미리보기에 적용 되었습니다.*/
 function Tilt(props) {
   const { options, ...rest } = props;
   const tilt = useRef(null);
@@ -64,7 +64,7 @@ const ChatList = () => {
   }, [chats]);
 
   return (
-    <div className='chatlist_bg'>
+    <div className='chatlist_background'>
       <div className={`chatlist_popup_page ${isVisible ? '' : 'hidden'}`}>
         <button className='chatlist_popup_page_close' onClick={closePopup}>X</button>
         <div className='chatlist_popup_page_text'>
@@ -86,9 +86,9 @@ const ChatList = () => {
           <div className='chatlist_inner_box'>
             {chats.map((chat, index) => (
               <Tilt key={index} options={options} className='chat_list_contents'>
-                <div className='chat_list_pro_img'></div>
+                <div className='chat_list_profile_img'></div>
                 <p className='chat_list_name'>{chat.name}</p>
-                <p className='chat_con_miri'>{chat.content}</p>
+                <p className='chat_list_talk'>{chat.content}</p>
               </Tilt>
             ))}
           </div>

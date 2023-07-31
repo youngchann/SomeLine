@@ -15,10 +15,10 @@ const Header = () => {
 
     return (
         <header className='top'>
-            <div className='top_logo'>
-                <Link to={currentUser === null ? '/' : '/chatlist'} className='top_logo_text'>SOME.LINE</Link>
+            <div className='top_logo_left'>
+                <Link to={currentUser === null ? '/' : '/chatlist'} className='top_logo_text_left'>SOME.LINE</Link>
             </div>
-            <ul className='top_nav'>
+            <ul className='top_nav_right'>
                 {/* {menuItems.map((menuItem, index) => (
                     <li key={index} className='list_Style menuicon'>
                         <a href="#">{menuItem}</a>
