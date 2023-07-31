@@ -12,9 +12,6 @@ import {
 } from "firebase/firestore";
 
 const ChatBox = ({room}) => {
-  // const [chat, setChat] = useState([]);
-  // const [message, setMessage] = useState("");
-  // const chatEndRef = useRef(null);
 
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
@@ -23,7 +20,7 @@ const ChatBox = ({room}) => {
   useEffect(() => {
     const queryMessages = query(
       messagesRef,
-      where("room", "==", room),
+      where("room", "==", "여행 좋아하는 남자"),
       orderBy("createdAt")
     );
     const unsuscribe = onSnapshot(queryMessages, (snapshot) => {
