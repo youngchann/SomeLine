@@ -153,7 +153,6 @@
   box-shadow: 0 0 40px rgba(0, 0, 0, .6);
   border-radius: 10px;
 }
-
 .login_box_header_name{
   width: 90%;
   height: 80px;
@@ -1002,6 +1001,7 @@
 
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 .matching_in_box{
   margin-top: 110px;
@@ -1061,6 +1061,40 @@
   align-items: center;
   justify-content: center;
   color: #4d4d4d;
+}
+.mat_popup{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 380px;
+  height: 140px;
+
+  background-color: #e6abba58;
+  border-radius: 10px;
+  z-index: 20;
+
+  backdrop-filter: blur(40px);
+  box-shadow: 0 0 80px rgba(0, 0, 0, .5);;
+}
+.mat_popup_close{
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  background: transparent;
+  border: none !important;
+  box-shadow: none !important;
+}
+.mat_popup_close:hover {
+  border-radius:9px;
+  background-color: #68686875;
+  backdrop-filter: blur(90px);
+
+}
+.mat_popup_text {
+  text-align: center
 }
 
 /* ------------------------------------------media */
