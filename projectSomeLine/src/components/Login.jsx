@@ -24,7 +24,7 @@ const Login = () => {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      nav('/matching')
+      nav('/chatlist')
     } catch (err) {
       alert('이메일 혹은 비밀번호가 틀렸습니다!')
       setErr(true);
