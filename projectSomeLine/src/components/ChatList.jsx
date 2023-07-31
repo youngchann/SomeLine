@@ -127,15 +127,15 @@ const ChatList = () => {
           <hr/>
           <div className='chatlist_inner_box'>
               <Tilt options={options} className='chat_list_contents'>
-                <div className='chat_list_pro_img'></div>
-                <p className='chat_list_name'>챗봇</p>
-                <p className='chat_con_miri'>반가워요 ^^</p>
+                <div className='chat_list_profile_img'></div>
+                <p className='chat_list_name'>챗봇님</p>
+                <p className='chat_list_talk_preview'>반가워요 ^^</p>
               </Tilt>
             {chats.map((chat, index) => (
               <Tilt key={index} options={options} className='chat_list_contents'>
                 <div className='chat_list_profile_img'></div>
                 <p className='chat_list_name'>{chat.name}</p>
-                <p className='chat_list_talk'>{chat.content}</p>
+                <p className='chat_list_talk_preview'>{chat.content}</p>
               </Tilt>
             ))}
           </div>

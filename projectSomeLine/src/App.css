@@ -218,7 +218,7 @@
   background-color: #64646438;
 }
 /* 로그인 버튼입니다.- 작업자: 이찬용 */
-.login_wan_btn {
+.login_submit_button {
   position: relative;
   margin-top: 30px;
   width: 92%;
@@ -241,12 +241,12 @@
   /* backdrop-filter: blur(40px); */
   overflow: hidden;
 }
-.login_wan_btn:hover{
+.login_submit_button:hover{
   font-size: 35.5px;
   transition: 0.8s;
   box-shadow: 0 0 20px rgba(0, 0, 0, .5);
 }
-.login_wan_btn::before{
+.login_submit_button::before{
   content: '';
   position: absolute;
   transition: 0.8s;
@@ -257,7 +257,7 @@
   background: linear-gradient(to left, rgba(255,255,255,0.30),transparent);
   transform: skewX(45deg) translateX(0);
 }
-.login_wan_btn:hover::before{
+.login_submit_button:hover::before{
   transform: skewX(45deg) translateX(300%);
   box-sizing: border-box;
   transition: 0.5s;
@@ -878,7 +878,7 @@
   font-size: 20px;
   font-weight: 700;
 }
-.chat_list_talk{
+.chat_list_talk_preview{
   display: flex;
   justify-content: center;
   align-items: center;
