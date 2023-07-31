@@ -175,7 +175,7 @@
   width: 100%;
 }
 .id_box{
-  margin-top: 10px;
+  margin-top: 20px;
   padding-left: 10px;
   width: 90%;
   height: 50px;
@@ -218,12 +218,8 @@
   outline: 1px solid #f8f8ff;
   background-color: #64646438;
 }
-<<<<<<< HEAD
-.login_click_btn {
-=======
 /* 로그인 버튼입니다.- 작업자: 이찬용 */
-.login_wan_btn {
->>>>>>> 2df264b0065c7616aa78c7e8ce9df73d834edef3
+.login_submit_button {
   position: relative;
   margin-top: 30px;
   width: 92%;
@@ -1125,12 +1121,11 @@
     list-style: none;
     margin-left: 10px;
   }
-  .header_top_background{
+  .side_menu_background{
     display: flex;
     align-items: center;
     width: 100%;
     justify-content: center;
-  
   }
   .side_menus_menu{
     margin-top: -40px;
