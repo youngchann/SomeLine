@@ -7,7 +7,7 @@ import { AuthContext } from "../context/AuthContext";
 
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
-import { db, firebase } from "../firebase-config";
+import { db } from "../firebase-config";
 import {
   collection,
   where,
@@ -17,17 +17,76 @@ import {
   getDocs
 } from "firebase/firestore";
 
-
 const Matching = () => {
+
+  const { currentUser } = useContext(AuthContext);
 
   const [isVisiblePopup, setIsVisiblePopup] = useState(true);
   const matClosePopup = () => {
     setIsVisiblePopup(false);
   };
 
+  const swiperRef = useRef(null);
+
+  const goNextSlide = () => {
+    if (swiperRef.current && swiperRef.current.swiper) {
+      swiperRef.current.swiper.slideNext();
+      console.log(users[0].matchId);
+      console.log(matchUsers);
+      console.log(users[0]);
+    }
+  };
+
+  const [users, setUsers] = useState([])
+  const [matchUsers, setMatchUsers] = useState([])
+  const userRef = collection(db, "users") 
+    
+  useEffect(()=>{
+    if (currentUser && currentUser.email) {
+        const queryUsers = query(
+            userRef, where("id", "==", currentUser.email)
+        )
+
+        const unsuscribe = onSnapshot(queryUsers, (snapshot)=>{
+            let users=[]
+            snapshot.forEach((doc)=>{
+                users.push({...doc.data(), id: doc.id})
+            })
+            setUsers(users)
+        })
+        return ()=> unsuscribe()
+    }
+  },[currentUser])
+
+  useEffect(() => {
+    if (users.length > 0 && users[0].matchId) {
+      const matchIdQueries = users[0].matchId.map((id) => (
+        query(userRef, where("id", "==", id))
+      ));
+
+      Promise.all(matchIdQueries.map((q) => getDocs(q)))
+        .then((querySnapshots) => {
+          const matchedUsers = [];
+          querySnapshots.forEach((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+              if (doc.exists()) {
+                matchedUsers.push({ ...doc.data(), id: doc.id });
+              }
+            });
+          });
+          setMatchUsers(matchedUsers);
+        });
+    }
+
+    
+    
+  },[users])
+
+  
+
   return (
     <div className='matching_bg'>
-        <div className={`mat_popup ${isVisiblePopup ? '' : 'hidden'}`}>
+        <div className={isVisiblePopup ? 'mat_popup' : 'hidden'}>
           <button className='mat_popup_close' onClick={matClosePopup}>X</button>
           <div className='mat_popup_text'>
             <h4>💬 알림.</h4>
@@ -40,7 +99,7 @@ const Matching = () => {
             </video>
         </div>
         <div className='matching_in_box'>
-          <Swiper
+        <Swiper
             effect={'cards'}
             grabCursor={true}
             modules={[EffectCards]}
@@ -68,9 +127,7 @@ const Matching = () => {
             )}
   
           </Swiper>
-          
         </div>
-        
     </div>
   )
 }
