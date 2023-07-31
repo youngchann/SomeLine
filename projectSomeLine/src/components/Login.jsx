@@ -24,7 +24,7 @@ const Login = () => {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      nav('/matching')
+      nav('/chatlist')
     } catch (err) {
       alert('이메일 혹은 비밀번호가 틀렸습니다!')
       setErr(true);
@@ -54,7 +54,7 @@ const Login = () => {
             <div className="login_box_header_name">
               <h1>Login</h1>
             </div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="loginbox_in_input_box">
               <input
               className="id_box"
               id="id"
@@ -67,7 +67,7 @@ const Login = () => {
               placeholder="비밀번호.."
               
               ></input>
-              <button className="login_wan_btn">Login</button>
+              <button className="login_submit_button">Login</button>
             </form>
             {/* <a href='#' className="find_ps_id">비밀번호 찾기 / 아이디 찾기</a> */}
         </div> 

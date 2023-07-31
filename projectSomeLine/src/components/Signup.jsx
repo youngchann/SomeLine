@@ -94,7 +94,7 @@ const Signup = () => {
             <div className="login_box_header_name">
               <h2>Sign Up</h2>
             </div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="signupbox_in_input_box">
                 <input
                     className="signup_id_box"
                     id="id"
@@ -150,7 +150,7 @@ const Signup = () => {
                         />
                     )}
                 </div>
-                <button type="submit" className="login_wan_btn">가입하기</button>
+                <button type="submit" className="signup_wan_btn">가입하기</button>
             </form>
         </div>
     </div>
