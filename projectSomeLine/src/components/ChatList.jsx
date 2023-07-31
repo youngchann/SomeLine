@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import VanillaTilt from 'vanilla-tilt';
 import { db, auth } from "../firebase-config";
 import {
@@ -7,7 +7,11 @@ import {
   onSnapshot,
   query,
   orderBy,
+  getDocs
 } from "firebase/firestore";
+import { AuthContext } from "../context/AuthContext";
+import { chatList } from './Matching';
+
 
 /* 바닐라 틸트를 실행시키기 위한 함수입니다. - 작업자: 이찬용
 틸트안에 속성을 줌으로서 바닐라 틸트 제작자가 만든 기능들을 활용합니다.
@@ -26,6 +30,9 @@ function Tilt(props) {
 // 팝업창을 끄기 위해 만든 함수안에 들어가는 변수를 담기위한 것입니다. .-작업자 : 이찬용 
 
 const ChatList = () => {
+
+  const { currentUser } = useContext(AuthContext);
+
   // isVisible의 초기값을 false로 설정하여 새로운 메시지가 없을 때는 팝업이 뜨지 않도록 했습니다.
   const [isVisible, setIsVisible] = useState(false);
   const closePopup = () => {
@@ -39,13 +46,48 @@ const ChatList = () => {
     max: 5
   };
 
+  
+
   // chat 데이터의 초기화 - 작업자 : 이찬용
-  const [chats, setChats] = useState([
-    { name: '김춘자', content: '대화내용입니다.' },
-    { name: '이향자', content: '대화내용입니다.' },
-    { name: '추정화', content: '대화내용입니다.' },
-    { name: '이영자', content: '대화내용입니다.' },
-  ]);
+  // const [chats, setChats] = useState([
+  //   { name: '김춘자', content: '대화내용입니다.' },
+  //   { name: '이향자', content: '대화내용입니다.' },
+  //   { name: '추정화', content: '대화내용입니다.' },
+  //   { name: '이영자', content: '대화내용입니다.' },
+  // ]);
+  const [chats, setChats] = useState([]);
+  const userRef = collection(db, "users");
+
+  const [users, setUsers] = useState([])
+  const [matchUsers, setMatchUsers] = useState([])
+    
+  useEffect(()=>{
+    if (chatList.length > 0) {
+      const fetchMatchedUsers = async () => {
+        const matchIdQueries = chatList.map((name) =>
+          query(userRef, where("name", "==", name))
+        );
+
+        const matchedUsersData = await Promise.all(matchIdQueries.map((q) => getDocs(q)));
+        const matchedUsers = matchedUsersData.reduce((acc, querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+            if (doc.exists()) {
+              acc.push({ ...doc.data(), id: doc.id });
+            }
+          });
+          return acc;
+        }, []);
+
+        // chatList의 값과 일치하는 사용자들의 정보를 가져와 chats state 업데이트
+        setChats(matchedUsers);
+        console.log(matchedUsers);
+      };
+
+      fetchMatchedUsers();
+    }
+  }, [chatList]);
+
+  
 
   // chats 상태 값이 변화할 때마다 실행되는 useEffect를 추가했습니다. - 작업자 : 이찬용
   // 이로써 새로운 채팅이 추가될 때마다 isVisible 상태 값을 true로 변경하여 팝업창을 띄웁니다.  - 작업자 : 이찬용
@@ -84,6 +126,11 @@ const ChatList = () => {
           <div className='chatlist_list_header'><h1>~ 채팅창 리스트 ~</h1></div>
           <hr/>
           <div className='chatlist_inner_box'>
+              <Tilt options={options} className='chat_list_contents'>
+                <div className='chat_list_pro_img'></div>
+                <p className='chat_list_name'>챗봇</p>
+                <p className='chat_con_miri'>반가워요 ^^</p>
+              </Tilt>
             {chats.map((chat, index) => (
               <Tilt key={index} options={options} className='chat_list_contents'>
                 <div className='chat_list_pro_img'></div>

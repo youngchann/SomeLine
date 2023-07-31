@@ -16,6 +16,7 @@ import {
   orderBy,
   getDocs
 } from "firebase/firestore";
+let chatList = []
 
 const Matching = () => {
 
@@ -82,7 +83,15 @@ const Matching = () => {
     
   },[users])
 
+  const [addedUsers, setAddedUsers] = useState([]);
   
+
+  const addUserToList = (userName) => {
+    setAddedUsers((prevUsers) => [...prevUsers, userName]);
+    
+    chatList.push(userName)
+    console.log(chatList);
+  };
 
   return (
     <div className='matching_bg'>
@@ -116,7 +125,7 @@ const Matching = () => {
                       <>
                         <p>이름: {user.name}</p>
                         <p>나이: {user.age}</p>
-                        <button onClick={goNextSlide}>추가</button>
+                        <button onClick={()=>addUserToList(user.name)}>추가</button>
                       </>
                     ) : (
                       <p>Loading or no matched users found.</p>
@@ -133,3 +142,4 @@ const Matching = () => {
 }
 
 export default Matching
+export {chatList}
