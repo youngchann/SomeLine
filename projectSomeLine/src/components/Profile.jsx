@@ -20,47 +20,7 @@ const Profile = () => {
 
   
     const userRef = collection(db, "users") 
-      
-    useEffect(()=>{
-      if (currentUser && currentUser.email) {
-          const queryUsers = query(
-              userRef, where("id", "==", currentUser.email)
-          )
-  
-          const unsuscribe = onSnapshot(queryUsers, (snapshot)=>{
-              let users=[]
-              snapshot.forEach((doc)=>{
-                  users.push({...doc.data(), id: doc.id})
-              })
-              setUsers(users)
-          })
-          return ()=> unsuscribe()
-      }
-    },[currentUser])
-  
-    useEffect(() => {
-      if (users.length > 0 && users[0].matchId) {
-        const matchIdQueries = users[0].matchId.map((id) => (
-          query(userRef, where("id", "==", id))
-        ));
-  
-        Promise.all(matchIdQueries.map((q) => getDocs(q)))
-          .then((querySnapshots) => {
-            const matchedUsers = [];
-            querySnapshots.forEach((querySnapshot) => {
-              querySnapshot.forEach((doc) => {
-                if (doc.exists()) {
-                  matchedUsers.push({ ...doc.data(), id: doc.id });
-                }
-              });
-            });
-            setMatchUsers(matchedUsers);
-          });
-      }
-  
-      
-      
-    },[users])
+    
   
     
   
