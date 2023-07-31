@@ -47,14 +47,6 @@ const ChatList = () => {
   };
 
   
-
-  // chat 데이터의 초기화 - 작업자 : 이찬용
-  // const [chats, setChats] = useState([
-  //   { name: '김춘자', content: '대화내용입니다.' },
-  //   { name: '이향자', content: '대화내용입니다.' },
-  //   { name: '추정화', content: '대화내용입니다.' },
-  //   { name: '이영자', content: '대화내용입니다.' },
-  // ]);
   const [chats, setChats] = useState([]);
   const userRef = collection(db, "users");
 
@@ -127,15 +119,15 @@ const ChatList = () => {
           <hr/>
           <div className='chatlist_inner_box'>
               <Tilt options={options} className='chat_list_contents'>
-                <div className='chat_list_pro_img'></div>
-                <p className='chat_list_name'>챗봇</p>
-                <p className='chat_con_miri'>반가워요 ^^</p>
+                <div className='chat_list_profile_img'></div>
+                <p className='chat_list_name'>챗봇님</p>
+                <p className='chat_list_talk_preview'>반가워요 ^^</p>
               </Tilt>
             {chats.map((chat, index) => (
               <Tilt key={index} options={options} className='chat_list_contents'>
                 <div className='chat_list_profile_img'></div>
                 <p className='chat_list_name'>{chat.name}</p>
-                <p className='chat_list_talk'>{chat.content}</p>
+                <p className='chat_list_talk_preview'>{chat.content}</p>
               </Tilt>
             ))}
           </div>

@@ -46,6 +46,12 @@ const Profile = () => {
 
 
   
+<<<<<<< HEAD
+=======
+    const userRef = collection(db, "users") 
+    
+  
+>>>>>>> 3e8d684bc523111f31d6213a6a3daab081abdc58
     return (
       <div className='matching_bg'>
           <div className="login_bgm_b">

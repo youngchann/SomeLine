@@ -62,7 +62,7 @@ const ChatBox = ({room}) => {
         <div className='messages'>
           {messages.map((message) => (
             <div key={message.id} className={`message ${message.user === auth.currentUser.displayName ? "my-message" : "other-message"}`}>
-                <span className="user">{message.text}</span> 
+                <div className='chatbox_talk_box'><span className="user">{message.text}</span> </div>
             </div>
           ))}
         </div>
@@ -82,8 +82,15 @@ const ChatBox = ({room}) => {
         </form>
       </div>
       <div className='my_chat_Profil'>
-        <div  className='chat_Profil_img'>
-      </div><h2 className='my_chat_Profil_name'>{auth.currentUser.displayName}</h2></div>
+        <div  className='chat_Profil_img'></div> 
+        <h2 className='my_chat_Profil_name'>{auth.currentUser.displayName}</h2>
+        <div className='imotion_box'>
+          <button className='imotion_btn'>💕좋아</button>
+          <button className='imotion_btn'>😢슬퍼</button>
+          <button className='imotion_btn'>👿화나</button>
+        </div>
+      </div>
+
     </div>
   )
 }
