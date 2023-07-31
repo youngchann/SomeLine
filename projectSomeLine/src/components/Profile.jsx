@@ -22,8 +22,6 @@ const Profile = () => {
     const userRef = collection(db, "users") 
     
   
-    
-  
     return (
       <div className='matching_bg'>
           <div className="login_bgm_b">

@@ -6,11 +6,7 @@ const SideMenu = () => {
     <div className='side_menu_background'>
         <div className='side_menu_box'>
             <ul className='side_menu_list'>
-<<<<<<< HEAD
                 <Link to='/matching' className='side_menus_menu matching'>
-=======
-                <Link to='/matching' className='side_menus_menu menu11'>    
->>>>>>> fbeeebe (7.31.19.lee)
                     <span></span>
                     <span></span>
                     <span></span>
