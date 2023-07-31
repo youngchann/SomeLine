@@ -47,14 +47,6 @@ const ChatList = () => {
   };
 
   
-
-  // chat 데이터의 초기화 - 작업자 : 이찬용
-  // const [chats, setChats] = useState([
-  //   { name: '김춘자', content: '대화내용입니다.' },
-  //   { name: '이향자', content: '대화내용입니다.' },
-  //   { name: '추정화', content: '대화내용입니다.' },
-  //   { name: '이영자', content: '대화내용입니다.' },
-  // ]);
   const [chats, setChats] = useState([]);
   const userRef = collection(db, "users");
 

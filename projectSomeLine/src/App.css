@@ -720,7 +720,7 @@
   flex-direction: column;
   text-align: center;
   margin-top: 450px;
-  margin-right: 20px;
+  margin-right: 10px;
 }
 .my_chat_Profil{
   position: relative;
@@ -728,7 +728,7 @@
   flex-direction: column;
   text-align: center;
   margin-top: 450px;
-  margin-left: 20px;
+  margin-left: 10px;
 }
 .chat_Profil_img{
   width: 120px;
@@ -744,10 +744,12 @@
   box-shadow: 0 0 50px rgba(0, 0, 0, .9);
 }
 .you_chat_Profil_name{
+  margin-top: 10px;
   color: #f8f8ffb6;
 }
 .my_chat_Profil_name{
   color: #f8f8ffb6;
+  margin-top: 10px;
 }
 
 .imotion_box{
@@ -1096,7 +1098,24 @@
 .mat_popup_text {
   text-align: center
 }
+.matching_submit_button{
+  border: none;
+  width: 100px;
+  height: 40px;
+  border-radius: 20px;
+  
 
+  border-top: 1px solid #686868;
+  border-bottom: 1px solid #686868;
+
+  box-shadow: 0 0 5px rgba(0, 0, 0, .5) inset;
+}
+.matching_submit_button:hover{
+  box-shadow: 0 0 10px rgba(0, 0, 0, .5) inset;
+}
+.matching_submit_button:active{
+  box-shadow: 0 0 17px rgba(0, 0, 0, .5) inset;
+}
 /* ------------------------------------------media */
 @media (max-width: 800px) {
   .swiper {
