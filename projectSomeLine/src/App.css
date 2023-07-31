@@ -604,10 +604,8 @@
   flex-direction: column;
   align-items: flex-start;
   width: 100%;                 /* 여기 고쳐야함*/
-  height: 88%;
-  
-  padding: -10px;
-  margin-bottom: 10px;
+  height: 86%;
+  padding-bottom: 10px;
 
   border-top-right-radius: 10px ;
   border-top-left-radius: 10px ;
@@ -617,7 +615,6 @@
 }
 .message {
   padding: 4px 8px;
-  margin: 4px;
   border-radius: 8px;
   max-width: 80%;
 }
@@ -642,12 +639,12 @@
   width:70%;
   height: 600px;
   border-radius: 20px;
-  background-color: #ffffff44;
+  background-color: #d3d3d363;
   /* background:transparent; */
   backdrop-filter: blur(60px);
   box-shadow: 0 0 40px rgba(0, 0, 0, .6);
 }
-
+/*  스크롤바 */
 .messages::-webkit-scrollbar {
   width: 10px;
 }
@@ -658,15 +655,20 @@
 
 
 .messages::-webkit-scrollbar-thumb {
-  background-image: linear-gradient(180deg, #708bd4de 0%, #d0368be5 99%);
+  background-image: linear-gradient(180deg,#8499d1de 0%, #708bd4de 30%, #d0368be5 99%);
   box-shadow: inset 2px 2px 5px 0 rgba(#fff, 0.5);
   border-radius: 100px;
 }
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~말풍선 */
+.chatbox_talk_box{
+  background-color: #3636365c;
+  padding: 5px;
+  border-radius: 10px;
+  text-align: left;
+}
+
 
 .chatbox_input{
-
-  
-  margin-top: -10px;
   display: flex;
   align-items: center;
   width: 100%;
@@ -679,11 +681,16 @@
   box-shadow: 0 0 40px rgba(0, 0, 0, .5);
 
 }
+/* 채팅글을 적는 공간입니다. */
 .chat_input_text{
   background-color: #6f6f6faa;
   width: 80%;
-  margin-left: 20px;
+  margin-left: 15px;
+
+  /* 글이 써지는 위치입니다. */
   padding: 10px;
+  padding-left: 20px;
+
   border-radius: 30px;
   font-size: 18px;
   color: #f8f8ff;
@@ -740,7 +747,7 @@
 }
 .chat_Profil_img:hover{
   box-sizing: border-box;
-  border: 2px solid #f8f8ff;
+  border: 1px solid #f8f8ff;
   box-shadow: 0 0 50px rgba(0, 0, 0, .9);
 }
 .you_chat_Profil_name{
@@ -754,11 +761,11 @@
 
 .imotion_box{
   padding: 6px;
-  
+
   display: flex;
   flex-direction: column;
-  border-radius: 5px;
-  background: linear-gradient(120deg, #4c43e9 0%, #a719ac 99%);
+  border-radius: 10px;
+  background: linear-gradient(130deg, #625be5c0 0%, #cc42d1b2 99%);
 
   /* backdrop-filter: blur(40px); */
 }
