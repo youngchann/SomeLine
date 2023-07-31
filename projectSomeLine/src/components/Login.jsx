@@ -67,7 +67,7 @@ const Login = () => {
               placeholder="비밀번호.."
               
               ></input>
-              <button className="login_wan_btn">Login</button>
+              <button className="login_click_button">Login</button>
             </form>
             {/* <a href='#' className="find_ps_id">비밀번호 찾기 / 아이디 찾기</a> */}
         </div> 

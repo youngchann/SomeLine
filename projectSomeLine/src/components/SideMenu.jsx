@@ -3,22 +3,22 @@ import { Link } from 'react-router-dom'
 
 const SideMenu = () => {
   return (
-    <div className='side_menu_background'>
+    <div className='header_top_background'>
         <div className='side_menu_box'>
             <ul className='side_menu_list'>
-                <Link to='/matching' className='side_menus_menu menu11'>
+                <Link to='/matching' className='side_menus_menu matching'>
                     <span></span>
                     <span></span>
                     <span></span>
                     <span></span>
                     매칭</Link>
-                <Link to='/chatlist' className='side_menus_menu menu22'>
+                <Link to='/chatlist' className='side_menus_menu chatlist'>
                     <span></span>
                     <span></span>
                     <span></span>
                     <span></span>
                     채팅 리스트</Link>
-                <Link to='/chatbox' className='side_menus_menu menu33'>
+                <Link to='/chatbox' className='side_menus_menu chatbot'>
                     <span></span>
                     <span></span>
                     <span></span>
