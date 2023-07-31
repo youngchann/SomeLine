@@ -43,7 +43,7 @@ const ChatBox = ({room}) => {
       text: newMessage,
       createdAt: serverTimestamp(),
       user: auth.currentUser.displayName,
-      room : "치킨 왕자 && 감자 공주"
+      room : "여행 좋아하는 남자"
     });
 
     setNewMessage("");

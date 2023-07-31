@@ -54,7 +54,7 @@ const Login = () => {
             <div className="login_box_header_name">
               <h1>Login</h1>
             </div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="loginbox_in_input_box">
               <input
               className="id_box"
               id="id"
