@@ -567,6 +567,8 @@
   display: flex;
   justify-content: center;
 }
+
+/* 임영찬 채팅 -- 시작 */
 .messages {
   display: flex;
   flex-direction: column;
@@ -592,6 +594,8 @@
   color: #f8f8ff;
   align-self: flex-start;
 }
+
+/* 임영찬 채팅 ---끝*/
 
 .chatbox_box{
   margin-top: 120px;
