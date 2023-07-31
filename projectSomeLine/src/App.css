@@ -29,7 +29,7 @@
   justify-content: center;
 }
 /* -------------------------------------------- 상단바 좌측 아이콘들 */
-.top_logo{
+.top_logo_left{
   display: flex;
   justify-content: left;
   align-items: center;
@@ -39,7 +39,7 @@
 /* 상단바 우측의 로고 글씨 */
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@100&display=swap');
 
-.top_logo_text {
+.top_logo_text_left{
   font-family: 'Exo 2', sans-serif;
   margin-left: 20px;
   color: #f8f8ff;
@@ -54,7 +54,7 @@
 }
 /* -------------------------------------------- 상단바 우측 아이콘들 */
 /* 상단바 메뉴들. */
-.top_nav {
+.top_nav_right{
   display: flex;
   justify-content: right;
   align-items: center;
@@ -153,7 +153,6 @@
   box-shadow: 0 0 40px rgba(0, 0, 0, .6);
   border-radius: 10px;
 }
-
 .login_box_header_name{
   width: 90%;
   height: 80px;
@@ -175,7 +174,7 @@
   width: 100%;
 }
 .id_box{
-  margin-top: 10px;
+  margin-top: 20px;
   padding-left: 10px;
   width: 90%;
   height: 50px;
@@ -218,12 +217,8 @@
   outline: 1px solid #f8f8ff;
   background-color: #64646438;
 }
-<<<<<<< HEAD
-.login_click_btn {
-=======
 /* 로그인 버튼입니다.- 작업자: 이찬용 */
-.login_wan_btn {
->>>>>>> 2df264b0065c7616aa78c7e8ce9df73d834edef3
+.login_submit_button {
   position: relative;
   margin-top: 30px;
   width: 92%;
@@ -806,7 +801,7 @@
   margin: 10px;
 }
 /* ------------------------------------------채팅창 리스트 */
-.chatlist_bg{
+.chatlist_background{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -852,7 +847,7 @@
   box-shadow: inset 2px 2px 5px 0 rgba(#fff, 0.5);
   border-radius: 100px;
 }
-/* -------------------------------------------------durl sadasdadasd */
+/* -------------------------------------------------채팅창 공간 내 박스 효과 */
 .chatlist_list_header{
   display: flex;
   justify-content: center;
@@ -883,7 +878,7 @@
   font-size: 20px;
   font-weight: 700;
 }
-.chat_con_miri{
+.chat_list_talk{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -899,7 +894,7 @@
   background-color: #d1d1d157;
   border-radius: 10px;
 }
-.chat_list_pro_img{
+.chat_list_profile_img{
   width: 50px;
   height: 50px;
   border-radius: 25px;
@@ -1006,6 +1001,7 @@
 
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 .matching_in_box{
   margin-top: 110px;
@@ -1066,6 +1062,40 @@
   justify-content: center;
   color: #4d4d4d;
 }
+.mat_popup{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 380px;
+  height: 140px;
+
+  background-color: #e6abba58;
+  border-radius: 10px;
+  z-index: 20;
+
+  backdrop-filter: blur(40px);
+  box-shadow: 0 0 80px rgba(0, 0, 0, .5);;
+}
+.mat_popup_close{
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  background: transparent;
+  border: none !important;
+  box-shadow: none !important;
+}
+.mat_popup_close:hover {
+  border-radius:9px;
+  background-color: #68686875;
+  backdrop-filter: blur(90px);
+
+}
+.mat_popup_text {
+  text-align: center
+}
 
 /* ------------------------------------------media */
 @media (max-width: 800px) {
@@ -1125,12 +1155,12 @@
     list-style: none;
     margin-left: 10px;
   }
-  .header_top_background{
+  .side_menu_background{
     display: flex;
     align-items: center;
     width: 100%;
     justify-content: center;
-  
+    
   }
   .side_menus_menu{
     margin-top: -40px;

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const SideMenu = () => {
   return (
-    <div className='header_top_background'>
+    <div className='side_menu_background'>
         <div className='side_menu_box'>
             <ul className='side_menu_list'>
                 <Link to='/matching' className='side_menus_menu matching'>
