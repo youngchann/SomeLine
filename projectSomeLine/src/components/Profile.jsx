@@ -3,7 +3,7 @@ import 'swiper/css';
 import 'swiper/css/effect-cards';
 import { AuthContext } from "../context/AuthContext";
 
-import { db } from "../firebase-config";
+import { db, firebase } from "../firebase-config";
 import {
   collection,
   where,
@@ -13,12 +13,16 @@ import {
   getDoc,
   getDocs,
 } from "firebase/firestore";
-import { getStorage, ref, getDownloadURL } from "firebase/storage";
+import { getStorage, ref, getDownloadURL, uploadBytes, listAll } from "firebase/storage";
 
 const Profile = () => {
   const { currentUser } = useContext(AuthContext);
   const [user, setUser] = useState(null);
+  const [imageUpload, setImageUpload] = useState(null);
 
+  const storage = getStorage(firebase);
+
+  // 현재 로그인 유저 정보 조회를 위한 기능
   useEffect(() => {
     if (currentUser && currentUser.email) {
       const q = query(collection(db, "users"), where("id", "==", currentUser.email));
@@ -46,6 +50,14 @@ const Profile = () => {
     }
   }, [user]);
 
+
+  const upload = () => {
+    if (imageUpload === null) return;
+
+    const imageRef = ref(storage, `images/${imageUpload.name+currentUser.displayName}`);
+    uploadBytes(imageRef, imageUpload)
+  };
+
   // user가 null인 경우, Loading 메시지를 표시
   if (!user) {
     return <p>Loading...</p>;
@@ -62,7 +74,7 @@ const Profile = () => {
       <div className='matching_in_box'>
         <div className='mat_info_card'>
           <div className='info_img_box'>
-            <img id='myimg' src={user.profileUrl} alt="User Profile" />
+            <img style={{maxWidth:300}} id='myimg' src={user.profileUrl} alt="User Profile" />
           </div>
           <div className='info_info_box'>
             <>
@@ -70,8 +82,19 @@ const Profile = () => {
               <p>나이: {user.age}</p>
             </>
           </div>
+          <div>
+            <input
+              type="file"
+              onChange={(event) => {
+                setImageUpload(event.target.files[0]);
+              }}
+            />
+            <button onClick={upload}>업로드</button>
+          </div>
         </div>
+        
       </div>
+      
     </div>
   );
 };
