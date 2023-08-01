@@ -24,6 +24,7 @@ const Signup = () => {
         reader.readAsDataURL(file);
         reader.onloadend = () => {
           setProfileImage(reader.result);
+          console.log("Profile Image set:", reader.result);
         };
     };
     const handleSubmit = async (event) => {
@@ -31,6 +32,7 @@ const Signup = () => {
         const imageRef = ref(storage, `images/${name + v4()}`)
         await uploadBytes(imageRef, profileImage)
         const downloadUrl = await getDownloadURL(imageRef)
+        console.log("Profile URL:", downloadUrl);
         setProfileUrl(downloadUrl)
         
 
@@ -147,6 +149,7 @@ const Signup = () => {
                             src={profileImage}
                             alt='프로필 사진'
                             className="preview_mgae"
+                            style={{width:50}}
                         />
                     )}
                 </div>

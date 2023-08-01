@@ -10,6 +10,7 @@ import ChatBox from './components/ChatBox';
 import ChatList from './components/ChatList';
 import Matching from './components/Matching';
 import SideMenu from './components/SideMenu';
+import Profile from './components/Profile';
 
 import { Route, Routes, useLocation, Navigate } from 'react-router-dom';
 
@@ -19,7 +20,7 @@ import { Route, Routes, useLocation, Navigate } from 'react-router-dom';
 function App() {
 
   const location = useLocation();
-  const showSideMenu = location.pathname === '/chatbox' || location.pathname === '/chatlist' || location.pathname === '/matching';
+  const showSideMenu = location.pathname === '/chatbox' || location.pathname === '/chatlist' || location.pathname === '/matching' || location.pathname === '/profile';
 
 
   return (
@@ -35,6 +36,7 @@ function App() {
         <Route path='/chatbox' element={<ChatBox/>}></Route>
         <Route path='/chatlist' element={<ChatList/>}></Route>
         <Route path='/matching' element={<Matching/>}></Route>
+        <Route path='/profile' element={<Profile/>}></Route>
       </Routes>
 
       {/* <Footer/> */}
