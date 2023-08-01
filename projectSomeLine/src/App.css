@@ -1208,4 +1208,18 @@
     width: 98%;
     height: 80%;
   }
+
+
+@keyframes showAndHide {
+  0% { opacity: 0; transform: translateY(3rem); }
+  50% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-3rem); }
+  }
+  
+  .message-box {
+    animation: showAndHide 5s linear forwards;
+  }
 }
+
+
+
