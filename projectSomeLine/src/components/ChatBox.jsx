@@ -48,8 +48,9 @@ const ChatBox = ({room}) => {
 
     setNewMessage("");
   };
-  // 이모션이 작동하는 코드입니다.
-  // 현재 해당 코드는 챗 지피티를 활용하여 만들어 졌으나, 비효율적입니다.
+
+
+  // 감정 이모티콘이 올라가게 올라가게 만드는 함수들입니다.
   const [hartClicked, hartIsClicked] = useState(false);
   const [sadClicked, sadIsClicked] = useState(false);
   const [angryClicked, angryIsClicked] = useState(false);
@@ -60,23 +61,22 @@ const ChatBox = ({room}) => {
 
   const hart_Click = () => {
     hartIsClicked(true);
-
     setHartKey(Math.random()); 
     setTimeout(() => hartIsClicked(false), 3000);
   };
+
   const sad_Click = () => {
     sadIsClicked(true);
-
     setSadKey(Math.random()); 
     setTimeout(() => sadIsClicked(false), 3000);
   };
+
   const angry_Click = () => {
     angryIsClicked(true);
 
     setAngryKey(Math.random()); 
     setTimeout(() => angryIsClicked(false), 3000);
   };;
-  //  챗지피티 이모션 활용끝
 
 
   return (
