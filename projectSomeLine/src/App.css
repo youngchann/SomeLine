@@ -48,7 +48,7 @@
   font-weight: bold;
   text-decoration: none;
 }
-.top_logo_text:hover{
+.top_logo_text_left:hover{
   color: #f8f8ff;
   text-shadow: 0 0 20px #d721f3d5, 0 0 50px #d721f3d5, 0 0 100px #d721f3d5;;
 }
@@ -241,12 +241,12 @@
   /* backdrop-filter: blur(40px); */
   overflow: hidden;
 }
-.login_wan_btn:hover{
+.login_submit_button:hover{
   font-size: 35.5px;
   transition: 0.8s;
   box-shadow: 0 0 20px rgba(0, 0, 0, .5);
 }
-.login_wan_btn::before{
+.login_submit_button::before{
   content: '';
   position: absolute;
   transition: 0.8s;
@@ -257,7 +257,7 @@
   background: linear-gradient(to left, rgba(255,255,255,0.30),transparent);
   transform: skewX(45deg) translateX(0);
 }
-.login_wan_btn:hover::before{
+.login_submit_button:hover::before{
   transform: skewX(45deg) translateX(300%);
   box-sizing: border-box;
   transition: 0.5s;
@@ -604,10 +604,8 @@
   flex-direction: column;
   align-items: flex-start;
   width: 100%;                 /* 여기 고쳐야함*/
-  height: 88%;
-  
-  padding: -10px;
-  margin-bottom: 10px;
+  height: 86%;
+  padding-bottom: 10px;
 
   border-top-right-radius: 10px ;
   border-top-left-radius: 10px ;
@@ -617,7 +615,6 @@
 }
 .message {
   padding: 4px 8px;
-  margin: 4px;
   border-radius: 8px;
   max-width: 80%;
 }
@@ -642,12 +639,12 @@
   width:70%;
   height: 600px;
   border-radius: 20px;
-  background-color: #ffffff44;
+  background-color: #d3d3d363;
   /* background:transparent; */
   backdrop-filter: blur(60px);
   box-shadow: 0 0 40px rgba(0, 0, 0, .6);
 }
-
+/*  스크롤바 */
 .messages::-webkit-scrollbar {
   width: 10px;
 }
@@ -658,15 +655,20 @@
 
 
 .messages::-webkit-scrollbar-thumb {
-  background-image: linear-gradient(180deg, #708bd4de 0%, #d0368be5 99%);
+  background-image: linear-gradient(180deg,#8499d1de 0%, #708bd4de 30%, #d0368be5 99%);
   box-shadow: inset 2px 2px 5px 0 rgba(#fff, 0.5);
   border-radius: 100px;
 }
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~말풍선 */
+.chatbox_talk_box{
+  background-color: #3636365c;
+  padding: 5px;
+  border-radius: 10px;
+  text-align: left;
+}
+
 
 .chatbox_input{
-
-  
-  margin-top: -10px;
   display: flex;
   align-items: center;
   width: 100%;
@@ -679,11 +681,16 @@
   box-shadow: 0 0 40px rgba(0, 0, 0, .5);
 
 }
+/* 채팅글을 적는 공간입니다. */
 .chat_input_text{
   background-color: #6f6f6faa;
   width: 80%;
-  margin-left: 20px;
+  margin-left: 15px;
+
+  /* 글이 써지는 위치입니다. */
   padding: 10px;
+  padding-left: 20px;
+
   border-radius: 30px;
   font-size: 18px;
   color: #f8f8ff;
@@ -720,7 +727,7 @@
   flex-direction: column;
   text-align: center;
   margin-top: 450px;
-  margin-right: 20px;
+  margin-right: 10px;
 }
 .my_chat_Profil{
   position: relative;
@@ -728,7 +735,7 @@
   flex-direction: column;
   text-align: center;
   margin-top: 450px;
-  margin-left: 20px;
+  margin-left: 10px;
 }
 .chat_Profil_img{
   width: 120px;
@@ -740,23 +747,25 @@
 }
 .chat_Profil_img:hover{
   box-sizing: border-box;
-  border: 2px solid #f8f8ff;
+  border: 1px solid #f8f8ff;
   box-shadow: 0 0 50px rgba(0, 0, 0, .9);
 }
 .you_chat_Profil_name{
+  margin-top: 10px;
   color: #f8f8ffb6;
 }
 .my_chat_Profil_name{
   color: #f8f8ffb6;
+  margin-top: 10px;
 }
 
 .imotion_box{
   padding: 6px;
-  
+
   display: flex;
   flex-direction: column;
-  border-radius: 5px;
-  background: linear-gradient(120deg, #4c43e9 0%, #a719ac 99%);
+  border-radius: 10px;
+  background: linear-gradient(130deg, #625be5c0 0%, #cc42d1b2 99%);
 
   /* backdrop-filter: blur(40px); */
 }
@@ -878,7 +887,7 @@
   font-size: 20px;
   font-weight: 700;
 }
-.chat_list_talk{
+.chat_list_talk_preview{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1096,7 +1105,24 @@
 .mat_popup_text {
   text-align: center
 }
+.matching_submit_button{
+  border: none;
+  width: 100px;
+  height: 40px;
+  border-radius: 20px;
+  
 
+  border-top: 1px solid #686868;
+  border-bottom: 1px solid #686868;
+
+  box-shadow: 0 0 5px rgba(0, 0, 0, .5) inset;
+}
+.matching_submit_button:hover{
+  box-shadow: 0 0 10px rgba(0, 0, 0, .5) inset;
+}
+.matching_submit_button:active{
+  box-shadow: 0 0 17px rgba(0, 0, 0, .5) inset;
+}
 /* ------------------------------------------media */
 @media (max-width: 800px) {
   .swiper {
