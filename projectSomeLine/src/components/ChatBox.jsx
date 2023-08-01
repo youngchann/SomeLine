@@ -93,6 +93,15 @@ const ChatBox = ({ room }) => {
           </button>
         </form>
       </div>
+      <div className='my_chat_Profil'>
+        <div  className='chat_Profil_img'></div> 
+        <h2 className='my_chat_Profil_name'>{auth.currentUser.displayName}</h2>
+        <div className='imotion_box'>
+          <button className='imotion_btn'>💕좋아</button>
+          <button className='imotion_btn'>😢슬퍼</button>
+          <button className='imotion_btn'>👿화나</button>
+        </div>
+      </div>
     </div>
   );
 };
