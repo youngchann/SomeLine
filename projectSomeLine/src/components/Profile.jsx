@@ -59,18 +59,37 @@ const Profile = () => {
           <source src='videos/mainmain10.mp4' type='video/mp4' />
         </video>
       </div>
-      <div className='matching_in_box'>
-        <div className='mat_info_card'>
-          <div className='info_img_box'>
-            <img id='myimg' src={user.profileUrl} alt="User Profile" />
-          </div>
-          <div className='info_info_box'>
-            <>
-              <p>이름: {user.name}</p>
-              <p>나이: {user.age}</p>
-            </>
+      <div className='profile_in_box'>
+        <div className='profile_box_header_box'>
+          <div className='profile_box_logo'></div>
+          <div className='profile_box_header_name'>Profile
           </div>
         </div>
+        <div className='profile_img_chainge_box'>
+          <div className='profile_img_text'><h1>사진</h1></div>
+          <div className='profile_img_chainge'></div>
+        </div>
+        <div  className='profile_name_chainge_box'>
+          <div className='profile_name_chainge_text'><h1>이름</h1></div>
+          <form className="profile_name_chainge_input">
+            <input
+            className="profile_name_input_in"
+            id="id"
+            placeholder= {user.name}
+            ></input>
+          </form>
+        </div>
+        <div  className='profile_myinfo_box'>
+          <div className='profile_myinfo_box_text'><h1>자기 소개</h1></div>
+          <form className="profile_myinfo_box_input">
+            <textarea
+            className="profile_myinfo_box_input_in"
+            // id="id"
+            type='textarea'
+            ></textarea>
+          </form>
+        </div>
+        <div className='profile_chainge_button_box'><button className='profile_submit_button'>수정하기</button></div>
       </div>
     </div>
   );
