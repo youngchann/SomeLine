@@ -1170,7 +1170,7 @@
 /* 프로필 박스 안에 상단에 프로필 글씨 */
 .profile_box_header_name{
   font-size: 100px;
-  color: #efefef;
+  color: #efefefad;
 }
 
 .profile_img_text, .profile_name_chainge_text, .profile_myinfo_box_text{
