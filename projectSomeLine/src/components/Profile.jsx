@@ -13,7 +13,7 @@ import {
   getDoc,
   getDocs,
 } from "firebase/firestore";
-import { getStorage, ref, getDownloadURL, uploadBytes, listAll } from "firebase/storage";
+import { getStorage, ref, getDownloadURL, uploadBytes} from "firebase/storage";
 
 const Profile = () => {
   const { currentUser } = useContext(AuthContext);
@@ -35,7 +35,6 @@ const Profile = () => {
   }, [currentUser]);
 
   useEffect(() => {
-    // 이미지 가져오는 코드가 있을 때만 실행하도록 수정
     if (user && user.profileUrl) {
       const storage = getStorage();
       getDownloadURL(ref(storage, user.profileUrl))
@@ -83,12 +82,14 @@ const Profile = () => {
                 setImageUpload(event.target.files[0]);
               }}
             />
-            <button onClick={upload}>업로드</button>
+            <button >업로드</button>
           </div>
         </div>
         <div className='profile_img_chainge_box'>
           <div className='profile_img_text'><h1>사진</h1></div>
-          <div className='profile_img_chainge'></div>
+          <div className='profile_img_chainge'>
+            <img className='profile_img_chainge' id='myimg' />
+          </div>
         </div>
         <div  className='profile_name_chainge_box'>
           <div className='profile_name_chainge_text'><h1>이름</h1></div>
