@@ -1209,16 +1209,15 @@
     height: 80%;
   }
 
-
-@keyframes showAndHide {
-  0% { opacity: 0; transform: translateY(3rem); }
-  50% { opacity: 1; transform: translateY(0); }
-  100% { opacity: 0; transform: translateY(-3rem); }
-  }
-  
-  .message-box {
-    animation: showAndHide 5s linear forwards;
-  }
+/* -------------------------------------감정표현 */
+.chat_Profil_img_emotion {
+  position: absolute;
+  font-size: 70px;
+  /* 위치 조정이 필요하다면 아래의 주석을 해제하고 적절한 값을 설정하세요.
+  top: 0;
+  left: 0;
+  */
+}
 }
 
 

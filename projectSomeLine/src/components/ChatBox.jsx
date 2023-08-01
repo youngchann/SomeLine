@@ -15,10 +15,10 @@ const ChatBox = ({ room }) => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const messagesRef = collection(db, "messages");
+  const [showLove, setShowLove] = useState(false);
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
-    // 스크롤바를 항상 가장 아래로 내리는 함수
     const scrollToBottom = () => {
       messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     };
@@ -36,7 +36,6 @@ const ChatBox = ({ room }) => {
       });
       console.log(messages);
       setMessages(messages);
-      // 새로운 메시지가 추가되면 스크롤바를 아래로 내림
       scrollToBottom();
     });
 
@@ -57,6 +56,11 @@ const ChatBox = ({ room }) => {
     setNewMessage("");
   };
 
+  const handleLoveClick = () => {
+    setShowLove(true);
+    setTimeout(() => setShowLove(false), 5000);
+  };
+
   return (
     <div className='chatbox_bg'>
       <div className="login_bgm_b">
@@ -75,7 +79,6 @@ const ChatBox = ({ room }) => {
               <div className='chatbox_talk_box'><span className="user">{message.text}</span> </div>
             </div>
           ))}
-          {/* 스크롤바를 항상 아래로 내리는 빈 div */}
           <div ref={messagesEndRef} />
         </div>
         <form className='chatbox_input' onSubmit={handleSubmit}>
@@ -93,12 +96,12 @@ const ChatBox = ({ room }) => {
           </button>
         </form>
       </div>
-      {/* 내 프로필 */}
       <div className='my_chat_Profil'>
+        <div className="chat_Profil_img_emotion">{showLove && '💕'}</div>
         <div className='chat_Profil_img'></div> 
         <h2 className='my_chat_Profil_name'>{auth.currentUser ? auth.currentUser.displayName : "Anonymous"}</h2>
         <div className='imotion_box'>
-          <button className='imotion_btn'>💕좋아</button>
+          <button className='imotion_btn' onClick={handleLoveClick}>💕좋아</button>
           <button className='imotion_btn'>😢슬퍼</button>
           <button className='imotion_btn'>👿화나</button>
         </div>
@@ -107,4 +110,4 @@ const ChatBox = ({ room }) => {
   );
 };
 
-export default ChatBox;
+export default React.memo(ChatBox);
