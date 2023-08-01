@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { db, storage, auth } from "../firebase-config";
 import { createUserWithEmailAndPassword, updateProfile, signOut } from "firebase/auth"
 import { collection, addDoc } from "firebase/firestore";
@@ -15,11 +15,14 @@ const Signup = () => {
     const [gender, setGender] = useState("");
     const [age, setAge] = useState("");
     const usersRef = collection(db, "users");
-    const [profileUrl, setProfileUrl] = useState("")
     const nav = useNavigate()
+
+    const [imageUpload, setImageUpload] = useState(null);
+    
 
     const handleImageChange = (event) => {
         const file = event.target.files[0];
+        setImageUpload(file)
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onloadend = () => {
@@ -29,11 +32,10 @@ const Signup = () => {
     };
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const imageRef = ref(storage, `images/${name + v4()}`)
-        await uploadBytes(imageRef, profileImage)
+        const imageRef = ref(storage, `images/${name+v4()}`)
+        await uploadBytes(imageRef, imageUpload)
         const downloadUrl = await getDownloadURL(imageRef)
-        console.log("Profile URL:", downloadUrl);
-        setProfileUrl(downloadUrl)
+        
         
 
         const res = await createUserWithEmailAndPassword(auth, email, password)
