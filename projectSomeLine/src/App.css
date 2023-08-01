@@ -1369,9 +1369,8 @@
 
 
 
-/* 챗지 이모션4 */
-
-.emt_hart, .emt_sad, .emt_angry {
+/* 하트 이모션 작동  */
+.emt_hart, .emt_sad {
   width: 120px;
   height: 120px;
   position: absolute;
@@ -1403,7 +1402,41 @@
     opacity: 0;
   }
 }
-
 .moveFadeOut {
   animation: moveFadeOut 2s linear forwards;
+}
+/* 앵그리 이모션 작동 */
+.emt_angry{
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  top: -10px;
+  opacity: 0;
+
+  font-size:120px;
+  z-index: -10;
+}
+@keyframes angryMoveFadeOut {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  25% {
+    transform: translateY(-10px);
+  }
+  50% {
+    transform: translateY(0px);
+  }
+  75% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 0;
+  }
+}
+
+
+.angryMoveFadeOut {
+  animation: angryMoveFadeOut 3s linear forwards;
 }

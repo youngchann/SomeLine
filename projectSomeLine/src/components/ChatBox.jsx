@@ -117,7 +117,7 @@ const ChatBox = ({room}) => {
         {/* 해당 코드는 하트 이모션이 올라옵니다. */}
         <div key={hartKey} className={`emt_hart ${hartClicked ? 'moveFadeOut' : ''}`}>💕</div>
         <div key={sadKey} className={`emt_sad ${sadClicked ? 'moveFadeOut' : ''}`}>😢</div>
-        <div key={angryKey} className={`emt_angry ${angryClicked ? 'moveFadeOut' : ''}`}>👿</div>
+        <div key={angryKey} className={`emt_angry ${angryClicked ? 'angryMoveFadeOut' : ''}`}>👿</div>
         
         <div className='imotion_box'>
 
