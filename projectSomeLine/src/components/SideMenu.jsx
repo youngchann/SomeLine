@@ -17,13 +17,19 @@ const SideMenu = () => {
                     <span></span>
                     <span></span>
                     <span></span>
-                    채팅 리스트</Link>
+                    채팅</Link>
                 <Link to='/chatbox' className='side_menus_menu chatbot'>
                     <span></span>
                     <span></span>
                     <span></span>
                     <span></span>
                     챗봇</Link>
+                <Link to='/profile' className='side_menus_menu chatbot'>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    프로필</Link>
             </ul>
         </div>
     </div>
