@@ -1365,17 +1365,69 @@
     width: 98%;
     height: 80%;
   }
+}
 
-/* -------------------------------------감정표현 */
-.chat_Profil_img_emotion {
+
+
+/* 챗지 이모션4 */
+
+.emt_hart {
+
+  width: 120px;
+  height: 120px;
+
   position: absolute;
-  font-size: 70px;
-  /* 위치 조정이 필요하다면 아래의 주석을 해제하고 적절한 값을 설정하세요.
-  top: 0;
-  left: 0;
-  */
+
+  top:-30px;
+
+  animation-name: moveFadeOut;
+  animation-duration: 2s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+  /* background-color: rgba(255, 0, 0, 0.466); */
 }
+.emt_sad {
+
+  width: 120px;
+  height: 120px;
+
+  position: absolute;
+
+  top:-30px;
+
+  animation-name: moveFadeOut;
+  animation-duration: 2s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+  /* background-color: rgba(255, 0, 0, 0.466); */
+}
+.emt_angry {
+
+  width: 120px;
+  height: 120px;
+
+  position: absolute;
+
+  top:-30px;
+
+  animation-name: moveFadeOut;
+  animation-duration: 2s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+  /* background-color: rgba(255, 0, 0, 0.466); */
 }
 
+@keyframes moveFadeOut {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+}
 
-
+.moveFadeOut {
+  animation: moveFadeOut 2s linear forwards;
+}
