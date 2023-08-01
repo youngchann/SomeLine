@@ -53,27 +53,27 @@ const ChatBox = ({room}) => {
   const [hartClicked, hartIsClicked] = useState(false);
   const [sadClicked, sadIsClicked] = useState(false);
   const [angryClicked, angryIsClicked] = useState(false);
-  const [key, setKey] = useState(Math.random());
+
+  const [hartKey, setHartKey] = useState(Math.random());
+  const [sadKey, setSadKey] = useState(Math.random());
+  const [angryKey, setAngryKey] = useState(Math.random());
 
   const hart_Click = () => {
     hartIsClicked(true);
-    sadIsClicked(false);
-    angryIsClicked(false);
-    setKey(Math.random()); 
+
+    setHartKey(Math.random()); 
     setTimeout(() => hartIsClicked(false), 3000);
   };
   const sad_Click = () => {
-    hartIsClicked(false);
     sadIsClicked(true);
-    angryIsClicked(false);
-    setKey(Math.random()); 
+
+    setSadKey(Math.random()); 
     setTimeout(() => sadIsClicked(false), 3000);
   };
   const angry_Click = () => {
-    hartIsClicked(false);
-    sadIsClicked(false);
     angryIsClicked(true);
-    setKey(Math.random()); 
+
+    setAngryKey(Math.random()); 
     setTimeout(() => angryIsClicked(false), 3000);
   };;
   //  챗지피티 이모션 활용끝
@@ -115,15 +115,15 @@ const ChatBox = ({room}) => {
         <div  className='chat_Profil_img'></div> 
         <h2 className='my_chat_Profil_name'>{auth.currentUser.displayName}</h2>
         {/* 해당 코드는 하트 이모션이 올라옵니다. */}
-        <div key={key} className={`emt_hart ${hartClicked ? 'moveFadeOut' : ''}`}>💕</div>
-        <div key={key} className={`emt_sad ${sadClicked ? 'moveFadeOut' : ''}`}>😢</div>
-        <div key={key} className={`emt_angry ${angryClicked ? 'moveFadeOut' : ''}`}>👿</div>
+        <div key={hartKey} className={`emt_hart ${hartClicked ? 'moveFadeOut' : ''}`}>💕</div>
+        <div key={sadKey} className={`emt_sad ${sadClicked ? 'moveFadeOut' : ''}`}>😢</div>
+        <div key={angryKey} className={`emt_angry ${angryClicked ? 'moveFadeOut' : ''}`}>👿</div>
         
         <div className='imotion_box'>
 
-          <button className='imotion_btn_hart_btn' onClick={hart_Click}>💕좋아</button>
-          <button className='imotion_btn_sad_btn' onClick={sad_Click}>😢슬퍼</button>
-          <button className='imotion_btn_angry_btn' onClick={angry_Click}>👿화나</button>
+          <button className='imotion_btn imotion_btn_hart_btn' onClick={hart_Click}>💕좋아</button>
+          <button className='imotion_btn imotion_btn_sad_btn' onClick={sad_Click}>😢슬퍼</button>
+          <button className='imotion_btn imotion_btn_angry_btn' onClick={angry_Click}>👿화나</button>
         </div>
       </div>
 

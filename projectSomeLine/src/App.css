@@ -1371,50 +1371,12 @@
 
 /* 챗지 이모션4 */
 
-.emt_hart {
-
+.emt_hart, .emt_sad, .emt_angry {
   width: 120px;
   height: 120px;
-
   position: absolute;
-
-  top:-30px;
-
-  animation-name: moveFadeOut;
-  animation-duration: 2s;
-  animation-timing-function: ease-in;
-  animation-fill-mode: forwards;
-  /* background-color: rgba(255, 0, 0, 0.466); */
-}
-.emt_sad {
-
-  width: 120px;
-  height: 120px;
-
-  position: absolute;
-
-  top:-30px;
-
-  animation-name: moveFadeOut;
-  animation-duration: 2s;
-  animation-timing-function: ease-in;
-  animation-fill-mode: forwards;
-  /* background-color: rgba(255, 0, 0, 0.466); */
-}
-.emt_angry {
-
-  width: 120px;
-  height: 120px;
-
-  position: absolute;
-
-  top:-30px;
-
-  animation-name: moveFadeOut;
-  animation-duration: 2s;
-  animation-timing-function: ease-in;
-  animation-fill-mode: forwards;
-  /* background-color: rgba(255, 0, 0, 0.466); */
+  top: -30px;
+  opacity: 0;
 }
 
 @keyframes moveFadeOut {
