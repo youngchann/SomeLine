@@ -16,12 +16,14 @@ import {
   orderBy,
   getDocs
 } from "firebase/firestore";
+import { getStorage, ref, getDownloadURL, uploadBytes} from "firebase/storage";
+
 let chatList = []
 
 const Matching = () => {
 
   const { currentUser } = useContext(AuthContext);
-
+  const [user, setUser] = useState(null);
   const [isVisiblePopup, setIsVisiblePopup] = useState(true);
   const matClosePopup = () => {
     setIsVisiblePopup(false);
@@ -60,6 +62,32 @@ const Matching = () => {
   },[currentUser])
 
   useEffect(() => {
+    if (currentUser && currentUser.email) {
+      const q = query(collection(db, "users"), where("id", "==", currentUser.email));
+      getDocs(q).then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          setUser(doc.data());
+        });
+      });
+    }
+  }, [currentUser]);
+
+  useEffect(() => {
+    if (user && user.profileUrl) {
+      const storage = getStorage();
+      getDownloadURL(ref(storage, user.profileUrl))
+        .then((url) => {
+          const img = document.getElementById('matchPhoto');
+          img.setAttribute('src', url);
+          console.log(url);
+        })
+        .catch((error) => {
+          alert(`에러 : ${error}`);
+        });
+    }
+  }, [user]);
+
+  useEffect(() => {
     if (users.length > 0 && users[0].matchId) {
       const matchIdQueries = users[0].matchId.map((id) => (
         query(userRef, where("id", "==", id))
@@ -76,12 +104,29 @@ const Matching = () => {
             });
           });
           setMatchUsers(matchedUsers);
-        });
-    }
 
-    
-    
-  },[users])
+          // 수정된 부분: 이미지 로드가 완료되면 swiper 슬라이드를 업데이트합니다.
+          swiperRef.current.swiper.update();
+        });
+
+      const storage = getStorage();
+
+      // 수정된 부분: matchedUsers 배열 순회로 변경합니다.
+      matchUsers.forEach((user) => {
+        if (user.profileUrl) {
+          getDownloadURL(ref(storage, user.profileUrl))
+            .then((url) => {
+              const img = document.getElementById(user.name);
+              img.setAttribute('src', url);
+              console.log(url);
+            })
+            .catch((error) => {
+              alert(`에러 : ${error}`);
+            });
+        }
+      });
+    }
+  }, [users]);
 
   const [addedUsers, setAddedUsers] = useState([]);
   
@@ -119,6 +164,8 @@ const Matching = () => {
               <SwiperSlide key={user.name}>
                 <div className='mat_info_card'>
                   <div className='info_img_box'>
+                    <img style={{width: 320,
+                    height: 280}}  id={user.name}/>
                   </div>
                   <div className='info_info_box'>
                     {matchUsers.length > 0 && matchUsers[0] ? (

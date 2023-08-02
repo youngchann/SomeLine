@@ -11,6 +11,8 @@ import {
 } from "firebase/firestore";
 import { AuthContext } from "../context/AuthContext";
 import { chatList } from './Matching';
+import { useNavigate } from "react-router-dom";
+
 
 
 /* 바닐라 틸트를 실행시키기 위한 함수입니다. - 작업자: 이찬용
@@ -32,6 +34,7 @@ function Tilt(props) {
 const ChatList = () => {
 
   const { currentUser } = useContext(AuthContext);
+  const nav = useNavigate()
 
   // isVisible의 초기값을 false로 설정하여 새로운 메시지가 없을 때는 팝업이 뜨지 않도록 했습니다.
   const [isVisible, setIsVisible] = useState(false);
@@ -118,8 +121,10 @@ const ChatList = () => {
           <div className='chatlist_list_header'><h1>~ 채팅창 리스트 ~</h1></div>
           <hr/>
           <div className='chatlist_inner_box'>
-              <Tilt options={options} className='chat_list_contents'>
-                <div className='chat_list_profile_img'></div>
+              <Tilt onClick={()=>nav('/chatbox')} options={options} className='chat_list_contents'>
+                {/* <div className='chat_list_profile_img'></div> */}
+                  <img className='chat_list_profile_img' src='https://firebasestorage.googleapis.com/v0/b/chatapp2-aa1ab.appspot.com/o/images%2F%EA%B5%AD2.jpg?alt=media&token=1e4d4b55-f1b1-4e6f-a030-e06ca28a99d2'></img>
+                
                 <p className='chat_list_name'>챗봇님</p>
                 <p className='chat_list_talk_preview'>반가워요 ^^</p>
               </Tilt>

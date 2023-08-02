@@ -9,7 +9,10 @@ import {
   onSnapshot,
   query,
   orderBy,
+  getDocs
 } from "firebase/firestore";
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
+
 
 const ChatBox = ({room}) => {
 
@@ -17,11 +20,12 @@ const ChatBox = ({room}) => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const messagesRef = collection(db, "messages");
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const queryMessages = query(
       messagesRef,
-      where("room", "==", "여행 좋아하는 남자"),
+      where("room", "==", `챗봇+${currentUser.displayName}`),
       orderBy("createdAt")
     );
     const unsuscribe = onSnapshot(queryMessages, (snapshot) => {
@@ -36,6 +40,32 @@ const ChatBox = ({room}) => {
     return () => unsuscribe();
   }, []);
 
+  useEffect(() => {
+    if (currentUser && currentUser.email) {
+      const q = query(collection(db, "users"), where("id", "==", currentUser.email));
+      getDocs(q).then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          setUser(doc.data());
+        });
+      });
+    }
+  }, [currentUser]);
+
+  useEffect(() => {
+    if (user && user.profileUrl) {
+      const storage = getStorage();
+      getDownloadURL(ref(storage, user.profileUrl))
+        .then((url) => {
+          const img = document.getElementById('myPhoto');
+          img.setAttribute('src', url);
+          console.log(url);
+        })
+        .catch((error) => {
+          alert(`에러 : ${error}`);
+        });
+    }
+  }, [user]);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -44,7 +74,7 @@ const ChatBox = ({room}) => {
       text: newMessage,
       createdAt: serverTimestamp(),
       user: currentUser.displayName,
-      room : "여행 좋아하는 남자"
+      room : `챗봇+${currentUser.displayName}`
     });
 
     setNewMessage("");
@@ -88,7 +118,11 @@ const ChatBox = ({room}) => {
             <source src='videos/mainmain8.mp4' type='video/mp4' />
         </video>
       </div>
-      <div className='you_chat_Profil'><div className='chat_Profil_img'></div><h2 className='you_chat_Profil_name'>상대방</h2></div>
+      <div className='you_chat_Profil'>
+        {/* <div className='chat_Profil_img'></div> */}
+        <img className='chat_Profil_img' src='https://firebasestorage.googleapis.com/v0/b/chatapp2-aa1ab.appspot.com/o/images%2F%EA%B5%AD2.jpg?alt=media&token=1e4d4b55-f1b1-4e6f-a030-e06ca28a99d2'/>
+        <h2 className='you_chat_Profil_name'>상대방</h2>
+      </div>
       <div className='chatbox_box'>
         <div className='messages'>
           {messages.map((message) => (
@@ -113,7 +147,9 @@ const ChatBox = ({room}) => {
         </form>
       </div>
       <div className='my_chat_Profil'>
-        <div  className='chat_Profil_img'></div> 
+        {/* <div  className='chat_Profil_img'></div>  */}
+        <img id='myPhoto' className='chat_Profil_img'/>
+        
         <h2 className='my_chat_Profil_name'>{currentUser.displayName}</h2>
         {/* 해당 코드는 하트 이모션이 올라옵니다. */}
         <div key={hartKey} className={`emt_hart ${hartClicked ? 'moveFadeOut' : ''}`}>💕</div>

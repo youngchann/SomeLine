@@ -46,7 +46,6 @@ const Profile = () => {
         .then((url) => {
           const img = document.getElementById('myimg');
           img.setAttribute('src', url);
-          console.log(url);
         })
         .catch((error) => {
           alert(`에러 : ${error}`);
