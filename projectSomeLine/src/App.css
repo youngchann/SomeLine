@@ -1370,7 +1370,7 @@
 
 
 /* 하트 이모션 작동  */
-.emt_hart, .emt_sad {
+.emt_hart, .emt_sad, .emt_angry {
   width: 120px;
   height: 120px;
   position: absolute;
@@ -1406,7 +1406,7 @@
   animation: moveFadeOut 3s linear forwards;
 }
 
-/* 앵그리 이모션 작동 */
+/* 앵그리 이모션 작동
 .emt_angry{
   width: 120px;
   height: 120px;
@@ -1415,9 +1415,9 @@
   opacity: 0;
 
   font-size:120px;
-  z-index: -10;
-}
-@keyframes angryMoveFadeOut {
+  z-index: -10; */
+/* } */
+/* @keyframes angryMoveFadeOut {
   0% {
     transform: translateY(0);
     opacity: 1;
@@ -1440,4 +1440,4 @@
 
 .angryMoveFadeOut {
   animation: angryMoveFadeOut 3s linear forwards;
-}
+} */
