@@ -132,7 +132,7 @@ const Profile = () => {
               type="file"
               onChange={handleImageChange}
               accept="image/*"
-              className='profile_img_chainge'
+              className='profile_img_chainge_btn'
             />
           </div>
           {profileImage && (
@@ -149,7 +149,7 @@ const Profile = () => {
             <input
             className="profile_name_input_in"
             id="id"
-            placeholder= {user.name}
+            placeholder= {`현재 이름은 "${user.name}"입니다.`}
             onChange={(e) => setName(e.target.value)}
             value={name}
             ></input>

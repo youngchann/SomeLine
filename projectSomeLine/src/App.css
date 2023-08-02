@@ -1178,14 +1178,29 @@
   color: #efefef;
 }
 .profile_img_chainge{
+  
   width: 110px;
   height: 110px;
   background-color: #4d4d4d;
 
   border-radius: 10px;
 }
+.profile_img_chainge_btn{
+  width: 110px;
+  height: 110px;
+  background:none;
+
+  position: absolute;
+  left: 200px;
+
+  border-radius: 10px;
+  z-index: 10;
+}
+
 /* 프로필 이름을 바꾸는 공간 */
 .profile_name_chainge_input{
+
+  margin-top: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1205,8 +1220,8 @@
   box-shadow: 0 0 17px rgba(0, 0, 0, .5);
 }
 .profile_name_input_in::placeholder{
-  color: rgb(238, 238, 238);
-  font-size: 20px;
+  color: rgba(200, 200, 200, 0.836);
+  font-size: 19px;
 }
 
 /* 프로필 자기소개를 바꾸는 공간 */
