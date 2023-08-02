@@ -1,5 +1,5 @@
-import React, { useState, useEffect} from 'react';
-
+import React, { useState, useEffect, useContext} from 'react';
+import { AuthContext } from "../context/AuthContext";
 import { db, auth } from "../firebase-config";
 import {
   collection,
@@ -13,6 +13,7 @@ import {
 
 const ChatBox = ({room}) => {
 
+  const { currentUser } = useContext(AuthContext);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const messagesRef = collection(db, "messages");
@@ -42,7 +43,7 @@ const ChatBox = ({room}) => {
     await addDoc(messagesRef, {
       text: newMessage,
       createdAt: serverTimestamp(),
-      user: auth.currentUser.displayName,
+      user: currentUser.displayName,
       room : "여행 좋아하는 남자"
     });
 
@@ -91,7 +92,7 @@ const ChatBox = ({room}) => {
       <div className='chatbox_box'>
         <div className='messages'>
           {messages.map((message) => (
-            <div key={message.id} className={`message ${message.user === auth.currentUser.displayName ? "my-message" : "other-message"}`}>
+            <div key={message.id} className={`message ${message.user === currentUser.displayName ? "my-message" : "other-message"}`}>
                 <div className='chatbox_talk_box'><span className="user">{message.text}</span> </div>
             </div>
           ))}
@@ -113,7 +114,7 @@ const ChatBox = ({room}) => {
       </div>
       <div className='my_chat_Profil'>
         <div  className='chat_Profil_img'></div> 
-        <h2 className='my_chat_Profil_name'>{auth.currentUser.displayName}</h2>
+        <h2 className='my_chat_Profil_name'>{currentUser.displayName}</h2>
         {/* 해당 코드는 하트 이모션이 올라옵니다. */}
         <div key={hartKey} className={`emt_hart ${hartClicked ? 'moveFadeOut' : ''}`}>💕</div>
         <div key={sadKey} className={`emt_sad ${sadClicked ? 'moveFadeOut' : ''}`}>😢</div>
@@ -131,4 +132,4 @@ const ChatBox = ({room}) => {
   )
 }
 
-export default React.memo(ChatBox);
+export default ChatBox;

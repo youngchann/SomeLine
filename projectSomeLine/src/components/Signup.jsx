@@ -36,7 +36,6 @@ const Signup = () => {
         await uploadBytes(imageRef, imageUpload)
         const downloadUrl = await getDownloadURL(imageRef)
         
-        
 
         const res = await createUserWithEmailAndPassword(auth, email, password)
         if (isFormValid()) {
@@ -57,6 +56,9 @@ const Signup = () => {
         
             // 회원가입이 완료되면 회원가입 프로세스를 종료하고 로그인 화면으로 돌아감
             signOut(auth)
+            console.log(`res: ${res}`)
+            console.log(`res.user: ${res.user}`)
+
             nav('/')
         } else {
             alert("모든 필수 정보를 입력해주세요.");

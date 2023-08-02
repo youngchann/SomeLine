@@ -1,8 +1,8 @@
 import React, { useRef, useState, useContext, useEffect } from 'react';
 import 'swiper/css';
 import 'swiper/css/effect-cards';
+import {v4} from 'uuid'
 import { AuthContext } from "../context/AuthContext";
-
 import { db, firebase } from "../firebase-config";
 import {
   collection,
@@ -12,13 +12,18 @@ import {
   orderBy,
   getDoc,
   getDocs,
+  updateDoc
 } from "firebase/firestore";
-import { getStorage, ref, getDownloadURL, uploadBytes, listAll } from "firebase/storage";
+import { updateProfile } from "firebase/auth"
+import { getStorage, ref, getDownloadURL, uploadBytes} from "firebase/storage";
 
 const Profile = () => {
   const { currentUser } = useContext(AuthContext);
   const [user, setUser] = useState(null);
   const [imageUpload, setImageUpload] = useState(null);
+  const [profileImage, setProfileImage] = useState(null);
+  const [name, setName] = useState("");
+
 
   const storage = getStorage(firebase);
 
@@ -35,7 +40,6 @@ const Profile = () => {
   }, [currentUser]);
 
   useEffect(() => {
-    // 이미지 가져오는 코드가 있을 때만 실행하도록 수정
     if (user && user.profileUrl) {
       const storage = getStorage();
       getDownloadURL(ref(storage, user.profileUrl))
@@ -51,16 +55,56 @@ const Profile = () => {
   }, [user]);
 
 
-  const upload = () => {
-    if (imageUpload === null) return;
-
-    const imageRef = ref(storage, `images/${imageUpload.name+currentUser.displayName}`);
-    uploadBytes(imageRef, imageUpload)
-  };
-
   // user가 null인 경우, Loading 메시지를 표시
   if (!user) {
     return <p>Loading...</p>;
+  }
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    setImageUpload(file)
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setProfileImage(reader.result);
+    };
+    console.log(`userRef: ${user}`);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const imageRef = ref(storage, `images/${name+v4()}`)
+      await uploadBytes(imageRef, imageUpload)
+      const downloadUrl = await getDownloadURL(imageRef)
+
+      await updateProfile(currentUser, {
+          displayName: name,
+          photoURL: downloadUrl,
+      })
+
+      const usersRef = collection(db, "users");
+      const querySnapshot = await getDocs(
+        query(usersRef, where("id", "==", currentUser.email))
+      );
+
+      querySnapshot.forEach((doc) => {
+        updateDoc(doc.ref, {
+          name: name,
+          profileUrl: downloadUrl,
+        });
+      });
+
+
+      // 프로필 업데이트 후 새로운 사용자 정보를 가져와서 화면에 표시
+      const updatedUser = { ...user, name: name, profileUrl: downloadUrl };
+      setUser(updatedUser);
+
+
+      alert('수정완료')
+    } catch (error) {
+      alert(`수정실패\nerror: ${error}`);
+    }
   }
 
   // user가 null이 아닌 경우, 프로필 정보를 화면에 표시
@@ -74,21 +118,30 @@ const Profile = () => {
       <div className='profile_in_box'>
         <div className='profile_box_header_box'>
           <div className='profile_box_logo'></div>
-          <div className='profile_box_header_name'>Profile
-          </div>
-          <div>
-            <input
-              type="file"
-              onChange={(event) => {
-                setImageUpload(event.target.files[0]);
-              }}
-            />
-            <button onClick={upload}>업로드</button>
-          </div>
+          <div className='profile_box_header_name'>Profile</div>
         </div>
+       
         <div className='profile_img_chainge_box'>
           <div className='profile_img_text'><h1>사진</h1></div>
-          <div className='profile_img_chainge'></div>
+          <div className='profile_img_chainge'>
+            <img className='profile_img_chainge' id='myimg' />
+          </div>
+          <div>
+          {/* 변경할 사진 선택하여 미리보기 기능  */}
+          <input
+              type="file"
+              onChange={handleImageChange}
+              accept="image/*"
+              className='profile_img_chainge'
+            />
+          </div>
+          {profileImage && (
+              <img 
+                  src={profileImage}
+                  alt='변경할 사진'
+                  className="profile_img_chainge"
+              />
+          )}
         </div>
         <div  className='profile_name_chainge_box'>
           <div className='profile_name_chainge_text'><h1>이름</h1></div>
@@ -97,6 +150,8 @@ const Profile = () => {
             className="profile_name_input_in"
             id="id"
             placeholder= {user.name}
+            onChange={(e) => setName(e.target.value)}
+            value={name}
             ></input>
           </form>
         </div>
@@ -110,7 +165,7 @@ const Profile = () => {
             ></textarea>
           </form>
         </div>
-        <div className='profile_chainge_button_box'><button className='profile_submit_button'>수정하기</button></div>
+        <div className='profile_chainge_button_box'><button onClick={handleSubmit} className='profile_submit_button'>수정하기</button></div>
       </div>
       
     </div>
