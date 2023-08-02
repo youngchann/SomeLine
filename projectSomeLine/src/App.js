@@ -12,7 +12,7 @@ import Matching from './components/Matching';
 import SideMenu from './components/SideMenu';
 import Profile from './components/Profile';
 
-import Loding from './components/Loding';
+import Loading from './components/Loading';
 
 import { Route, Routes, useLocation, Navigate } from 'react-router-dom';
 
@@ -40,7 +40,7 @@ function App() {
         <Route path='/matching' element={<Matching/>}></Route>
         <Route path='/profile' element={<Profile/>}></Route>
         {/* 테스트용 */}
-        <Route path='/loding' element={<Loding/>}></Route>
+        <Route path='/loading' element={<Loading/>}></Route>
       </Routes>
 
       {/* <Footer/> */}

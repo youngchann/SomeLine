@@ -1298,7 +1298,7 @@
   padding: 0;
   box-sizing: border-box;
 } */
-.lokding_bg{
+.loading_bg{
   min-height: 100vh;
 
   display: flex;
@@ -1308,12 +1308,12 @@
   background: #000;
   overflow: hidden;
 }
-.loding_container{
+.loading_container{
   position: relative;
   width: 100%;
   /* transform: rotate(-35deg); */
 }
-.loding_container .loding_box{
+.loading_container .loading_box{
   position: relative;
   left: -200px;
   display: flex;
@@ -1335,7 +1335,7 @@
     transform: translateX(-200px);
   }
 }
-.loding_container .loding_box .loding_cube{
+.loading_container .loading_box .loading_cube{
   position: relative;
   width: 200px;
   height: 200px;
@@ -1373,7 +1373,7 @@
     transform: rotate(90deg);
   }
 }
-.loding_text{
+.loading_text{
   position: absolute;
   margin-left: 45%;
   color: rgba(245, 245, 245, 0.67);
