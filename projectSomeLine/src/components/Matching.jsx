@@ -125,7 +125,7 @@ const Matching = () => {
                       <>
                         <p>이름: {user.name}</p>
                         <p>나이: {user.age}</p>
-                        <button className='matching_submit_button' onClick={()=>addUserToList(user.name)}>추가</button>
+                        <button className='matching_submit_button' onClick={()=>addUserToList(user.name)}>매칭하기</button>
                       </>
                     ) : (
                       <p>Loading or no matched users found.</p>
