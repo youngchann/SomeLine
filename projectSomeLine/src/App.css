@@ -12,7 +12,6 @@
   overflow: hidden;
 }
 
-
 /* -------------------------------------------- 상단바 */
 /* 탑 상단바. */
 .top {
@@ -50,7 +49,7 @@
 }
 .top_logo_text_left:hover{
   color: #f8f8ff;
-  text-shadow: 0 0 20px #d721f3d5, 0 0 50px #d721f3d5, 0 0 100px #d721f3d5;;
+  text-shadow: 0 0 20px #d721f3d5, 0 0 50px #d721f3d5, 0 0 100px #d721f3d5;
 }
 /* -------------------------------------------- 상단바 우측 아이콘들 */
 /* 상단바 메뉴들. */
@@ -818,7 +817,7 @@
 }
 .chatlist_box{
   width: 600px;
-  height: 600px;
+  height: 540px;
   margin-top: 120px;
   background-color: transparent;
   box-sizing: border-box;
@@ -1026,7 +1025,7 @@
   backdrop-filter: blur(30px);
   box-shadow: 0 0 40px rgba(0, 0, 0, .5);
   width: 600px;
-  height: 600px;
+  height: 560px;
 
   overflow:hidden;
 
@@ -1139,7 +1138,7 @@
   backdrop-filter: blur(30px);
   box-shadow: 0 0 40px rgba(0, 0, 0, .5);
   width: 600px;
-  height: 600px;
+  height: 540px;
 
   overflow:hidden;
   margin-top: 110px;
@@ -1273,6 +1272,92 @@
   transform: skewX(45deg) translateX(300%);
   box-sizing: border-box;
   transition: 0.5s;
+}
+/* 로딩중 박스 만들기입니다. */
+/* *{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+} */
+.lokding_bg{
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #000;
+  overflow: hidden;
+}
+.loding_container{
+  position: relative;
+  width: 100%;
+  /* transform: rotate(-35deg); */
+}
+.loding_container .loding_box{
+  position: relative;
+  left: -200px;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  width: calc(100% + 400px);
+
+
+  -webkit-box-reflect: below 1px linear-gradient(transparent,#0004);
+  animation: animateSurface 1.5s ease-in-out infinite;
+}
+@keyframes animateSurface{
+  0%{
+    transform: translateX(0px);
+  }
+  100%{
+    transform: translateX(-200px);
+  }
+}
+.loding_container .loding_box .loding_cube{
+  position: relative;
+  width: 200px;
+  height: 200px;
+  background: #03e9f4;
+  box-shadow:  0 0 5px rgba(3,233,244,1),
+  0 0 25px rgba(3,233,244,1),
+  0 0 50px rgba(3,233,244,1),
+  0 0 100px rgba(3,233,244,1),
+  0 0 200px rgba(3,233,244,0.5),
+  0 0 300px rgba(3,233,244,0.5);
+
+  transform-origin: bottom right;
+
+  animation: animate 1.5s ease-in-out infinite;
+}
+
+@keyframes animate
+{
+  0%{
+    transform: rotate(0deg);
+  }
+  60%{
+    transform: rotate(90deg);
+  }
+  65%{
+    transform: rotate(85deg);
+  }
+  70%{
+    transform: rotate(90deg);
+  }
+  75%{
+    transform: rotate(87.5deg);
+  }
+  80%,100%{
+    transform: rotate(90deg);
+  }
+}
+.loding_text{
+  position: absolute;
+  margin-left: 45%;
+  color: rgba(245, 245, 245, 0.67);
 }
 
 
@@ -1442,3 +1527,6 @@
 .angryMoveFadeOut {
   animation: angryMoveFadeOut 3s linear forwards;
 } */
+
+
+

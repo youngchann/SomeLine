@@ -10,12 +10,12 @@ import { getStorage } from 'firebase/storage'
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "apiKey",
+  apiKey: "AIzaSyDtSZy21CsUnkRwUg_ZJdTDDjXdPnNuG9s",
   authDomain: "chatapp-a206b.firebaseapp.com",
   projectId: "chatapp-a206b",
   storageBucket: "chatapp-a206b.appspot.com",
-  messagingSenderId: "messagingSenderId",
-  appId: "appId"
+  messagingSenderId: "573917547452",
+  appId: "1:573917547452:web:88771b4635f190e53279b9"
 };
 
 // Initialize Firebase
