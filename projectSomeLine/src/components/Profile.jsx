@@ -122,24 +122,20 @@ const Profile = () => {
        
         <div className='profile_img_chainge_box'>
           <div className='profile_img_text'><h1>사진</h1></div>
-          <div className='profile_img_chainge'>
-            <img className='profile_img_chainge' id='myimg' />
-          </div>
-          <div>
-          {/* 변경할 사진 선택하여 미리보기 기능  */}
-          <input
+          <div className='profile_img_chainge_input_box'>
+            <div className='profile_img_chainge'>
+              <img 
+                src={profileImage || currentUser.photoURL || 'defaultImageLink'} 
+                alt="변경할 사진" 
+                className="profile_img_chainge_at" 
+              />
+            </div>
+            <input
               type="file"
               onChange={handleImageChange}
               accept="image/*"
               className='profile_img_chainge_btn'
             />
-            {profileImage && (
-              <img 
-                  src={profileImage}
-                  alt='변경할 사진'
-                  className="profile_img_chainge"
-              />
-          )}
           </div>
         </div>
         <div  className='profile_name_chainge_box'>
