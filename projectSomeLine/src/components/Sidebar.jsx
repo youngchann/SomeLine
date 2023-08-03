@@ -41,7 +41,7 @@ const Sidebar = ({ width=200, children }) => {
           <button onClick={() => toggleMenu()}
           className="sidebar_button" >
             {isOpen ? 
-            <span>X</span> : <span>0</span>
+            <span className="sidebar_button_text">X</span> : <span className="sidebar_button_text">{"<"}</span>
             }
           </button>
         <div className="sidebar_content">{children}</div>
