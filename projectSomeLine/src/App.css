@@ -1249,10 +1249,16 @@
 
 
 .profile_img_chainge_btn{
+  border: 1px solid #4d4d4d84;
   margin-left: 10px;
   background:none;
 
-  z-index: 10;
+  width: 170px;
+  padding: 5px;
+  border-radius: 5px;
+
+  position: relative;
+  bottom: -30px;
 }
 
 /* 프로필 이름을 바꾸는 공간 */
@@ -1448,7 +1454,7 @@
     margin-top: 70px;
   }
   .profile_img_chainge_btn{
-    left: 34.2%;
+    width: 40%;
   }
   .swiper {
     width: 330px;
