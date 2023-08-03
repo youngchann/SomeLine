@@ -59,8 +59,8 @@ const ChatList = () => {
   useEffect(()=>{
     if (chatList.length > 0) {
       const fetchMatchedUsers = async () => {
-        const matchIdQueries = chatList.map((name) =>
-          query(userRef, where("name", "==", name))
+        const matchIdQueries = chatList.map((matchUser) =>
+          query(userRef, where("name", "==", matchUser.name))
         );
 
         const matchedUsersData = await Promise.all(matchIdQueries.map((q) => getDocs(q)));
@@ -130,7 +130,9 @@ const ChatList = () => {
               </Tilt>
             {chats.map((chat, index) => (
               <Tilt key={index} options={options} className='chat_list_contents'>
-                <div className='chat_list_profile_img'></div>
+                
+                <img className='chat_list_profile_img' src={chat.profileUrl}></img>
+                
                 <p className='chat_list_name'>{chat.name}</p>
                 <p className='chat_list_talk_preview'>{chat.content}</p>
               </Tilt>

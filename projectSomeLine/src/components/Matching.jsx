@@ -72,20 +72,6 @@ const Matching = () => {
     }
   }, [currentUser]);
 
-  useEffect(() => {
-    if (user && user.profileUrl) {
-      const storage = getStorage();
-      getDownloadURL(ref(storage, user.profileUrl))
-        .then((url) => {
-          const img = document.getElementById('matchPhoto');
-          img.setAttribute('src', url);
-          console.log(url);
-        })
-        .catch((error) => {
-          alert(`에러 : ${error}`);
-        });
-    }
-  }, [user]);
 
   useEffect(() => {
     if (users.length > 0 && users[0].matchId) {
@@ -105,26 +91,13 @@ const Matching = () => {
           });
           setMatchUsers(matchedUsers);
 
-          // 수정된 부분: 이미지 로드가 완료되면 swiper 슬라이드를 업데이트합니다.
           swiperRef.current.swiper.update();
         });
 
       const storage = getStorage();
 
       // 수정된 부분: matchedUsers 배열 순회로 변경합니다.
-      matchUsers.forEach((user) => {
-        if (user.profileUrl) {
-          getDownloadURL(ref(storage, user.profileUrl))
-            .then((url) => {
-              const img = document.getElementById(user.name);
-              img.setAttribute('src', url);
-              console.log(url);
-            })
-            .catch((error) => {
-              alert(`에러 : ${error}`);
-            });
-        }
-      });
+    
     }
   }, [users]);
 
@@ -165,14 +138,14 @@ const Matching = () => {
                 <div className='mat_info_card'>
                   <div className='info_img_box'>
                     <img style={{width: 320,
-                    height: 280}}  id={user.name}/>
+                    height: 280}}  src={user.profileUrl} />
                   </div>
                   <div className='info_info_box'>
                     {matchUsers.length > 0 && matchUsers[0] ? (
                       <>
                         <p>이름: {user.name}</p>
                         <p>나이: {user.age}</p>
-                        <button className='matching_submit_button' onClick={()=>addUserToList(user.name)}>매칭하기</button>
+                        <button className='matching_submit_button' onClick={()=>addUserToList(user)}>매칭하기</button>
                       </>
                     ) : (
                       <p>Loading or no matched users found.</p>
