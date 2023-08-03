@@ -11,6 +11,7 @@ import ChatList from './components/ChatList';
 import Matching from './components/Matching';
 import SideMenu from './components/SideMenu';
 import Profile from './components/Profile';
+import Sidebar from './components/Sidebar';
 
 import Loading from './components/Loading';
 
@@ -28,9 +29,10 @@ function App() {
   return (
     <div className="body">
       <Header/>
-      {/* <Baenner/> */}
 
-      {showSideMenu && <SideMenu/>}
+      {showSideMenu && <Sidebar><SideMenu/></Sidebar>}
+
+      {/* <Sidebar><SideMenu/></Sidebar> */}
 
       <Routes>
         <Route path='/signup' element={<Signup/>}></Route>

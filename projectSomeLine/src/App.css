@@ -985,8 +985,8 @@
   position: fixed;
   width: 100px;
   height: 200px;
-  right: 50px;
-  top: 100px;
+  right: 70px;
+  top: 0px;
 }
 .side_menu_list{
   display: flex;
@@ -1007,8 +1007,8 @@
   font-family: 'HakgyoansimWoojuR';
 
   position: relative;
-  margin-top: 10px;
-  width: 120px;
+  margin-top: 15px;
+  width: 140px;
   height: 40px;
   background-color: #e6abba58;
   backdrop-filter: blur(10px);
@@ -1183,7 +1183,7 @@
   height: 540px;
 
   overflow:hidden;
-  margin-top: 110px;
+  margin-top: 120px;
 
 }
 
@@ -1258,7 +1258,7 @@
   border-radius: 5px;
 
   position: relative;
-  bottom: -37px;
+  bottom: -35px;
 }
 
 /* 프로필 이름을 바꾸는 공간 */
@@ -1449,6 +1449,9 @@
 
 /* ------------------------------------------media */
 @media (max-width: 800px) {
+  .sidebar_container{
+    display: none;
+  }
   .profile_in_box{
     width: 98%;
     margin-top: 70px;
@@ -1617,5 +1620,66 @@
   animation: angryMoveFadeOut 3s linear forwards;
 } */
 
+/*---------------------------------------------- 사이드바 css */
 
+.sidebar_container {
+  background-color: #E3ECF1;
+}
+.sidebar_sidebar {
+  /* background-color: #E3ECF1; */
+
+  backdrop-filter: blur(60px);
+  border-left: 1px solid #ececec70;
+  position: fixed;
+  top: 120px;
+  bottom: 0;
+  right: 0;
+
+  border-top-left-radius:20px;
+  border-bottom-left-radius:20px;
+
+  transition: 0.4s ease;
+  color: #202020;
+  height: 100%;
+  z-index: 99;
+}
+/* 사이드바 버튼의 이미지를 구현합니다. */
+.sidebar_button {
+  position: relative;
+  left: -60px;
+  top: 10px;
+
+  width: 50px;
+  height: 50px;
+  z-index: 99;
+
+  /* transition: 0.8s ease; */
+  border: 1px solid #ececec70;
+  border-radius: 10px;
+
+  background: linear-gradient(180deg, rgba(227, 227, 227, 0.582), transparent,rgba(227, 227, 227, 0.582));
+
+  overflow: hidden;
+}
+.sidebar_button:hover{
+  color: #255784;
+  background: linear-gradient(180deg, #df63f2d5, #d721f3d5,#df63f2d5);
+  /* background: linear-gradient(180deg, #f1a173e6, #ea7e3fe6,#f8a16fe6); */
+  box-shadow:  0 0 10px #d721f3d5, 0 0 40px #d721f3d5, 0 0 80px #d721f3d5;
+}
+.sidebar_content {
+  padding: 40px 40px 0 20px;
+  position: relative;
+  width: 100%;
+}
+.sidebar_icon {
+  margin: 0;
+  color: #202020;
+}
+/* .sidebar_open_btn{
+
+}
+.sidebar_close_btn{
+
+} */
 
