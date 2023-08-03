@@ -737,18 +737,34 @@
   margin-top: 420px;
   margin-left: 10px;
 }
-.chat_Profil_img{
+.chat_Profil_img_box{
   width: 120px;
   height: 120px;
   border-radius: 60px;
   background-color: #a4a1a4;
   box-shadow: 0 0 40px rgba(0, 0, 0, .6);
 
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
 }
-.chat_Profil_img:hover{
+.chat_Profil_img{
+  width: 100%;
+  transition-duration: 0.5s;
+}
+.chat_Profil_img_box:hover{
   box-sizing: border-box;
   border: 1px solid #f8f8ff;
   box-shadow: 0 0 50px rgba(0, 0, 0, .9);
+
+}
+.chat_Profil_img:hover{
+
+  transform: scale(1.1);
+  transition-duration: 0.5s;
 }
 .you_chat_Profil_name{
   margin-top: 10px;

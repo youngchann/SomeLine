@@ -119,8 +119,9 @@ const ChatBox = ({room}) => {
         </video>
       </div>
       <div className='you_chat_Profil'>
-        {/* <div className='chat_Profil_img'></div> */}
-        <img className='chat_Profil_img' src='https://firebasestorage.googleapis.com/v0/b/chatapp2-aa1ab.appspot.com/o/images%2F%EA%B5%AD2.jpg?alt=media&token=1e4d4b55-f1b1-4e6f-a030-e06ca28a99d2'/>
+        <div className='chat_Profil_img_box'>
+          <img className='chat_Profil_img' src='https://firebasestorage.googleapis.com/v0/b/chatapp2-aa1ab.appspot.com/o/images%2F%EA%B5%AD2.jpg?alt=media&token=1e4d4b55-f1b1-4e6f-a030-e06ca28a99d2'/>
+        </div>
         <h2 className='you_chat_Profil_name'>상대방</h2>
       </div>
       <div className='chatbox_box'>
@@ -147,8 +148,9 @@ const ChatBox = ({room}) => {
         </form>
       </div>
       <div className='my_chat_Profil'>
-        {/* <div  className='chat_Profil_img'></div>  */}
-        <img id='myPhoto' className='chat_Profil_img'/>
+        <div  className='chat_Profil_img_box'>
+          <img id='myPhoto' className='chat_Profil_img'/>
+        </div>
         
         <h2 className='my_chat_Profil_name'>{currentUser.displayName}</h2>
         {/* 해당 코드는 하트 이모션이 올라옵니다. */}
