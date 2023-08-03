@@ -133,14 +133,14 @@ const Profile = () => {
               accept="image/*"
               className='profile_img_chainge_btn'
             />
-          </div>
-          {profileImage && (
+            {profileImage && (
               <img 
                   src={profileImage}
                   alt='변경할 사진'
                   className="profile_img_chainge"
               />
           )}
+          </div>
         </div>
         <div  className='profile_name_chainge_box'>
           <div className='profile_name_chainge_text'><h1>이름</h1></div>
