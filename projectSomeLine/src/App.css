@@ -19,6 +19,7 @@
   top: 0;
   left: 0;
   right: 0;
+  z-index: 100;
 
   width: 100%;
   background-color: none;
@@ -44,7 +45,6 @@
   color: #f8f8ff;
   
   font-size: 40px;
-  font-weight: bold;
   text-decoration: none;
 }
 .top_logo_text_left:hover{
@@ -896,7 +896,7 @@
 }
 .chatlist_inner_box{
   overflow: auto;
-  height: 430px;
+  height: 420px;
   padding: 10px;
   border-radius: 10px;
 }
