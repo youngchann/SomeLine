@@ -7,7 +7,7 @@ import { AuthContext } from "../context/AuthContext";
 
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
-import { db } from "../firebase-config";
+import { db, firebase } from "../firebase-config";
 import {
   collection,
   where,
@@ -15,11 +15,16 @@ import {
   query,
   orderBy,
   getDocs,
-  updateDoc
+  updateDoc,
+  addDoc,
+  arrayUnion
 } from "firebase/firestore";
 import { getStorage, ref, getDownloadURL, uploadBytes} from "firebase/storage";
 
 let chatList = []
+let chatListName = []
+let chatListProfileUrl = []
+let chatListCreatedAt = []
 
 const Matching = () => {
 
@@ -105,14 +110,34 @@ const Matching = () => {
   const [addedUsers, setAddedUsers] = useState([]);
   
 
-  const addUserToList = (userName) => {
+  const addUserToList = async(userName) => {
     setAddedUsers((prevUsers) => [...prevUsers, userName]);
     
     chatList.push(userName)
+    // chatListName.push(userName.name)
+    // chatListProfileUrl.push(userName.profileUrl)
+    // chatListCreatedAt.push(userName.createdAt)
+    alert(`채팅리스트에 ${userName.name}님이 추가되었습니다😊`)
     console.log(chatList);
+    
+    const usersRef = collection(db, "users");
+    const querySnapshot = await getDocs(
+      query(usersRef, where("id", "==", currentUser.email))
+    );
+    querySnapshot.forEach((doc) => {
+      updateDoc(doc.ref, {
+        chatListName : arrayUnion(userName.name),
+        chatListProfileUrl : arrayUnion(userName.profileUrl),
+        chatListCreatedAt : arrayUnion(userName.createdAt),
+        chatTest : arrayUnion(userName.name)
+      });
+    });
   };
 
- 
+      
+
+      
+
 
   return (
     <div className='matching_bg'>

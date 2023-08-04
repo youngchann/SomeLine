@@ -37,10 +37,6 @@ function Tilt(props) {
 const ChatList = () => {
 
 
-
-
-
-
   const { currentUser } = useContext(AuthContext);
   const nav = useNavigate()
 
@@ -59,9 +55,23 @@ const ChatList = () => {
 
   
   const [chats, setChats] = useState([]);
+  const [user, setUser] = useState(null)
+
   const userRef = collection(db, "users");
   
   const [selectedUser, setSelectedUser] = useState("")
+
+  useEffect(() => {
+    if (currentUser && currentUser.email) {
+      const q = query(collection(db, "users"), where("id", "==", currentUser.email));
+      getDocs(q).then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          setUser(doc.data());
+          console.log(`users:${(doc.data().chatListName).length}`);
+        });
+      });
+    }
+  }, [currentUser]);
     
   useEffect(()=>{
     if (chatList.length > 0) {
@@ -82,12 +92,12 @@ const ChatList = () => {
 
         // chatList의 값과 일치하는 사용자들의 정보를 가져와 chats state 업데이트
         setChats(matchedUsers);
-        console.log(matchedUsers);
       };
 
       fetchMatchedUsers();
     }
   }, [chatList]);
+
 
   
 
@@ -97,12 +107,12 @@ const ChatList = () => {
   const prevChats = useRef(chats);
 
 
-  const handleClick = (user) => {
+  const handleClick = (user, index) => {
     setSelectedUser(user)
-    sessionStorage.setItem('selectedUserName', user.name)
-    sessionStorage.setItem('selectedUserProfileUrl', user.profileUrl)
+    sessionStorage.setItem('selectedUserName', user.chatListName[index])
+    sessionStorage.setItem('selectedUserProfileUrl', user.chatListProfileUrl[index])
     
-    if (user.createdAt > currentUser.displayName) {
+    if (user.chatListProfileUrl[index] > currentUser.displayName) {
       sessionStorage.setItem('selectedRoom', `${user.name}+${currentUser.displayName}`)
     } else {
       sessionStorage.setItem('selectedRoom', `${currentUser.displayName}+${user.name}`)
@@ -143,15 +153,15 @@ const ChatList = () => {
               <Tilt options={options} className='chat_list_contents' onClick={()=>handleClickBot()}>
                 <div className='chat_list_profile_img_box'><img className='chat_list_profile_img' src='https://firebasestorage.googleapis.com/v0/b/chatapp2-aa1ab.appspot.com/o/images%2F%EA%B5%AD2.jpg?alt=media&token=1e4d4b55-f1b1-4e6f-a030-e06ca28a99d2' /></div>
                 
-                <p className='chat_list_name'>챗봇님</p>
+                <p className='chat_list_name'>챗봇:지호</p>
                 <p className='chat_list_talk_preview'>반가워요 ^^</p>
               </Tilt>
             {chats.map((chat, index) => (
-              <Tilt key={index} options={options} className='chat_list_contents' onClick={()=>handleClick(chat)}>
+              <Tilt key={index} options={options} className='chat_list_contents' onClick={()=>handleClick(user, index)}>
                 
-                <div className='chat_list_profile_img_box'><img className='chat_list_profile_img' src={chat.profileUrl}/></div>
+                <div className='chat_list_profile_img_box'><img className='chat_list_profile_img' src={user.chatListProfileUrl[index]}/></div>
                 
-                <p className='chat_list_name'>{chat.name}</p>
+                <p className='chat_list_name'>{user.chatListName[index]}</p>
                 <p className='chat_list_talk_preview'>최근 메시지</p>
               </Tilt>
             ))}
