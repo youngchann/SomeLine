@@ -32,19 +32,22 @@ const Signup = () => {
     };
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const imageRef = ref(storage, `images/${name+v4()}`)
-        await uploadBytes(imageRef, imageUpload)
-        const downloadUrl = await getDownloadURL(imageRef)
-        
-
-        const res = await createUserWithEmailAndPassword(auth, email, password)
-        if (isFormValid()) {
-            // 여기서 Firebase에 데이터를 보내는 로직을 작성하세요.
-
+    
+        if (!isFormValid()) {
+            alert("모든 필수 정보를 입력해주세요.");
+            return;
+        }
+    
+        const imageRef = ref(storage, `images/${name+v4()}`);
+        await uploadBytes(imageRef, imageUpload);
+        const downloadUrl = await getDownloadURL(imageRef);
+    
+        try {
+            const res = await createUserWithEmailAndPassword(auth, email, password);
             await updateProfile(res.user, {
                 displayName: name,
                 photoURL: downloadUrl,
-            })
+            });
             await addDoc(usersRef, {
                 id : email,
                 pw : password,
@@ -54,15 +57,15 @@ const Signup = () => {
                 profileUrl : downloadUrl,
                 createdAt: serverTimestamp()
             });
-        
+    
             // 회원가입이 완료되면 회원가입 프로세스를 종료하고 로그인 화면으로 돌아감
-            signOut(auth)
-            console.log(`res: ${res}`)
-            console.log(`res.user: ${res.user}`)
-
-            nav('/')
-        } else {
-            alert("모든 필수 정보를 입력해주세요.");
+            signOut(auth);
+            console.log(`res: ${res}`);
+            console.log(`res.user: ${res.user}`);
+            nav('/');
+        } catch (error) {
+            console.error(error);
+            alert("회원가입 중 문제가 발생했습니다. 다시 시도해 주세요.");
         }
     };
 
@@ -79,15 +82,8 @@ const Signup = () => {
     };
 
     const isFormValid = () => {
-        return (
-            email.trim() !== "" &&
-            password.trim() !== "" &&
-            name.trim() !== "" &&
-            gender.trim() !== "" &&
-            age > 0 &&
-            profileImage !== null
-        );
-    }; 
+        return email && password && name && gender && age && imageUpload;
+    } 
     
 
   return (
