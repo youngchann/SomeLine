@@ -1,4 +1,5 @@
 import React, {useEffect, useRef, useState } from "react";
+import SideMenu from "./SideMenu";
 
 
 const Sidebar = ({ width=200, children }) => {
@@ -37,15 +38,18 @@ const Sidebar = ({ width=200, children }) => {
 
   return (
     <div className="sidebar_container">
-      <div ref={side}  className="sidebar_sidebar" style={{ width: `${width}px`, height: '400px',  transform: `translatex(${-xPosition}px)`}}>
-          <button onClick={() => toggleMenu()}
-          className="sidebar_button" >
+        <div ref={side}  className="sidebar_sidebar" style={{ width: `${width}px`, height: '400px',  transform: `translatex(${-xPosition}px)`}}>
+            <button onClick={() => toggleMenu()}
+            className="sidebar_button" >
             {isOpen ? 
             <span className="sidebar_button_text">X</span> : <span className="sidebar_button_text">{"<"}</span>
             }
-          </button>
+            </button>
         <div className="sidebar_content">{children}</div>
-      </div>
+        </div>
+        <div className="sidebar_secret_container">
+            <SideMenu/>
+        </div>
     </div>
   );
 };

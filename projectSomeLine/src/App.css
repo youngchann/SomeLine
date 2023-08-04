@@ -986,7 +986,7 @@
   width: 100px;
   height: 200px;
   right: 70px;
-  top: 0px;
+  top: 40px;
 }
 .side_menu_list{
   display: flex;
@@ -1451,9 +1451,16 @@
 
 /* ------------------------------------------media */
 @media (max-width: 800px) {
-  .sidebar_container{
+  .sidebar_sidebar {
     display: none;
   }
+  /* .sidebar_secret_container {
+    display: block !important;
+  } */
+  .sidebar_secret_container {
+    display: block !important;
+  }
+
   .profile_in_box{
     width: 98%;
     margin-top: 70px;
@@ -1500,7 +1507,7 @@
   .chatlist_box{
     margin-top: 70px;
   }
-  /* .side_menu_box{
+  .side_menu_box{
     position: relative;
     width: 90%;
 
@@ -1527,7 +1534,7 @@
   .side_menus_menu{
     margin-top: -40px;
     width: 30%;
-  } */
+  }
 }
 @media (max-width: 680px) {
   .chatbox_box{
@@ -1613,6 +1620,7 @@
   height: 100%;
   z-index: 99;
 }
+
 /* 사이드바 버튼의 이미지를 구현합니다. */
 .sidebar_button {
   position: relative;
@@ -1631,6 +1639,7 @@
 
   overflow: hidden;
 }
+
 .sidebar_button:hover{
   color: #255784;
   background: linear-gradient(180deg, #df63f2d5, #d721f3d5,#df63f2d5);
@@ -1645,6 +1654,8 @@
   position: relative;
   width: 100%;
 }
+
+
 .sidebar_icon {
   margin: 0;
   color: #202020;
@@ -1653,5 +1664,8 @@
   color: #D65DB1;
   font-size: 26px;
   font-weight: bold;
+}
+.sidebar_secret_container{
+  display: none;
 }
 
