@@ -39,12 +39,17 @@ const Sidebar = ({ width=200, children }) => {
   return (
     <div className="sidebar_container">
         <div ref={side}  className="sidebar_sidebar" style={{ width: `${width}px`, height: '400px',  transform: `translatex(${-xPosition}px)`}}>
-            <button onClick={() => toggleMenu()}
+            {/* <button onClick={() => toggleMenu()}
             className="sidebar_button" >
             {isOpen ? 
             <span className="sidebar_button_text">X</span> : <span className="sidebar_button_text">{"<"}</span>
             }
-            </button>
+            </button> */}
+            {isOpen ?
+            <button onClick={() => toggleMenu()} className="sidebar_button sidebar_button_close" ><span className="sidebar_button_text">X</span></button>:
+            <button onClick={() => toggleMenu()} className="sidebar_button" ><span className="sidebar_button_text">{"<"}</span></button>
+            }
+
         <div className="sidebar_content">{children}</div>
         </div>
         <div className="sidebar_secret_container">

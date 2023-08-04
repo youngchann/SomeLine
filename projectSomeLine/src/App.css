@@ -470,7 +470,7 @@
 }
 .my_infomation_wan_btn{
   position: relative;
-  width: 90%;
+  width: 70%;
   height: 35px;
   color: #f8f8ff;
   border: none;
@@ -492,8 +492,24 @@
 
   padding: 8px;
 }
+.preview_mgae_box{
+  position: relative;
+
+  margin-left: 10px;
+
+  border-radius: 5px;
+
+  width:50px;
+  height: 50px;
+  border: 1px solid #efefef;
+}
+.preview_mgae{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
 .my_infomation_wan_btn:hover{
-  font-size: 29px;
+  font-size: 25px;
   transition: 0.8s;
   box-shadow: 0 0 20px rgba(0, 0, 0, .5);
 }
@@ -986,7 +1002,7 @@
   width: 100px;
   height: 200px;
   right: 70px;
-  top: 40px;
+  top: 30px;
 }
 .side_menu_list{
   display: flex;
@@ -1007,7 +1023,7 @@
   font-family: 'HakgyoansimWoojuR';
 
   position: relative;
-  margin-top: 15px;
+  margin-top: 20px;
   width: 140px;
   height: 40px;
   background-color: #e6abba58;
@@ -1619,6 +1635,8 @@
   color: #202020;
   height: 100%;
   z-index: 99;
+
+  box-shadow: 0 0 15px rgba(0, 0, 0, .3);
 }
 
 /* 사이드바 버튼의 이미지를 구현합니다. */
@@ -1638,6 +1656,9 @@
   background: linear-gradient(180deg, rgba(227, 227, 227, 0.582), transparent,rgba(227, 227, 227, 0.582));
 
   overflow: hidden;
+
+  box-shadow: 0 0 15px rgba(0, 0, 0, .3);
+
 }
 
 .sidebar_button:hover{

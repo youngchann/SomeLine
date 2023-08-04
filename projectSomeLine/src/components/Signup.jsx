@@ -148,14 +148,16 @@ const Signup = () => {
                            onChange={handleImageChange}
                            className="my_infomation_wan_btn"
                     />
-                    {profileImage && (
-                        <img 
-                            src={profileImage}
-                            alt='프로필 사진'
-                            className="preview_mgae"
-                            style={{width:50}}
-                        />
-                    )}
+                    <div className="preview_mgae_box">
+                        {profileImage && (
+                            <img 
+                                src={profileImage}
+                                alt='프로필 사진'
+                                className="preview_mgae"
+                                style={{width:50}}
+                            />
+                        )}
+                    </div>
                 </div>
                 <button type="submit" className="signup_wan_btn">가입하기</button>
             </form>
