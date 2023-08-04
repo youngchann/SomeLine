@@ -365,9 +365,6 @@
   color: #f8f8ffdb;
 }
 
-
-
-
 /* ---------------------------------회원가입 페이지 */
 
 .sign_up_page{
@@ -940,6 +937,7 @@
 }
 .chatlist_list_header>h1{
   color: #f8f8ff;
+  font-family: "Borel";
 }
 .chat_list_contents{
   display: flex;
@@ -1044,7 +1042,7 @@
   width: 100px;
   height: 200px;
   right: 70px;
-  top: 30px;
+  top: 50px;
 }
 .side_menu_list{
   display: flex;
@@ -1695,7 +1693,7 @@
   border: 1px solid #ececec70;
   border-radius: 10px;
 
-  background: linear-gradient(180deg, rgba(227, 227, 227, 0.582), transparent,rgba(227, 227, 227, 0.582));
+  background: linear-gradient(180deg, rgba(227, 227, 227, 0.764), rgba(227, 227, 227, 0.175),rgba(227, 227, 227, 0.764));
 
   overflow: hidden;
 
@@ -1731,4 +1729,22 @@
 .sidebar_secret_container{
   display: none;
 }
+.sidebar_content_header_name{
+  height: 40px;
+  width: 130px;
+
+  position: relative;
+  top: -110px;
+  left: 20px;
+
+  font-size: 40px;
+  font-family: "Borel";
+
+  color: #f8f8ff;
+
+  border-bottom: 1px solid #f8f8ff6e;
+
+  -webkit-box-reflect: below 1px linear-gradient(transparent,#0004);
+}
+
 
