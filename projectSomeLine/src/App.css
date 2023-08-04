@@ -333,34 +333,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Borel&family=Exo+2:wght@300&display=swap');
 
 .login_desing_font1{
+  width: 200px;
+  height: 700px;
+
   position: absolute;
   font-family: "Borel";
-  font-size: 300px;
+  /* font-size: 300px; */
+  font-size: 280px;
 
   transform: rotate(-40deg);
   z-index: -90;
 
-  top:250px;
-  left: -20px;
+  top: 58%;
+  left: 10%;
 
   color: #f8f8ffdb;
 }
 .login_desing_font2{
+  width: 200px;
+  height: 700px;
+
   position: absolute;
   font-family: "Borel";
-  font-size: 300px;
+  font-size: 280px;
   transform: rotate(-40deg);
-  top:250px;
-  left: 600px;
+  top: 58%;
+  left: 60%;
 
   z-index: -90;
 
-
   color: #f8f8ffdb;
 }
-
-
-
 
 /* ---------------------------------회원가입 페이지 */
 
@@ -800,6 +803,11 @@
 }
 .chat_Profil_img{
   width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+
   transition-duration: 0.5s;
 }
 .chat_Profil_img_box:hover{
@@ -929,6 +937,7 @@
 }
 .chatlist_list_header>h1{
   color: #f8f8ff;
+  font-family: "Borel";
 }
 .chat_list_contents{
   display: flex;
@@ -1033,7 +1042,7 @@
   width: 100px;
   height: 200px;
   right: 70px;
-  top: 30px;
+  top: 50px;
 }
 .side_menu_list{
   display: flex;
@@ -1684,7 +1693,7 @@
   border: 1px solid #ececec70;
   border-radius: 10px;
 
-  background: linear-gradient(180deg, rgba(227, 227, 227, 0.582), transparent,rgba(227, 227, 227, 0.582));
+  background: linear-gradient(180deg, rgba(227, 227, 227, 0.764), rgba(227, 227, 227, 0.175),rgba(227, 227, 227, 0.764));
 
   overflow: hidden;
 
@@ -1720,4 +1729,22 @@
 .sidebar_secret_container{
   display: none;
 }
+.sidebar_content_header_name{
+  height: 40px;
+  width: 130px;
+
+  position: relative;
+  top: -110px;
+  left: 20px;
+
+  font-size: 40px;
+  font-family: "Borel";
+
+  color: #f8f8ff;
+
+  border-bottom: 1px solid #f8f8ff6e;
+
+  -webkit-box-reflect: below 1px linear-gradient(transparent,#0004);
+}
+
 

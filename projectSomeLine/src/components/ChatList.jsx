@@ -147,7 +147,7 @@ const ChatList = () => {
 
       <div className='chatlist_box'>
         <div className='chatlist_box_in'>
-          <div className='chatlist_list_header'><h1>~ 채팅창 리스트 ~</h1></div>
+          <div className='chatlist_list_header'><h1>~ group chat room ~</h1></div>
           <hr/>
           <div className='chatlist_inner_box'>
               <Tilt options={options} className='chat_list_contents' onClick={()=>handleClickBot()}>
