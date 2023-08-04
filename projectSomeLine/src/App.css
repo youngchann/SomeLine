@@ -333,28 +333,34 @@
 @import url('https://fonts.googleapis.com/css2?family=Borel&family=Exo+2:wght@300&display=swap');
 
 .login_desing_font1{
+  width: 200px;
+  height: 700px;
+
   position: absolute;
   font-family: "Borel";
-  font-size: 300px;
+  /* font-size: 300px; */
+  font-size: 280px;
 
   transform: rotate(-40deg);
   z-index: -90;
 
-  top:250px;
-  left: -20px;
+  top: 58%;
+  left: 10%;
 
   color: #f8f8ffdb;
 }
 .login_desing_font2{
+  width: 200px;
+  height: 700px;
+
   position: absolute;
   font-family: "Borel";
-  font-size: 300px;
+  font-size: 280px;
   transform: rotate(-40deg);
-  top:250px;
-  left: 600px;
+  top: 58%;
+  left: 60%;
 
   z-index: -90;
-
 
   color: #f8f8ffdb;
 }
