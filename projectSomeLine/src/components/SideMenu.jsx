@@ -11,7 +11,7 @@ const SideMenu = () => {
                     <span></span>
                     <span></span>
                     <span></span>
-                    채팅</Link>
+                    채팅[...]</Link>
                 <Link to='/matching' className='side_menus_menu matching'>
                     <span></span>
                     <span></span>

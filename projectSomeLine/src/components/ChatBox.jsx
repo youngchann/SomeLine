@@ -9,9 +9,11 @@ import {
   onSnapshot,
   query,
   orderBy,
-  getDocs
+  getDocs,
+  updateDoc
 } from "firebase/firestore";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
+
 
 
 const ChatBox = ({room}) => {
@@ -21,11 +23,17 @@ const ChatBox = ({room}) => {
   const [newMessage, setNewMessage] = useState("");
   const messagesRef = collection(db, "messages");
   const [user, setUser] = useState(null);
+  const [selectedUserName, setSelectedUser] = useState(sessionStorage.getItem('selectedUserName' || ''))
+  const [selectedProfileUrl, setSelectedProfileUrl] = useState(sessionStorage.getItem('selectedUserProfileUrl' || ''))
+  const [selectedRoom, setSelectedRoom] = useState(sessionStorage.getItem('selectedRoom' || ''))
 
+
+
+  
   useEffect(() => {
     const queryMessages = query(
       messagesRef,
-      where("room", "==", `챗봇+${currentUser.displayName}`),
+      where("room", "==", selectedRoom),
       orderBy("createdAt")
     );
     const unsuscribe = onSnapshot(queryMessages, (snapshot) => {
@@ -36,7 +44,7 @@ const ChatBox = ({room}) => {
       console.log(messages);
       setMessages(messages);
     });
-
+    // console.log(`selected: ${selectedUser}`);
     return () => unsuscribe();
   }, []);
 
@@ -51,6 +59,7 @@ const ChatBox = ({room}) => {
     }
   }, [currentUser]);
 
+  // 유저의 정보를 가져와 이미지 주소 지정
   useEffect(() => {
     if (user && user.profileUrl) {
       const storage = getStorage();
@@ -74,8 +83,9 @@ const ChatBox = ({room}) => {
       text: newMessage,
       createdAt: serverTimestamp(),
       user: currentUser.displayName,
-      room : `챗봇+${currentUser.displayName}`
+      room : selectedRoom
     });
+
 
     setNewMessage("");
   };
@@ -120,8 +130,8 @@ const ChatBox = ({room}) => {
       </div>
       <div className='you_chat_Profil'>
         {/* <div className='chat_Profil_img'></div> */}
-        <img className='chat_Profil_img' src='https://firebasestorage.googleapis.com/v0/b/chatapp2-aa1ab.appspot.com/o/images%2F%EA%B5%AD2.jpg?alt=media&token=1e4d4b55-f1b1-4e6f-a030-e06ca28a99d2'/>
-        <h2 className='you_chat_Profil_name'>상대방</h2>
+        <img className='chat_Profil_img' src={selectedProfileUrl}/>
+        <h2 className='you_chat_Profil_name'>{selectedUserName}</h2>
       </div>
       <div className='chatbox_box'>
         <div className='messages'>

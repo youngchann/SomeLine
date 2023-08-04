@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { db, storage, auth } from "../firebase-config";
 import { createUserWithEmailAndPassword, updateProfile, signOut } from "firebase/auth"
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
 import {v4} from 'uuid'
 import { useNavigate } from "react-router-dom";
@@ -51,7 +51,8 @@ const Signup = () => {
                 name : name,
                 gender : gender,
                 age : age,
-                profileUrl : downloadUrl
+                profileUrl : downloadUrl,
+                createdAt: serverTimestamp()
             });
         
             // 회원가입이 완료되면 회원가입 프로세스를 종료하고 로그인 화면으로 돌아감

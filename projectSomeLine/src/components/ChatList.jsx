@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import VanillaTilt from 'vanilla-tilt';
 import { db, auth } from "../firebase-config";
@@ -29,6 +30,8 @@ function Tilt(props) {
   return <div ref={tilt} {...rest} />;
 }
 
+
+
 // 팝업창을 끄기 위해 만든 함수안에 들어가는 변수를 담기위한 것입니다. .-작업자 : 이찬용 
 
 const ChatList = () => {
@@ -52,9 +55,8 @@ const ChatList = () => {
   
   const [chats, setChats] = useState([]);
   const userRef = collection(db, "users");
-
-  const [users, setUsers] = useState([])
-  const [matchUsers, setMatchUsers] = useState([])
+  
+  const [selectedUser, setSelectedUser] = useState("")
     
   useEffect(()=>{
     if (chatList.length > 0) {
@@ -89,16 +91,28 @@ const ChatList = () => {
   // chats의 이전 값을 기억하기 위한 ref입니다.  - 작업자 : 이찬용
   const prevChats = useRef(chats);
 
-  useEffect(() => {
-    // 만약 chats의 이전 값과 현재 값이 다르다면 (즉, 새로운 메시지가 추가되었다면) isVisible을 true로 설정합니다. - 작업자 : 이찬용
-    if (prevChats.current !== chats) {
-      setIsVisible(true);
+
+  const handleClick = (user) => {
+    setSelectedUser(user)
+    sessionStorage.setItem('selectedUserName', user.name)
+    sessionStorage.setItem('selectedUserProfileUrl', user.profileUrl)
+    
+    if (user.createdAt > currentUser.displayName) {
+      sessionStorage.setItem('selectedRoom', `${user.name}+${currentUser.displayName}`)
+    } else {
+      sessionStorage.setItem('selectedRoom', `${currentUser.displayName}+${user.name}`)
     }
-    // useEffect의 cleanup 함수에서 현재 chats 값을 이전 값으로 설정합니다. - 작업자 : 이찬용
-    return () => {
-      prevChats.current = chats;
-    };
-  }, [chats]);
+    nav('/chatbox')
+  }
+
+  const handleClickBot = () => {
+    setSelectedUser('챗봇:지호')
+    sessionStorage.setItem('selectedUserName', '챗봇:지호')
+    sessionStorage.setItem('selectedUserProfileUrl', 'https://firebasestorage.googleapis.com/v0/b/chatapp2-aa1ab.appspot.com/o/images%2F%EA%B5%AD2.jpg?alt=media&token=1e4d4b55-f1b1-4e6f-a030-e06ca28a99d2')
+    sessionStorage.setItem('selectedRoom', `챗봇:지호+${currentUser.displayName}`)
+    
+    nav('/chatbox')
+  }
 
   return (
     <div className='chatlist_background'>
@@ -121,7 +135,7 @@ const ChatList = () => {
           <div className='chatlist_list_header'><h1>~ 채팅창 리스트 ~</h1></div>
           <hr/>
           <div className='chatlist_inner_box'>
-              <Tilt onClick={()=>nav('/chatbox')} options={options} className='chat_list_contents'>
+              <Tilt options={options} className='chat_list_contents' onClick={()=>handleClickBot()}>
                 {/* <div className='chat_list_profile_img'></div> */}
                   <img className='chat_list_profile_img' src='https://firebasestorage.googleapis.com/v0/b/chatapp2-aa1ab.appspot.com/o/images%2F%EA%B5%AD2.jpg?alt=media&token=1e4d4b55-f1b1-4e6f-a030-e06ca28a99d2'></img>
                 
@@ -129,12 +143,12 @@ const ChatList = () => {
                 <p className='chat_list_talk_preview'>반가워요 ^^</p>
               </Tilt>
             {chats.map((chat, index) => (
-              <Tilt key={index} options={options} className='chat_list_contents'>
+              <Tilt key={index} options={options} className='chat_list_contents' onClick={()=>handleClick(chat)}>
                 
                 <img className='chat_list_profile_img' src={chat.profileUrl}></img>
                 
                 <p className='chat_list_name'>{chat.name}</p>
-                <p className='chat_list_talk_preview'>{chat.content}</p>
+                <p className='chat_list_talk_preview'>최근 메시지</p>
               </Tilt>
             ))}
           </div>

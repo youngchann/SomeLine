@@ -14,7 +14,8 @@ import {
   onSnapshot,
   query,
   orderBy,
-  getDocs
+  getDocs,
+  updateDoc
 } from "firebase/firestore";
 import { getStorage, ref, getDownloadURL, uploadBytes} from "firebase/storage";
 
@@ -110,6 +111,8 @@ const Matching = () => {
     chatList.push(userName)
     console.log(chatList);
   };
+
+ 
 
   return (
     <div className='matching_bg'>
