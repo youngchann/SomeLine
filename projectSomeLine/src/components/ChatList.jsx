@@ -36,6 +36,11 @@ function Tilt(props) {
 
 const ChatList = () => {
 
+
+
+
+
+
   const { currentUser } = useContext(AuthContext);
   const nav = useNavigate()
 
@@ -120,7 +125,7 @@ const ChatList = () => {
         <button className='chatlist_popup_page_close' onClick={closePopup}>X</button>
         <div className='chatlist_popup_page_text'>
           <h4>💬 알림.</h4>
-          <p>이찬용님, 설레이는 새로운 메세지가 도착했어요!</p>
+          <p><strong>{currentUser.displayName}</strong>님, 설레이는 새로운 메세지가 도착했어요!</p>
         </div>
       </div>
 
@@ -136,8 +141,7 @@ const ChatList = () => {
           <hr/>
           <div className='chatlist_inner_box'>
               <Tilt options={options} className='chat_list_contents' onClick={()=>handleClickBot()}>
-                {/* <div className='chat_list_profile_img'></div> */}
-                  <img className='chat_list_profile_img' src='https://firebasestorage.googleapis.com/v0/b/chatapp2-aa1ab.appspot.com/o/images%2F%EA%B5%AD2.jpg?alt=media&token=1e4d4b55-f1b1-4e6f-a030-e06ca28a99d2'></img>
+                <div className='chat_list_profile_img_box'><img className='chat_list_profile_img' src='https://firebasestorage.googleapis.com/v0/b/chatapp2-aa1ab.appspot.com/o/images%2F%EA%B5%AD2.jpg?alt=media&token=1e4d4b55-f1b1-4e6f-a030-e06ca28a99d2' /></div>
                 
                 <p className='chat_list_name'>챗봇님</p>
                 <p className='chat_list_talk_preview'>반가워요 ^^</p>
@@ -145,7 +149,7 @@ const ChatList = () => {
             {chats.map((chat, index) => (
               <Tilt key={index} options={options} className='chat_list_contents' onClick={()=>handleClick(chat)}>
                 
-                <img className='chat_list_profile_img' src={chat.profileUrl}></img>
+                <div className='chat_list_profile_img_box'><img className='chat_list_profile_img' src={chat.profileUrl}/></div>
                 
                 <p className='chat_list_name'>{chat.name}</p>
                 <p className='chat_list_talk_preview'>최근 메시지</p>

@@ -120,7 +120,7 @@ const Matching = () => {
           <button className='mat_popup_close' onClick={matClosePopup}>X</button>
           <div className='mat_popup_text'>
             <h4>💬 알림.</h4>
-            <p>이찬용님, 새로운 매칭이 도착했어요!</p>
+            <p><strong>{currentUser.displayName}</strong>님, 새로운 매칭이 도착했어요!</p>
           </div>
         </div>
         <div className="login_bgm_b">
@@ -140,8 +140,7 @@ const Matching = () => {
               <SwiperSlide key={user.name}>
                 <div className='mat_info_card'>
                   <div className='info_img_box'>
-                    <img style={{width: 320,
-                    height: 280}}  src={user.profileUrl} />
+                    <img className='matching_img'  src={user.profileUrl} />
                   </div>
                   <div className='info_info_box'>
                     {matchUsers.length > 0 && matchUsers[0] ? (

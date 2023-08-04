@@ -71,7 +71,9 @@ const Login = () => {
               <button className="login_submit_button">Login</button>
             </form>
             {/* <a href='#' className="find_ps_id">비밀번호 찾기 / 아이디 찾기</a> */}
-        </div> 
+        </div>
+        <div className="login_desing_font1">some.</div>
+        <div className="login_desing_font2">line</div>
     </div>
   )
 }

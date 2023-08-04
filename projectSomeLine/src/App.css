@@ -129,11 +129,14 @@
 }
 /* -----------------------------------로그인 박스 */
 .login_page{
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 100vh;
+
+  overflow: hidden;
 }
 .login_box{
   padding: 10px;
@@ -326,7 +329,35 @@
     height: 500px;
   }
 }
+/* 로고 디자인 들. */
+@import url('https://fonts.googleapis.com/css2?family=Borel&family=Exo+2:wght@300&display=swap');
 
+.login_desing_font1{
+  position: absolute;
+  font-family: "Borel";
+  font-size: 300px;
+
+  transform: rotate(-40deg);
+  z-index: -90;
+
+  top:250px;
+  left: -20px;
+
+  color: #f8f8ffdb;
+}
+.login_desing_font2{
+  position: absolute;
+  font-family: "Borel";
+  font-size: 300px;
+  transform: rotate(-40deg);
+  top:250px;
+  left: 600px;
+
+  z-index: -90;
+
+
+  color: #f8f8ffdb;
+}
 
 
 
@@ -470,7 +501,7 @@
 }
 .my_infomation_wan_btn{
   position: relative;
-  width: 90%;
+  width: 70%;
   height: 35px;
   color: #f8f8ff;
   border: none;
@@ -492,8 +523,24 @@
 
   padding: 8px;
 }
+.preview_mgae_box{
+  position: relative;
+
+  margin-left: 10px;
+
+  border-radius: 5px;
+
+  width:50px;
+  height: 50px;
+  border: 1px solid #efefef;
+}
+.preview_mgae{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
 .my_infomation_wan_btn:hover{
-  font-size: 29px;
+  font-size: 25px;
   transition: 0.8s;
   box-shadow: 0 0 20px rgba(0, 0, 0, .5);
 }
@@ -737,18 +784,34 @@
   margin-top: 420px;
   margin-left: 10px;
 }
-.chat_Profil_img{
+.chat_Profil_img_box{
   width: 120px;
   height: 120px;
   border-radius: 60px;
   background-color: #a4a1a4;
   box-shadow: 0 0 40px rgba(0, 0, 0, .6);
 
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
 }
-.chat_Profil_img:hover{
+.chat_Profil_img{
+  width: 100%;
+  transition-duration: 0.5s;
+}
+.chat_Profil_img_box:hover{
   box-sizing: border-box;
   border: 1px solid #f8f8ff;
   box-shadow: 0 0 50px rgba(0, 0, 0, .9);
+
+}
+.chat_Profil_img:hover{
+
+  transform: scale(1.1);
+  transition-duration: 0.5s;
 }
 .you_chat_Profil_name{
   margin-top: 10px;
@@ -903,12 +966,23 @@
   background-color: #d1d1d157;
   border-radius: 10px;
 }
-.chat_list_profile_img{
+.chat_list_profile_img_box{
   width: 50px;
   height: 50px;
   border-radius: 25px;
   background-color: #f8f8ff;
   margin-left: 10px;
+
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.chat_list_profile_img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* -------------------------------------------------채팅리스트 메세지 팝업 */
@@ -958,8 +1032,8 @@
   position: fixed;
   width: 100px;
   height: 200px;
-  right: 50px;
-  top: 100px;
+  right: 70px;
+  top: 30px;
 }
 .side_menu_list{
   display: flex;
@@ -980,8 +1054,8 @@
   font-family: 'HakgyoansimWoojuR';
 
   position: relative;
-  margin-top: 10px;
-  width: 120px;
+  margin-top: 20px;
+  width: 140px;
   height: 40px;
   background-color: #e6abba58;
   backdrop-filter: blur(10px);
@@ -1061,6 +1135,17 @@
   height: 60%;
   background-color: #ae6464;
   border-radius: 10px;
+  overflow: hidden;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.matching_img{
+  /* width: 100%; */
+  height: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .info_info_box{
   width: 100%;
@@ -1145,7 +1230,7 @@
   height: 540px;
 
   overflow:hidden;
-  margin-top: 110px;
+  margin-top: 120px;
 
 }
 
@@ -1154,6 +1239,9 @@
   display: flex;
   width: 100%;
   height: 20%;
+}
+.profile_img_chainge_box{
+  margin-top: 10px;
 }
 .profile_name_chainge_box{
   display: flex;
@@ -1173,7 +1261,7 @@
 /* 프로필 박스 안에 상단에 프로필 글씨 */
 .profile_box_header_name{
   font-size: 100px;
-  color: #efefefad;
+  color: #f2f2f2e5;
 }
 
 .profile_img_text, .profile_name_chainge_text, .profile_myinfo_box_text{
@@ -1181,24 +1269,45 @@
   font-size: 12px;
   color: #efefef;
 }
-.profile_img_chainge{
+.profile_img_chainge_input_box{
+  width: 70%;
+
+  display: flex;
+  align-items: center;
+  flex-direction: row;
   
-  width: 110px;
-  height: 110px;
-  background-color: #4d4d4d;
-
-  border-radius: 10px;
 }
-.profile_img_chainge_btn{
+.profile_img_chainge{
   width: 110px;
   height: 110px;
-  background:none;
 
-  position: absolute;
-  left: 200px;
-
+  overflow: hidden;
   border-radius: 10px;
-  z-index: 10;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.profile_img_chainge_at{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.profile_img_chainge_btn{
+  border: 1px solid #4d4d4d84;
+  margin-left: 10px;
+  /* background:none; */
+
+  background-color: #5f5f5f5a;
+
+  width: 50%;
+  padding: 5px;
+  border-radius: 5px;
+
+  position: relative;
+  bottom: -35px;
 }
 
 /* 프로필 이름을 바꾸는 공간 */
@@ -1206,11 +1315,13 @@
 
   margin-top: 10px;
   display: flex;
+  width: 70%;
+
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
 }
 .profile_name_input_in{
-  width: 350px;
+  width: 80%;
   height: 40px;
   border-radius: 10px;
   background-color: #5f5f5f5a;
@@ -1221,21 +1332,22 @@
   padding-right: 5px;
 
   border: 1px solid #4d4d4d8c ;
-  box-shadow: 0 0 17px rgba(0, 0, 0, .5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
 }
 .profile_name_input_in::placeholder{
-  color: rgba(200, 200, 200, 0.836);
+  color: rgba(198, 198, 198, 0.783);
   font-size: 19px;
 }
 
 /* 프로필 자기소개를 바꾸는 공간 */
 .profile_myinfo_box_input{
+  width: 70%;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
 }
 .profile_myinfo_box_input_in{
-  width: 350px;
+  width: 80%;
   height: 80%;
   border-radius: 10px;
   background-color: #5f5f5f5a;
@@ -1386,6 +1498,23 @@
 
 /* ------------------------------------------media */
 @media (max-width: 800px) {
+  .sidebar_sidebar {
+    display: none;
+  }
+  /* .sidebar_secret_container {
+    display: block !important;
+  } */
+  .sidebar_secret_container {
+    display: block !important;
+  }
+
+  .profile_in_box{
+    width: 98%;
+    margin-top: 70px;
+  }
+  .profile_img_chainge_btn{
+    width: 40%;
+  }
   .swiper {
     width: 330px;
     height: 440px;
@@ -1511,41 +1640,84 @@
   animation: moveFadeOut 3s linear forwards;
 }
 
-/* 앵그리 이모션 작동
-.emt_angry{
-  width: 120px;
-  height: 120px;
-  position: absolute;
-  top: -10px;
-  opacity: 0;
-
-  font-size:120px;
-  z-index: -10; */
-/* } */
-/* @keyframes angryMoveFadeOut {
-  0% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  25% {
-    transform: translateY(-10px);
-  }
-  50% {
-    transform: translateY(0px);
-  }
-  75% {
-    transform: translateY(-10px);
-  }
-  100% {
-    transform: translateY(0px);
-    opacity: 0;
-  }
-}
-
-
 .angryMoveFadeOut {
   animation: angryMoveFadeOut 3s linear forwards;
 } */
 
+/*---------------------------------------------- 사이드바 css */
 
+.sidebar_container {
+  background-color: #E3ECF1;
+}
+.sidebar_sidebar {
+  /* background-color: #E3ECF1; */
+
+  backdrop-filter: blur(60px);
+  border-left: 1px solid #ececec70;
+  position: fixed;
+  top: 120px;
+  bottom: 0;
+  right: 0;
+
+  border-top-left-radius:20px;
+  border-bottom-left-radius:20px;
+
+  transition: 0.4s ease;
+  color: #202020;
+  height: 100%;
+  z-index: 99;
+
+  box-shadow: 0 0 15px rgba(0, 0, 0, .3);
+}
+
+/* 사이드바 버튼의 이미지를 구현합니다. */
+.sidebar_button {
+  position: relative;
+  left: -60px;
+  top: 10px;
+
+  width: 50px;
+  height: 50px;
+  z-index: 99;
+
+  /* transition: 0.8s ease; */
+  border: 1px solid #ececec70;
+  border-radius: 10px;
+
+  background: linear-gradient(180deg, rgba(227, 227, 227, 0.582), transparent,rgba(227, 227, 227, 0.582));
+
+  overflow: hidden;
+
+  box-shadow: 0 0 15px rgba(0, 0, 0, .3);
+
+}
+
+.sidebar_button:hover{
+  color: #255784;
+  background: linear-gradient(180deg, #df63f2d5, #d721f3d5,#df63f2d5);
+  /* background: linear-gradient(180deg, #f1a173e6, #ea7e3fe6,#f8a16fe6); */
+  box-shadow:  0 0 10px #d721f3d5, 0 0 40px #d721f3d5, 0 0 80px #d721f3d5;
+}
+.sidebar_button:hover>span{
+  color:#4d4d4d;
+}
+.sidebar_content {
+  padding: 40px 40px 0 20px;
+  position: relative;
+  width: 100%;
+}
+
+
+.sidebar_icon {
+  margin: 0;
+  color: #202020;
+}
+.sidebar_button_text{
+  color: #D65DB1;
+  font-size: 26px;
+  font-weight: bold;
+}
+.sidebar_secret_container{
+  display: none;
+}
 
