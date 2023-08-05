@@ -82,8 +82,7 @@ const Signup = () => {
     };
 
     const isFormValid = () => {
-        return email && password && name && gender && age && imageUpload;
-    } 
+    return email && password && name && gender && age && imageUpload;} 
     
 
   return (
