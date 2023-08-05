@@ -14,6 +14,8 @@ import {
 } from "firebase/firestore";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
+import { Link } from 'react-router-dom';
+
 
 
 const ChatBox = ({room}) => {
@@ -136,7 +138,7 @@ const ChatBox = ({room}) => {
       </div>
       <div className='chatbox_box'>
         <div className='chatbox_btn_box'>
-          <button className='chatbox_in_top_btn'>{"< 나가기"}</button>
+          <Link to='/chatlist'><button className='chatbox_in_top_btn'>{"< 나가기"}</button></Link>
           <button className='chatbox_in_top_btn'>{"대화내용 지우기 >"}</button>
         </div>
         <div className='messages'>
