@@ -119,6 +119,7 @@ const Signup = () => {
                     value={name}
                     placeholder="닉네임"
                     onChange={(e) => setName(e.target.value)}
+                    maxLength={6}
                 ></input>
                 
                 <input
