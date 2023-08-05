@@ -134,8 +134,8 @@ const Signup = () => {
                 <div className='gender_box'>
                     <h3 className='gender_box_name'>⁃ 성별</h3>
                     <form className='gender_choice' action="action.jsp">
-                        <div className='male_choice'><input type="radio" value={gender} onClick={()=>setGender('male')} ></input>남성</div>
-                        <div className='male_choice'><input type="radio" value={gender} onClick={()=>setGender('female')}></input>여성</div>
+                        <div className='male_choice'><input type="radio" name="gender" value={gender} onClick={()=>setGender('male')} ></input>남성</div>
+                        <div className='male_choice'><input type="radio" name="gender" value={gender} onClick={()=>setGender('female')}></input>여성</div>
                     </form>
                 </div>
                 <div className='my_infomation'>
