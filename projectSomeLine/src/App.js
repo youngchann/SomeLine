@@ -1,12 +1,10 @@
 import './App.css';
 
-// import Baenner from './components/Baenner';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import ChatBox from './components/ChatBox';
-// import Baenner from './components/Baenner';
 import ChatList from './components/ChatList';
 import Matching from './components/Matching';
 import SideMenu from './components/SideMenu';
