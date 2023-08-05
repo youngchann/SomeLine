@@ -18,12 +18,6 @@ const SideMenu = () => {
                     <span></span>
                     <span></span>
                     매칭</Link>
-                <Link to='/chatbox' className='side_menus_menu chatbot'>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    챗봇</Link>
                 <Link to='/profile' className='side_menus_menu chatbot'>
                     <span></span>
                     <span></span>
