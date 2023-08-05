@@ -21,10 +21,6 @@ import {
 } from "firebase/firestore";
 import { getStorage, ref, getDownloadURL, uploadBytes} from "firebase/storage";
 
-let chatList = []
-let chatListName = []
-let chatListProfileUrl = []
-let chatListCreatedAt = []
 
 const Matching = () => {
 
@@ -113,12 +109,10 @@ const Matching = () => {
   const addUserToList = async(userName) => {
     setAddedUsers((prevUsers) => [...prevUsers, userName]);
     
-    chatList.push(userName)
     // chatListName.push(userName.name)
     // chatListProfileUrl.push(userName.profileUrl)
     // chatListCreatedAt.push(userName.createdAt)
     alert(`채팅리스트에 ${userName.name}님이 추가되었습니다😊`)
-    console.log(chatList);
     
     const usersRef = collection(db, "users");
     const querySnapshot = await getDocs(
@@ -189,4 +183,3 @@ const Matching = () => {
 }
 
 export default Matching
-export {chatList}
