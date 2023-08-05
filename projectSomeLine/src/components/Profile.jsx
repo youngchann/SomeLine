@@ -172,6 +172,7 @@ const Profile = () => {
             id="id"
             placeholder= {`현재 이름은 "${user.name}"입니다.`}
             onChange={(e) => setName(e.target.value)}
+            maxLength={6}
             // value={name}     // 플레이스 홀더보다 상위라서 홀더플레이스가 보이지 않는 현상이 일어났습니다. 그래서 주석처리함 --이찬용
             ></input>
           </form>
