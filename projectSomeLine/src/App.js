@@ -12,6 +12,8 @@ import Profile from './components/Profile';
 import Sidebar from './components/Sidebar';
 
 import Loading from './components/Loading';
+import Tendency from './components/Tendency';
+
 
 import { Route, Routes, useLocation, Navigate } from 'react-router-dom';
 
@@ -41,6 +43,7 @@ function App() {
         <Route path='/profile' element={<Profile/>}></Route>
         {/* 테스트용 */}
         <Route path='/loading' element={<Loading/>}></Route>
+        <Route path='/tendency' element={<Tendency/>}></Route>
       </Routes>
 
       {/* <Footer/> */}
