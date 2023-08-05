@@ -135,6 +135,10 @@ const ChatBox = ({room}) => {
         <h2 className='you_chat_Profil_name'>{selectedUserName}</h2>
       </div>
       <div className='chatbox_box'>
+        <div className='chatbox_btn_box'>
+          <button className='chatbox_in_top_btn'>{"< 나가기"}</button>
+          <button className='chatbox_in_top_btn'>{"대화내용 지우기 >"}</button>
+        </div>
         <div className='messages'>
           {messages.map((message) => (
             <div key={message.id} className={`message ${message.user === currentUser.displayName ? "my-message" : "other-message"}`}>

@@ -647,6 +647,36 @@
   display: flex;
   justify-content: center;
 }
+.chatbox_btn_box{
+  width: 100%;
+  height: 6%;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 8px;
+}
+.chatbox_in_top_btn{
+  width: 10;
+  padding: 5px;
+  border: none;
+  background: none;
+
+  border-radius: 20px;
+
+  border: 1px solid #f8f8ff;
+  background-color: #4d4d4d1b;
+
+  color: #f8f8ff;
+  font-weight: 800;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.chatbox_in_top_btn:hover{
+  background-color: #4d4d4d3a;
+}
+.chatbox_in_top_btn:active{
+  background-color: #4d4d4d81;
+}
+
 
 /* 임영찬 채팅 -- 시작 */
 .messages {
@@ -654,12 +684,12 @@
   flex-direction: column;
   align-items: flex-start;
   width: 100%;                 /* 여기 고쳐야함*/
-  height: 86%;
+  height: 78%;
   padding-bottom: 10px;
 
   border-top-right-radius: 10px ;
   border-top-left-radius: 10px ;
-  box-shadow: 0 0 20px rgba(0, 0, 0, .2) inset;
+  box-shadow: 0 30px 20px rgba(0, 0, 0, .2) inset;
   overflow: auto;
 
 }
@@ -1506,6 +1536,13 @@
 
 
 /* ------------------------------------------media */
+@media (max-width: 1000px) {
+  .my_chat_Profil_name, .you_chat_Profil_name{
+    font-size: 20px;
+    transition-duration: 0.2s;
+  }
+}
+
 @media (max-width: 800px) {
   .sidebar_sidebar {
     display: none;
