@@ -15,6 +15,7 @@ import {
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
 import { Link } from 'react-router-dom';
+import axios from 'axios'
 
 
 
@@ -28,6 +29,8 @@ const ChatBox = ({room}) => {
   const [selectedUserName, setSelectedUser] = useState(sessionStorage.getItem('selectedUserName' || ''))
   const [selectedProfileUrl, setSelectedProfileUrl] = useState(sessionStorage.getItem('selectedUserProfileUrl' || ''))
   const [selectedRoom, setSelectedRoom] = useState(sessionStorage.getItem('selectedRoom' || ''))
+
+  const [prediction, setPrediction] = useState('');
 
   
   useEffect(() => {
@@ -101,7 +104,22 @@ const ChatBox = ({room}) => {
 
     if (messages.filter(message => message.room === `챗봇:지호+${currentUser.displayName}`).length % 5 == 0) {
       console.log(`${currentUser.displayName}님과 챗봇의 대화 데이터를 서버에 보냅니다.`)
+      handlePrediction(messages)
+      alert(prediction)
     }
+  };
+
+  const handlePrediction = (messages) => {
+    axios.post('http://localhost:5000/predict', 
+    { data: messages })
+      .then(response => {
+        console.log(`response.data: ${response.data}`);
+        setPrediction(response.data.prediction);
+      })
+      .catch(error => {
+        console.error(error);
+        setPrediction('Error');
+      });
   };
 
   const handleClearChat = async () => {
