@@ -109,9 +109,6 @@ const Matching = () => {
   const addUserToList = async(userName) => {
     setAddedUsers((prevUsers) => [...prevUsers, userName]);
     
-    // chatListName.push(userName.name)
-    // chatListProfileUrl.push(userName.profileUrl)
-    // chatListCreatedAt.push(userName.createdAt)
     alert(`채팅리스트에 ${userName.name}님이 추가되었습니다😊`)
     
     const usersRef = collection(db, "users");

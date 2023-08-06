@@ -127,7 +127,7 @@ const ChatList = () => {
 
   return (
     <div>
-      {user? (
+      {/* {user? ( */}
     <div className='chatlist_background'>
       <div className={`chatlist_popup_page ${isVisible ? '' : 'hidden'}`}>
         <button className='chatlist_popup_page_close' onClick={closePopup}>X</button>
@@ -148,7 +148,7 @@ const ChatList = () => {
           <div className='chatlist_list_header'><h1>~ group chat room ~</h1></div>
           <hr/>
           <div className='chatlist_inner_box'>
-          
+          {user ? (
             <div>
               <Tilt options={options} className='chat_list_contents' onClick={()=>handleClickBot()}>
                 <div className='chat_list_profile_img_box'><img className='chat_list_profile_img' src='https://firebasestorage.googleapis.com/v0/b/chatapp2-aa1ab.appspot.com/o/images%2F%EA%B5%AD2.jpg?alt=media&token=1e4d4b55-f1b1-4e6f-a030-e06ca28a99d2' /></div>
@@ -167,11 +167,12 @@ const ChatList = () => {
               </Tilt>
             ))}
             </div>
+            ):<p>loading...</p>}
           </div>
         </div>
       </div>
     </div>
-    ): <Loading/>}
+    {/* ): <Loading/>} */}
     </div>
   )
 }
