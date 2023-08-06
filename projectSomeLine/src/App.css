@@ -993,10 +993,14 @@
 }
 .chat_list_talk_preview{
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   padding-left: 20px;
+
+  width: 55%;
   height: 50px;
+  
+  
   font-size: large;
   border-left: 1px solid #f8f8ff;
   margin-left: 20px;
@@ -1062,6 +1066,35 @@
 .chatlist_popup_page_text {
   text-align: center
 }
+.chatlist_chat_del_btn{
+  position: relative;
+  width: 60px;
+  height: 35px;
+
+  border: none;
+  background: none;
+
+  background-color: #80808039;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+}
+.chatlist_chat_del_btn:hover{
+  background-color: #4d4d4d43;
+}
+/* 성능 테스트 */
+.chatlist_chat_del_btn:active{
+
+  animation: animationOut 1.5s ease-in-out infinite;
+}
+@keyframes animationOut{
+  0%{
+    transform: translateX(0px);
+  }
+  100%{
+    transform: translateX(200px);
+  }
+}
+
 
 /*  -----------전역 css팝업을 숨기기  위한 장치. */
 .hidden {
@@ -1244,10 +1277,6 @@
   color: #f2f2f2c9;
 
   background:linear-gradient(90deg,#845EC2 0%,#D65DB1 99%);
-  
-
-  /* border-top: 1px solid #686868; */
-  /* border-bottom: 1px solid #686868; */
 
   box-shadow: 0 0 5px rgba(0, 0, 0, .5);
 }
@@ -1528,13 +1557,41 @@
     transform: rotate(90deg);
   }
 }
-.loading_text{
+/* .loading_text{
   position: absolute;
   margin-left: 45%;
   color: rgba(245, 245, 245, 0.67);
+} */
+#loading_text_box{
+  border: none;
+  background-color: none;
+  border-radius: none;
+  box-shadow:none;
+  
+  width: 400px;
+  height: 100px;
+  transition-duration: linear;
 }
+.box4{
+  padding-top: 10px;
+  box-shadow:none;
+  color: #f8f8ff;
+  text-align: center;
 
+  font-size: 50px;
+  transition-duration: linear;
 
+  z-index: -222;
+}
+.loading_shadow{
+  position:fixed;
+  bottom: 241px;
+  
+  background: linear-gradient(to left,black 0%,transparent, black 99%);
+  width: 100%;
+  height: 200px;
+  z-index: 100;
+}
 
 
 
@@ -1787,7 +1844,6 @@
 
   -webkit-box-reflect: below 1px linear-gradient(transparent,#0004);
 }
-
 
 
 
