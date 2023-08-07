@@ -51,7 +51,7 @@ function Tendency({data}) {
 
     if (list) {
         return (                
-            <div className="drag-n-drop">
+            <div className="tendencymain_box_in_contents">
             {list.map((grp, grpI) => (
               <div key={grp.title} onDragEnter={dragging && !grp.items.length?(e) => handleDragEnter(e,{grpI, itemI: 0}):null} className="dnd-group">
                 {grp.items.map((item, itemI) => (

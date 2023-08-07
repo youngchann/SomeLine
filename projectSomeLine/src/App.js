@@ -11,7 +11,7 @@ import SideMenu from './components/SideMenu';
 import Profile from './components/Profile';
 import Sidebar from './components/Sidebar';
 
-import Loading from './components/Loading';
+import TeamMember from './components/TeamMember';
 import TendencyMain from './components/TendencyMain';
 
 
@@ -42,7 +42,7 @@ function App() {
         <Route path='/matching' element={<Matching/>}></Route>
         <Route path='/profile' element={<Profile/>}></Route>
         {/* 테스트용 */}
-        <Route path='/loading' element={<Loading/>}></Route>
+        <Route path='/teammember' element={<TeamMember/>}></Route>
         <Route path='/tendency' element={<TendencyMain/>}></Route>
       </Routes>
 

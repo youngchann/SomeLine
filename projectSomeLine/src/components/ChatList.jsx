@@ -15,7 +15,6 @@ import {
 import { AuthContext } from "../context/AuthContext";
 import { chatList } from './Matching';
 import { useNavigate } from "react-router-dom";
-import Loading from './Loading';
 
 
 /* 바닐라 틸트를 실행시키기 위한 함수입니다. - 작업자: 이찬용
@@ -107,7 +106,7 @@ const ChatList = () => {
 
   const removeUserToList = async(index) => {
 
-    alert(`채팅리스트에서 ${user.chatListName[index]}님이 삭제되었습니다😥`)
+    // alert(`채팅리스트에서 ${user.chatListName[index]}님이 삭제되었습니다😥`)
     
     const usersRef = collection(db, "users");
     const querySnapshot = await getDocs(
@@ -145,7 +144,7 @@ const ChatList = () => {
 
       <div className='chatlist_box'>
         <div className='chatlist_box_in'>
-          <div className='chatlist_list_header'><h1>~ group chat room ~</h1></div>
+          <div className='chatlist_list_header'><h1>~ GROP CHAT ROOM ~</h1></div>
           <hr/>
           <div className='chatlist_inner_box'>
           {user ? (

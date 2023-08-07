@@ -41,6 +41,7 @@
 
 .top_logo_text_left{
   font-family: 'Exo 2', sans-serif;
+  /* font-family: "Borel"; */
   margin-left: 20px;
   color: #f8f8ff;
   
@@ -969,7 +970,11 @@
 }
 .chatlist_list_header>h1{
   color: #f8f8ff;
-  font-family: "Borel";
+  font-family: "Exo 2";
+
+
+  font-size: 35px;
+  font-weight: 300;
 }
 .chat_list_contents{
   display: flex;
@@ -1855,47 +1860,91 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
-  background-color: #255784;
 }
 
 .tendencymain_box{
   position: relative;
-  width: 600px;
+  width:  700px;
   height: 600px;
   padding: 10px;
 
-  background-color: #aeb4be;
+  /* background-color: #878f9d5c; */
+  backdrop-filter: blur(80px);
+
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, .4);
 
   display: flex;
+  flex-direction: column;
 
   font-size: calc(10px + 2vmin);
   color: white;
 }
 
-.drag-n-drop {
-  padding: .5rem;
-  display: grid;
-  gap: .5rem;
+.tendencymain_header{
+  width: 100%;
+  height: 10%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-bottom: 1px solid #f8f8ff;
+}
+.tendencymain_header>h1{
+  font-size: 30px;
+  font-family: 'Courier New', Courier, monospace;
+
+  font-weight: 350;
+}
+.tendencymain_box_in_contents{
+  position: relative;
+  display: flex;
+
   width: 100%;
   height: 100%;
-  grid-template-columns: repeat(auto-fill, 300px);
-  align-items: start;
+  
+  padding: 10px;
+  box-sizing: border-box;
+
+  border-radius: 10px;
+  backdrop-filter: blur(80px);
+  /* box-shadow: 0 0 25px rgba(0, 0, 0, .3) inset; */
 }
+
 .dnd-group {
-  background-color: #49505e;
+
+  margin: 5px;
+  box-sizing: border-box;
+  width: 50%;
+  height: 510px;
+  
+  backdrop-filter: blur(80px);
+  box-shadow: 0 0 25px rgba(0, 0, 0, .3) inset;
   border-radius: 5px;
   padding: .5rem;
+
+  overflow-y:scroll;
 }
 .dnd-item {
-  display: flex;
+  /* display: flex; */
+
+  display: inline-block;
+  margin-left: 10px;
   justify-content: center;
   align-items: center;
-  min-height: 150px;
-  background-color: white;
-  border-radius: 5px;
+  /* min-height: 150px; */
+  background-color: rgba(255, 255, 255, 0.434);
+  border-radius: 25px;
   color: #282c34;
-  font-weight: bold;
+  box-shadow: 0 0 25px rgba(0, 0, 0, .3);
+
+  padding: 10px;
+
+  font-size: 20px;
+}
+.dnd-item:active{
+  background-color: rgba(255, 255, 255, 0.225);
 }
 .dnd-item:not(:last-of-type) {
   margin-bottom: .5rem;
@@ -1910,5 +1959,5 @@
   font-size: 1.5rem;
 }
 .current {
-  background-color: #282c34;
+  background-color: #10111481;
 }

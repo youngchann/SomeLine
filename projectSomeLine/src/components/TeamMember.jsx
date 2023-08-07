@@ -6,7 +6,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-const Loading = () => {
+const TeamMember = () => {
   return (
     <div className='loading_bg'>
         <div className='loading_container'>
@@ -45,4 +45,4 @@ const Loading = () => {
   )
 }
 
-export default Loading;
+export default TeamMember;
