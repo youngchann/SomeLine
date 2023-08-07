@@ -106,7 +106,7 @@ const ChatList = () => {
 
   const removeUserToList = async(index) => {
 
-    alert(`채팅리스트에서 ${user.chatListName[index]}님이 삭제되었습니다😥`)
+    // alert(`채팅리스트에서 ${user.chatListName[index]}님이 삭제되었습니다😥`)
     
     const usersRef = collection(db, "users");
     const querySnapshot = await getDocs(
@@ -144,7 +144,7 @@ const ChatList = () => {
 
       <div className='chatlist_box'>
         <div className='chatlist_box_in'>
-          <div className='chatlist_list_header'><h1>~ group chat room ~</h1></div>
+          <div className='chatlist_list_header'><h1>~ GROP CHAT ROOM ~</h1></div>
           <hr/>
           <div className='chatlist_inner_box'>
           {user ? (
@@ -166,7 +166,7 @@ const ChatList = () => {
               </Tilt>
             ))}
             </div>
-            ):<p>loading...</p>}
+            ):<Loading/>}
           </div>
         </div>
       </div>

@@ -41,6 +41,7 @@
 
 .top_logo_text_left{
   font-family: 'Exo 2', sans-serif;
+  /* font-family: "Borel"; */
   margin-left: 20px;
   color: #f8f8ff;
   
@@ -73,6 +74,9 @@
   display: flex;
   width: 150px;
   height: 40px;
+
+  font-family: 'Exo 2';
+
   background-color: black;
   border-radius: 20px;
   align-items: center;
@@ -283,6 +287,27 @@
   margin-top: 10px;
   color: #f8f8ff;
   text-decoration: none;
+}
+.teammember_button{
+  width: 100px;
+  height: 40px;
+
+  border-radius: 25px;
+
+  border: none;
+
+  border-top: 1px solid #4d4d4d;
+  border-bottom: 1px solid #4d4d4d;
+
+  background-color: #b2b2b23f;
+
+  color: #f8f8ff;
+
+  font-size: large;
+  font-weight: 700;
+}
+.teammember_button:hover{
+  background-color: #b2b2b224;
 }
 /* -----------------------------------------팝업 페이지 */
 .main_popup_page{
@@ -969,7 +994,11 @@
 }
 .chatlist_list_header>h1{
   color: #f8f8ff;
-  font-family: "Borel";
+  font-family: "Exo 2";
+
+
+  font-size: 35px;
+  font-weight: 300;
 }
 .chat_list_contents{
   display: flex;
@@ -1028,6 +1057,15 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.profile_chainge_button_box{
+  display: flex;
+  justify-content: center;
+}
+
+.profile_loading{
+  width: 100%;
+  height: 100%;
 }
 
 /* -------------------------------------------------채팅리스트 메세지 팝업 */
@@ -1353,6 +1391,9 @@
   width: 110px;
   height: 110px;
 
+  border: 1px solid #f8f8ffb4;
+  box-sizing: border-box;
+
   overflow: hidden;
   border-radius: 10px;
 
@@ -1433,7 +1474,7 @@
 
 .profile_submit_button {
   position: relative;
-  margin-top: 30px;
+  margin-top: 20px;
   width: 200px;
   height: 50px;
   color: #f8f8ff;
@@ -1482,7 +1523,7 @@
   padding: 0;
   box-sizing: border-box;
 } */
-.loading_bg{
+.teammember_bg{
   min-height: 100vh;
 
   display: flex;
@@ -1492,12 +1533,12 @@
   background: #000;
   overflow: hidden;
 }
-.loading_container{
+.teammember_container{
   position: relative;
   width: 100%;
   /* transform: rotate(-35deg); */
 }
-.loading_container .loading_box{
+.teammember_container .teammember_box{
   position: relative;
   left: -200px;
   display: flex;
@@ -1519,7 +1560,7 @@
     transform: translateX(-200px);
   }
 }
-.loading_container .loading_box .loading_cube{
+.teammember_container .teammember_box .teammember_cube{
   position: relative;
   width: 200px;
   height: 200px;
@@ -1557,12 +1598,7 @@
     transform: rotate(90deg);
   }
 }
-/* .loading_text{
-  position: absolute;
-  margin-left: 45%;
-  color: rgba(245, 245, 245, 0.67);
-} */
-#loading_text_box{
+#teammember_text_box{
   border: none;
   background-color: none;
   border-radius: none;
@@ -1583,16 +1619,6 @@
 
   z-index: -222;
 }
-.loading_shadow{
-  position:fixed;
-  bottom: 241px;
-  
-  background: linear-gradient(to left,black 0%,transparent, black 99%);
-  width: 100%;
-  height: 200px;
-  z-index: 100;
-}
-
 
 
 
@@ -1706,8 +1732,6 @@
     height: 80%;
   }
 }
-
-
 
 /* 하트 이모션 작동  */
 .emt_hart, .emt_sad, .emt_angry {
@@ -1845,48 +1869,163 @@
   -webkit-box-reflect: below 1px linear-gradient(transparent,#0004);
 }
 
-
-
 /* -----------------------------------성향 박스 */
 
-.tendency_bg{
+.tendencymain_bg {
   width: 100%;
   height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tendencymain_box{
+  position: relative;
+  width:  700px;
+  height: 600px;
+  padding: 10px;
+  margin-top: 120px;
+
+  /* background-color: #878f9d5c; */
+  backdrop-filter: blur(80px);
+
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, .4);
+
+  display: flex;
+  flex-direction: column;
+
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.tendencymain_header{
+  width: 100%;
+  height: 10%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-bottom: 1px solid #f8f8ff;
+}
+.tendencymain_header>h1{
+  font-size: 30px;
+  font-family: 'Courier New', Courier, monospace;
+
+  font-weight: 350;
+}
+.tendencymain_box_in_contents{
+  position: relative;
+  display: flex;
+
+  width: 100%;
+  height: 100%;
+  
+  padding: 10px;
+  box-sizing: border-box;
+
+  border-radius: 10px;
+  backdrop-filter: blur(80px);
+  /* box-shadow: 0 0 25px rgba(0, 0, 0, .3) inset; */
+}
+
+.dnd-group {
+
+  margin: 5px;
+  box-sizing: border-box;
+  width: 50%;
+  height: 510px;
+  
+  backdrop-filter: blur(80px);
+  box-shadow: 0 0 25px rgba(0, 0, 0, .3) inset;
+  border-radius: 5px;
+  padding: .5rem;
+
+  overflow: auto;
+}
+.dnd-item {
+  /* display: flex; */
+
+  display: inline-block;
+  margin-left: 10px;
+  justify-content: center;
+  align-items: center;
+  /* min-height: 150px; */
+  background-color: rgba(255, 255, 255, 0.434);
+  border-radius: 25px;
+  color: #282c34;
+  box-shadow: 0 0 25px rgba(0, 0, 0, .3);
+
+  padding: 10px;
+
+  font-size: 20px;
+}
+.dnd-item:active{
+  background-color: rgba(255, 255, 255, 0.225);
+}
+.dnd-item:not(:last-of-type) {
+  margin-bottom: .5rem;
+}
+.dnd-item * {  
+  margin: 0;
+  font-size: 1.2rem;
+}
+.group-title {
+  text-align: left;
+  margin-bottom: .5rem;
+  font-size: 1.5rem;
+}
+.current {
+  background-color: #10111481;
+}
+/* ------------------------------로딩중애니메이션 */
+.loading_bg{
+  width: 100%;
+  height: 100%;
 
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.tendency_box{
+.loading_box{
   position: relative;
-  width: 600px;
-  height: 600px;
-  border: 1px solid rgba(65, 65, 65, 0.149);
-
-  
-  border-radius: 20px;
-  backdrop-filter: blur(70px);
-  padding: 20px;
-  box-sizing: border-box;
-
-  box-shadow: 0 0 30px rgba(0, 0, 0, .4);
-
-  display: flex;
+  width: 100px;
+  height: 100px;
+  filter: url(#gooey);
 }
-.tendency_my_list{
-  width: 50%;
-  height: 100%;
-  border: 1px solid red;
+svg{
+  width: 0;
+  height: 0;
+
 }
-.tendency_list{
-  width: 50%;
-  height: 100%;
-  border: 1px solid blue;
-}
-.tendency_in_contents{
-  position: relative;
+.loading_box span{
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 10%;
+  height: 100%;
+  display: block;
+  animation: loading_animate 3s ease-in-out infinite;
+  animation-delay: calc(0.15s * var(--i));
+}
+.loading_box span::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  left: calc(50% - 20%);
+  width: 25px;
+  height: 25px;
 
-  border: 1px solid violet;
+  border-radius: 50%;
+  box-shadow: 0 0 20px #db58ff;
+  background-color: #db58ff;
+}
+@keyframes loading_animate{
+  0%{
+    transform: rotate(0deg);
+  }
+  50%,100%{
+    transform: rotate(360deg);
+  }
 }

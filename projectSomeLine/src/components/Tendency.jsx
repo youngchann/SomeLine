@@ -1,73 +1,71 @@
-import React, { useState } from 'react';
-import { DndProvider, useDrag, useDrop } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
+import React, {useState, useRef, useEffect} from 'react'
 
-const ItemType = 'SPORT';
+function Tendency({data}) {
 
-const DraggableSport = ({ sport, index }) => {
-  const [, ref] = useDrag({
-    type: ItemType,
-    item: { sport, index },
-  });
+    const [list, setList] = useState(data); 
+    const [dragging, setDragging] = useState(false);
 
-  return (
-    <div ref={ref} className='tendency_in_contents'>
-      {sport}
-    </div>
-  );
-};
+    useEffect(() => {
+        setList(data);
+    }, [setList, data])
 
-const DroppableBox = ({ sports, setSports, otherSports, setOtherSports, className }) => {
-  const [, ref] = useDrop({
-    accept: ItemType,
-    drop: (item) => {
-      setOtherSports(otherSports.filter((_, idx) => idx !== item.index));
-      setSports([...sports, item.sport]);
-    },
-  });
+    const dragItem = useRef();
+    const dragItemNode = useRef();
+    
+    const handletDragStart = (e, item) => {
+        console.log('Starting to drag', item)
 
-  return (
-    <div ref={ref} className={className}>
-      {sports.map((sport, index) => (
-        <DraggableSport key={index} sport={sport} index={index} />
-      ))}
-    </div>
-  );
-};
+        dragItemNode.current = e.target;
+        dragItemNode.current.addEventListener('dragend', handleDragEnd)
+        dragItem.current = item;
 
-const Tendency = () => {
-  const [allSports, setAllSports] = useState(['축구', '농구', '야구', '테니스', '배드민턴']);
-  const [mySports, setMySports] = useState([]);
+        setTimeout(() => {
+            setDragging(true); 
+        },0)       
+    }
+    const handleDragEnter = (e, targetItem) => {
+        console.log('Entering a drag target', targetItem)
+        if (dragItemNode.current !== e.target) {
+            console.log('Target is NOT the same as dragged item')
+            setList(oldList => {
+                let newList = JSON.parse(JSON.stringify(oldList))
+                newList[targetItem.grpI].items.splice(targetItem.itemI, 0, newList[dragItem.current.grpI].items.splice(dragItem.current.itemI,1)[0])
+                dragItem.current = targetItem;
+                localStorage.setItem('List', JSON.stringify(newList));
+                return newList
+            })
+        }
+    }
+    const handleDragEnd = (e) => {
+        setDragging(false);
+        dragItem.current = null;
+        dragItemNode.current.removeEventListener('dragend', handleDragEnd)
+        dragItemNode.current = null;
+    }
+    const getStyles = (item) => {
+        if (dragItem.current.grpI === item.grpI && dragItem.current.itemI === item.itemI) {
+            return "dnd-item current"
+        }
+        return "dnd-item"
+    }
 
-  return (
-    <DndProvider backend={HTML5Backend}>
-      <div className='tendency_bg'>
-        <div className="login_bgm_b">
-            <video className="login_bgm" autoPlay muted loop>
-            <source src='videos/mainmain10.mp4' type='video/mp4' />
-            </video>
-        </div>
+    if (list) {
+        return (                
+            <div className="tendencymain_box_in_contents">
+            {list.map((grp, grpI) => (
+              <div key={grp.title} onDragEnter={dragging && !grp.items.length?(e) => handleDragEnter(e,{grpI, itemI: 0}):null} className="dnd-group">
+                {grp.items.map((item, itemI) => (
+                  <div draggable key={item}  onDragStart={(e) => handletDragStart(e, {grpI, itemI})} onDragEnter={dragging?(e) => {handleDragEnter(e, {grpI, itemI})}:null} className={dragging?getStyles({grpI, itemI}):"dnd-item"}>
+                    {item}
+                  </div>
+                ))}
+              </div>
+            ))}
+            </div>
+        )
+    } else { return null}
 
-        <div className='tendency_box'>
-          <DroppableBox
-            sports={mySports}
-            setSports={setMySports}
-            otherSports={allSports}
-            setOtherSports={setAllSports}
-            className='tendency_my_list'
-          />
-          <DroppableBox
-            sports={allSports}
-            setSports={setAllSports}
-            otherSports={mySports}
-            setOtherSports={setMySports}
-            className='tendency_list'
-          />
-        </div>
-      </div>
-    </DndProvider>
-  );
-};
+}
 
 export default Tendency;
 
