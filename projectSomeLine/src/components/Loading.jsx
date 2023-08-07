@@ -24,7 +24,7 @@ const Loading = () => {
               modules={[Autoplay, Pagination, Navigation]}
               id="loading_text_box"
             >
-              <SwiperSlide className='box4'>만든 사람들</SwiperSlide>
+              <SwiperSlide className='box4'>만든 사람들!</SwiperSlide>
               <SwiperSlide className='box4'>이찬용</SwiperSlide>
               <SwiperSlide className='box4'>임영찬</SwiperSlide>
               <SwiperSlide className='box4'>전도희</SwiperSlide>
