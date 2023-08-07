@@ -15,6 +15,7 @@ import {
 import { AuthContext } from "../context/AuthContext";
 import { chatList } from './Matching';
 import { useNavigate } from "react-router-dom";
+import Loading from './Loading';
 
 
 /* 바닐라 틸트를 실행시키기 위한 함수입니다. - 작업자: 이찬용
@@ -166,7 +167,7 @@ const ChatList = () => {
               </Tilt>
             ))}
             </div>
-            ):<p>loading...</p>}
+            ):<Loading/>}
           </div>
         </div>
       </div>
