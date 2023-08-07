@@ -18,6 +18,7 @@ const Signup = () => {
     const nav = useNavigate()
 
     const [imageUpload, setImageUpload] = useState(null);
+    const [signupState, setSignupState] = useState(true)
     
 
     const handleImageChange = (event) => {
@@ -43,6 +44,7 @@ const Signup = () => {
         const downloadUrl = await getDownloadURL(imageRef);
     
         try {
+            setSignupState(false)
             const res = await createUserWithEmailAndPassword(auth, email, password);
             await updateProfile(res.user, {
                 displayName: name,
@@ -57,12 +59,13 @@ const Signup = () => {
                 profileUrl : downloadUrl,
                 createdAt: serverTimestamp()
             });
-    
+            alert('회원가입이 완료되었습니다.')
             // 회원가입이 완료되면 회원가입 프로세스를 종료하고 로그인 화면으로 돌아감
             signOut(auth);
             console.log(`res: ${res}`);
             console.log(`res.user: ${res.user}`);
             nav('/');
+            setSignupState(true)
         } catch (error) {
             console.error(error);
             alert("회원가입 중 문제가 발생했습니다. 다시 시도해 주세요.");
@@ -82,8 +85,7 @@ const Signup = () => {
     };
 
     const isFormValid = () => {
-        return email && password && name && gender && age && imageUpload;
-    } 
+    return email && password && name && gender && age && imageUpload;} 
     
 
   return (
@@ -120,6 +122,7 @@ const Signup = () => {
                     value={name}
                     placeholder="닉네임"
                     onChange={(e) => setName(e.target.value)}
+                    maxLength={6}
                 ></input>
                 
                 <input
@@ -134,8 +137,8 @@ const Signup = () => {
                 <div className='gender_box'>
                     <h3 className='gender_box_name'>⁃ 성별</h3>
                     <form className='gender_choice' action="action.jsp">
-                        <div className='male_choice'><input type="radio" value={gender} onClick={()=>setGender('male')} ></input>남성</div>
-                        <div className='male_choice'><input type="radio" value={gender} onClick={()=>setGender('female')}></input>여성</div>
+                        <div className='male_choice'><input type="radio" name="gender" value={gender} onClick={()=>setGender('male')} ></input>남성</div>
+                        <div className='male_choice'><input type="radio" name="gender" value={gender} onClick={()=>setGender('female')}></input>여성</div>
                     </form>
                 </div>
                 <div className='my_infomation'>
@@ -156,7 +159,7 @@ const Signup = () => {
                         )}
                     </div>
                 </div>
-                <button type="submit" className="signup_wan_btn">가입하기</button>
+                <button type="submit" className="signup_wan_btn">{signupState? "가입하기" : "가입중입니다."}</button>
             </form>
         </div>
     </div>

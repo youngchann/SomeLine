@@ -24,6 +24,8 @@ const Profile = () => {
   const [profileImage, setProfileImage] = useState(null);
   const [name, setName] = useState("");
 
+  const [originalUser, setOriginalUser] = useState(null); // 작업자 : 이찬용 8월 5일 12시
+
 
   const storage = getStorage(firebase);
 
@@ -33,7 +35,13 @@ const Profile = () => {
       const q = query(collection(db, "users"), where("id", "==", currentUser.email));
       getDocs(q).then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          setUser(doc.data());
+          const userData = doc.data();
+          setUser(userData);
+          setOriginalUser(userData);
+  
+          // 초기 이름과 사진 상태 설정
+          setName(userData.name);
+          setProfileImage(userData.profileUrl);  // 이미지 URL 저장, Firebase Storage에서 가져옵니다.
         });
       });
     }
@@ -45,7 +53,9 @@ const Profile = () => {
       getDownloadURL(ref(storage, user.profileUrl))
         .then((url) => {
           const img = document.getElementById('myimg');
-          img.setAttribute('src', url);
+          if (img) {
+            img.setAttribute('src', url);
+          }
         })
         .catch((error) => {
           alert(`에러 : ${error}`);
@@ -72,39 +82,55 @@ const Profile = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    try {
-      const imageRef = ref(storage, `images/${name+v4()}`)
-      await uploadBytes(imageRef, imageUpload)
-      const downloadUrl = await getDownloadURL(imageRef)
 
-      await updateProfile(currentUser, {
-          displayName: name,
+    // 이름과 이미지가 비어 있는지를 확인 하기 위해 존재합니다.
+    const isNameChanged = name !== originalUser.name;
+    const isImageChanged = imageUpload !== null;
+
+    if (isNameChanged || isImageChanged) {      //프로필 내용추가되면. 여기도 추가, 이찬용: 8월 5일 12시
+      try {
+        let downloadUrl;
+        if (isImageChanged) {
+          const imageRef = ref(storage, `images/${name + v4()}`);
+          await uploadBytes(imageRef, imageUpload);
+          downloadUrl = await getDownloadURL(imageRef);
+        } else {
+          // 이미지가 들어오지 않으면 null값의 이미지로 변경시키는 문제가 발생하여 수정하여 넣은 부분입니다. -이찬용
+          // 이미지가 변경되지 않았다면 기존 URL을 사용합니다.
+          downloadUrl = originalUser.profileUrl;
+        }
+
+        await updateProfile(currentUser, {
+          displayName: isNameChanged ? name : originalUser.name,
           photoURL: downloadUrl,
-      })
-
-      const usersRef = collection(db, "users");
-      const querySnapshot = await getDocs(
-        query(usersRef, where("id", "==", currentUser.email))
-      );
-
-      querySnapshot.forEach((doc) => {
-        updateDoc(doc.ref, {
-          name: name,
-          profileUrl: downloadUrl,
         });
-      });
+  
+        const usersRef = collection(db, "users");
+        const querySnapshot = await getDocs(
+          query(usersRef, where("id", "==", currentUser.email))
+        );
+        
+        // 삼항식을 추가 하였습니다. isNameChanged 가 트루면 name을 팔스면 originalUser.name를 사용하게 했습니다. --이찬용
+        // 변경되었으면 새로운 이름을 아니면 기존의 이름을 사용하게 하였습니다.  -- 이찬용
+        querySnapshot.forEach((doc) => {
+          updateDoc(doc.ref, {
+            name: isNameChanged ? name : originalUser.name,
+            profileUrl: downloadUrl,
+          });
+        });
+  
+        // 프로필 업데이트 후 새로운 사용자 정보를 가져와서 화면에 표시합니다. 
+        const updatedUser = { ...user, name: isNameChanged ? name : originalUser.name, profileUrl: downloadUrl };
+        setUser(updatedUser);
 
-
-      // 프로필 업데이트 후 새로운 사용자 정보를 가져와서 화면에 표시
-      const updatedUser = { ...user, name: name, profileUrl: downloadUrl };
-      setUser(updatedUser);
-
-
-      alert('수정완료')
-    } catch (error) {
-      alert(`수정실패\nerror: ${error}`);
+        alert('수정완료')
+      } catch (error) {
+        alert(`수정실패\nerror: ${error}`);
+      }
+    } else {
+      alert("수정된 정보가 없습니다.");
     }
-  }
+  };
 
   // user가 null이 아닌 경우, 프로필 정보를 화면에 표시
   return (
@@ -146,7 +172,8 @@ const Profile = () => {
             id="id"
             placeholder= {`현재 이름은 "${user.name}"입니다.`}
             onChange={(e) => setName(e.target.value)}
-            value={name}
+            maxLength={6}
+            // value={name}     // 플레이스 홀더보다 상위라서 홀더플레이스가 보이지 않는 현상이 일어났습니다. 그래서 주석처리함 --이찬용
             ></input>
           </form>
         </div>

@@ -344,7 +344,7 @@
   transform: rotate(-40deg);
   z-index: -90;
 
-  top: 58%;
+  bottom: -45%;
   left: 10%;
 
   color: #f8f8ffdb;
@@ -357,7 +357,7 @@
   font-family: "Borel";
   font-size: 280px;
   transform: rotate(-40deg);
-  top: 58%;
+  bottom: -42%;
   left: 60%;
 
   z-index: -90;
@@ -536,6 +536,8 @@
   width:50px;
   height: 50px;
   border: 1px solid #efefef;
+
+  overflow: hidden;
 }
 .preview_mgae{
   height: 100%;
@@ -647,6 +649,36 @@
   display: flex;
   justify-content: center;
 }
+.chatbox_btn_box{
+  width: 100%;
+  height: 6%;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 8px;
+}
+.chatbox_in_top_btn{
+  width: 10;
+  padding: 5px;
+  border: none;
+  background: none;
+
+  border-radius: 20px;
+
+  border: 1px solid #f8f8ff;
+  background-color: #4d4d4d1b;
+
+  color: #f8f8ff;
+  font-weight: 800;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.chatbox_in_top_btn:hover{
+  background-color: #4d4d4d3a;
+}
+.chatbox_in_top_btn:active{
+  background-color: #4d4d4d81;
+}
+
 
 /* 임영찬 채팅 -- 시작 */
 .messages {
@@ -654,12 +686,12 @@
   flex-direction: column;
   align-items: flex-start;
   width: 100%;                 /* 여기 고쳐야함*/
-  height: 86%;
+  height: 78%;
   padding-bottom: 10px;
 
   border-top-right-radius: 10px ;
   border-top-left-radius: 10px ;
-  box-shadow: 0 0 20px rgba(0, 0, 0, .2) inset;
+  box-shadow: 0 30px 20px rgba(0, 0, 0, .2) inset;
   overflow: auto;
 
 }
@@ -961,10 +993,14 @@
 }
 .chat_list_talk_preview{
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   padding-left: 20px;
+
+  width: 55%;
   height: 50px;
+  
+  
   font-size: large;
   border-left: 1px solid #f8f8ff;
   margin-left: 20px;
@@ -1030,6 +1066,35 @@
 .chatlist_popup_page_text {
   text-align: center
 }
+.chatlist_chat_del_btn{
+  position: relative;
+  width: 60px;
+  height: 35px;
+
+  border: none;
+  background: none;
+
+  background-color: #80808039;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+}
+.chatlist_chat_del_btn:hover{
+  background-color: #4d4d4d43;
+}
+/* 성능 테스트 */
+.chatlist_chat_del_btn:active{
+
+  animation: animationOut 1.5s ease-in-out infinite;
+}
+@keyframes animationOut{
+  0%{
+    transform: translateX(0px);
+  }
+  100%{
+    transform: translateX(200px);
+  }
+}
+
 
 /*  -----------전역 css팝업을 숨기기  위한 장치. */
 .hidden {
@@ -1105,7 +1170,8 @@
   border-radius: 10px;
   border: 1px solid #f8f8ff97;
 
-  backdrop-filter: blur(30px);
+  background-color: rgba(115, 24, 115, 0.16);
+  backdrop-filter: blur(80px);
   box-shadow: 0 0 40px rgba(0, 0, 0, .5);
   width: 600px;
   height: 560px;
@@ -1126,7 +1192,8 @@
   border-radius: 10px;
   font-size: 17px;
   font-weight: bold;
-  color: #fff;
+
+  box-shadow: 0 0 30px rgba(0, 0, 0, .7);
 }
 .mat_info_card{
   display: flex;
@@ -1136,7 +1203,7 @@
   width: 100%;
   height: 100%;
 
-  background-color: #eadcdc;
+  background-color: #e9e9e9;
 
 }
 .info_img_box{
@@ -1210,10 +1277,6 @@
   color: #f2f2f2c9;
 
   background:linear-gradient(90deg,#845EC2 0%,#D65DB1 99%);
-  
-
-  /* border-top: 1px solid #686868; */
-  /* border-bottom: 1px solid #686868; */
 
   box-shadow: 0 0 5px rgba(0, 0, 0, .5);
 }
@@ -1494,18 +1557,53 @@
     transform: rotate(90deg);
   }
 }
-.loading_text{
+/* .loading_text{
   position: absolute;
   margin-left: 45%;
   color: rgba(245, 245, 245, 0.67);
+} */
+#loading_text_box{
+  border: none;
+  background-color: none;
+  border-radius: none;
+  box-shadow:none;
+  
+  width: 400px;
+  height: 100px;
+  transition-duration: linear;
+}
+.box4{
+  padding-top: 10px;
+  box-shadow:none;
+  color: #f8f8ff;
+  text-align: center;
+
+  font-size: 50px;
+  transition-duration: linear;
+
+  z-index: -222;
+}
+.loading_shadow{
+  position:fixed;
+  bottom: 241px;
+  
+  background: linear-gradient(to left,black 0%,transparent, black 99%);
+  width: 100%;
+  height: 200px;
+  z-index: 100;
 }
 
 
 
 
-
-
 /* ------------------------------------------media */
+@media (max-width: 1000px) {
+  .my_chat_Profil_name, .you_chat_Profil_name{
+    font-size: 20px;
+    transition-duration: 0.2s;
+  }
+}
+
 @media (max-width: 800px) {
   .sidebar_sidebar {
     display: none;
@@ -1748,3 +1846,47 @@
 }
 
 
+
+/* -----------------------------------성향 박스 */
+
+.tendency_bg{
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tendency_box{
+  position: relative;
+  width: 600px;
+  height: 600px;
+  border: 1px solid rgba(65, 65, 65, 0.149);
+
+  
+  border-radius: 20px;
+  backdrop-filter: blur(70px);
+  padding: 20px;
+  box-sizing: border-box;
+
+  box-shadow: 0 0 30px rgba(0, 0, 0, .4);
+
+  display: flex;
+}
+.tendency_my_list{
+  width: 50%;
+  height: 100%;
+  border: 1px solid red;
+}
+.tendency_list{
+  width: 50%;
+  height: 100%;
+  border: 1px solid blue;
+}
+.tendency_in_contents{
+  position: relative;
+  width: 100%;
+  height: 10%;
+
+  border: 1px solid violet;
+}

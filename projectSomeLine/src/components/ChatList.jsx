@@ -8,12 +8,14 @@ import {
   onSnapshot,
   query,
   orderBy,
-  getDocs
+  getDocs,
+  arrayRemove,
+  updateDoc
 } from "firebase/firestore";
 import { AuthContext } from "../context/AuthContext";
 import { chatList } from './Matching';
 import { useNavigate } from "react-router-dom";
-
+import Loading from './Loading';
 
 
 /* 바닐라 틸트를 실행시키기 위한 함수입니다. - 작업자: 이찬용
@@ -67,38 +69,11 @@ const ChatList = () => {
       getDocs(q).then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           setUser(doc.data());
-          console.log(`users:${(doc.data().chatListName).length}`);
         });
       });
     }
   }, [currentUser]);
     
-  useEffect(()=>{
-    if (chatList.length > 0) {
-      const fetchMatchedUsers = async () => {
-        const matchIdQueries = chatList.map((matchUser) =>
-          query(userRef, where("name", "==", matchUser.name))
-        );
-
-        const matchedUsersData = await Promise.all(matchIdQueries.map((q) => getDocs(q)));
-        const matchedUsers = matchedUsersData.reduce((acc, querySnapshot) => {
-          querySnapshot.forEach((doc) => {
-            if (doc.exists()) {
-              acc.push({ ...doc.data(), id: doc.id });
-            }
-          });
-          return acc;
-        }, []);
-
-        // chatList의 값과 일치하는 사용자들의 정보를 가져와 chats state 업데이트
-        setChats(matchedUsers);
-      };
-
-      fetchMatchedUsers();
-    }
-  }, [chatList]);
-
-
   
 
   // chats 상태 값이 변화할 때마다 실행되는 useEffect를 추가했습니다. - 작업자 : 이찬용
@@ -113,9 +88,9 @@ const ChatList = () => {
     sessionStorage.setItem('selectedUserProfileUrl', user.chatListProfileUrl[index])
     
     if (user.chatListProfileUrl[index] > currentUser.displayName) {
-      sessionStorage.setItem('selectedRoom', `${user.name}+${currentUser.displayName}`)
+      sessionStorage.setItem('selectedRoom', `${user.chatListName[index]}+${currentUser.displayName}`)
     } else {
-      sessionStorage.setItem('selectedRoom', `${currentUser.displayName}+${user.name}`)
+      sessionStorage.setItem('selectedRoom', `${currentUser.displayName}+${user.chatListName[index]}`)
     }
     nav('/chatbox')
   }
@@ -129,7 +104,29 @@ const ChatList = () => {
     nav('/chatbox')
   }
 
+  const removeUserToList = async(index) => {
+
+    alert(`채팅리스트에서 ${user.chatListName[index]}님이 삭제되었습니다😥`)
+    
+    const usersRef = collection(db, "users");
+    const querySnapshot = await getDocs(
+      query(usersRef, where("id", "==", currentUser.email))
+    );
+    querySnapshot.forEach((doc) => {
+      updateDoc(doc.ref, {
+        chatListName : arrayRemove(doc.data().chatListName[index]),
+        chatListProfileUrl : arrayRemove(doc.data().chatListProfileUrl[index]),
+        chatListCreatedAt : arrayRemove(doc.data().chatListCreatedAt[index]),
+      });
+    });
+
+    nav('/chatlist')
+
+  };
+
   return (
+    <div>
+      {/* {user? ( */}
     <div className='chatlist_background'>
       <div className={`chatlist_popup_page ${isVisible ? '' : 'hidden'}`}>
         <button className='chatlist_popup_page_close' onClick={closePopup}>X</button>
@@ -150,24 +147,31 @@ const ChatList = () => {
           <div className='chatlist_list_header'><h1>~ group chat room ~</h1></div>
           <hr/>
           <div className='chatlist_inner_box'>
+          {user ? (
+            <div>
               <Tilt options={options} className='chat_list_contents' onClick={()=>handleClickBot()}>
                 <div className='chat_list_profile_img_box'><img className='chat_list_profile_img' src='https://firebasestorage.googleapis.com/v0/b/chatapp2-aa1ab.appspot.com/o/images%2F%EA%B5%AD2.jpg?alt=media&token=1e4d4b55-f1b1-4e6f-a030-e06ca28a99d2' /></div>
                 
                 <p className='chat_list_name'>챗봇:지호</p>
                 <p className='chat_list_talk_preview'>반가워요 ^^</p>
               </Tilt>
-            {chats.map((chat, index) => (
+            {user.chatListName?.map((chat, index) => (
               <Tilt key={index} options={options} className='chat_list_contents' onClick={()=>handleClick(user, index)}>
                 
                 <div className='chat_list_profile_img_box'><img className='chat_list_profile_img' src={user.chatListProfileUrl[index]}/></div>
                 
                 <p className='chat_list_name'>{user.chatListName[index]}</p>
                 <p className='chat_list_talk_preview'>최근 메시지</p>
+                <button className='chatlist_chat_del_btn' onClick={()=>removeUserToList(index)}>나가기</button>
               </Tilt>
             ))}
+            </div>
+            ):<p>loading...</p>}
           </div>
         </div>
       </div>
+    </div>
+    {/* ): <Loading/>} */}
     </div>
   )
 }

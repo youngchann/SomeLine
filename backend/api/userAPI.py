@@ -7,19 +7,31 @@ user_Ref = db.collection('user')
 
 userAPI = Blueprint('userAPI', __name__)
 
-@userAPI.route('/add', methods=['POST'])
-def create():
-    try:
-        id = uuid.uuid4()
-        user_Ref.document(id.hex).set(request.json)
-        return jsonify({"success": True}), 200
-    except Exception as e:
-        return f"An error Occured: {e}"
 
-@userAPI.route('/list')
-def read():
+@userAPI.route('/chatRoomName', methods=['POST'])
+def roomName():
     try:
-        all_users = [doc.to_dict() for doc in user_Ref.stream()]
-        return jsonify(all_users), 200 
+        data = request.json
+        room_data = data.get('data')
+        print(room_data)
+        return jsonify(request), 200
     except Exception as e:
-        return f"An Error Occured: {e}"
+        return jsonify({"error": f"An Error Occurred: {str(e)}"}), 500
+
+
+@userAPI.route('/get_chatbot_messages', methods=['GET'])
+def get_chatbot_messages():
+    try:
+        chatbot_messages_query = (
+            db.collection('messages')
+        .where('room', '==', '챗봇')
+        .stream()
+        )
+
+        chatbot_messages = []
+        for message in chatbot_messages_query:
+            chatbot_messages.append(message.to_dict())
+        print(chatbot_messages)
+        return jsonify("chatbot_messages"), 200
+    except Exception as e :
+       return jsonify({"error": f"An Error Occurred: {str(e)}"}), 500

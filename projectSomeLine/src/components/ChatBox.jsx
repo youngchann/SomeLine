@@ -10,9 +10,12 @@ import {
   query,
   orderBy,
   getDocs,
-  updateDoc
+  writeBatch,
 } from "firebase/firestore";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
+
+import { Link } from 'react-router-dom';
+import axios from 'axios'
 
 
 
@@ -26,27 +29,38 @@ const ChatBox = ({room}) => {
   const [selectedUserName, setSelectedUser] = useState(sessionStorage.getItem('selectedUserName' || ''))
   const [selectedProfileUrl, setSelectedProfileUrl] = useState(sessionStorage.getItem('selectedUserProfileUrl' || ''))
   const [selectedRoom, setSelectedRoom] = useState(sessionStorage.getItem('selectedRoom' || ''))
-
-
+  const [messagesText, setMessagesText] = useState([])
+  const [prediction, setPrediction] = useState('');
+  const [axiosState, setAxiosState] = useState(true)
 
   
   useEffect(() => {
+    if (!selectedRoom) {
+      return
+    }
+
+    
+
     const queryMessages = query(
       messagesRef,
       where("room", "==", selectedRoom),
-      orderBy("createdAt")
-    );
+      orderBy("createdAt"),
+      )
     const unsuscribe = onSnapshot(queryMessages, (snapshot) => {
       let messages = [];
+      let messagesText = []
       snapshot.forEach((doc) => {
         messages.push({ ...doc.data(), id: doc.id });
+        messagesText.push(doc.data().text)
       });
-      console.log(messages);
+      // console.log(`messages: ${JSON.stringify(messages)}`);
+      // console.log(`messagesText: ${JSON.stringify(messagesText)}`);
       setMessages(messages);
+      setMessagesText(messagesText)
     });
     // console.log(`selected: ${selectedUser}`);
     return () => unsuscribe();
-  }, []);
+  }, [selectedRoom]);
 
   useEffect(() => {
     if (currentUser && currentUser.email) {
@@ -79,16 +93,51 @@ const ChatBox = ({room}) => {
     event.preventDefault();
 
     if (newMessage === "") return;
-    await addDoc(messagesRef, {
+    const newMessageDoc = {
       text: newMessage,
       createdAt: serverTimestamp(),
       user: currentUser.displayName,
-      room : selectedRoom
-    });
+      room: selectedRoom
+    };
+    await addDoc(messagesRef, newMessageDoc);
 
+    // Update the updateAt timestamp in sessionStorage
+    sessionStorage.setItem('updateAt', newMessageDoc.createdAt);
 
     setNewMessage("");
+
+    // 챗봇과 대화일 때 15번 대화가 생성되면 메시지 리스트를 서버로 보냄
+    if (messages.filter(message => message.room === `챗봇:지호+${currentUser.displayName}`).length !=0 && messages.length % 15 == 0) {
+      console.log(`${currentUser.displayName}님과 챗봇의 대화 데이터를 서버에 보냅니다.`)
+      handlePrediction(messagesText)
+    }
   };
+
+  const handlePrediction = async(messagesText) => {
+    try {
+    const response = axios.post('http://localhost:5000/get_chatbot_messages', 
+    { "data": messagesText })
+    console.log(`response.data.message: ${JSON.stringify((await response).data)}`);} catch (error) {
+      console.error('An error occurred:', error);
+    }
+  };
+
+  const handleClearChat = async () => {
+    const querySnapshot = await getDocs(
+      query(messagesRef, where("room", "==", selectedRoom))
+    );
+    const batch = writeBatch(db);
+    querySnapshot.forEach((doc) => {
+      batch.update(doc.ref, {
+        updatedAt: serverTimestamp(),
+        removeText: "이 메시지는 삭제되었습니다."
+      });
+    });
+
+    await batch.commit();
+  };
+
+ 
 
 
   // 감정 이모티콘이 올라가게 올라가게 만드는 함수들입니다.
@@ -135,8 +184,14 @@ const ChatBox = ({room}) => {
         <h2 className='you_chat_Profil_name'>{selectedUserName}</h2>
       </div>
       <div className='chatbox_box'>
+        <div className='chatbox_btn_box'>
+          <Link to='/chatlist'><button className='chatbox_in_top_btn'>{"< 나가기"}</button></Link>
+          <button className='chatbox_in_top_btn' onClick={handleClearChat}>{"대화내용 지우기 >"}</button>
+        </div>
         <div className='messages'>
-          {messages.map((message) => (
+          {messages
+          .filter(message=> message.removeText != '이 메시지는 삭제되었습니다.')
+          .map((message) => (
             <div key={message.id} className={`message ${message.user === currentUser.displayName ? "my-message" : "other-message"}`}>
                 <div className='chatbox_talk_box'><span className="user">{message.text}</span> </div>
             </div>
