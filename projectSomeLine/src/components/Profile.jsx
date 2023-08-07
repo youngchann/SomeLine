@@ -17,6 +17,8 @@ import {
 import { updateProfile } from "firebase/auth"
 import { getStorage, ref, getDownloadURL, uploadBytes} from "firebase/storage";
 
+import Loading from './Loading';
+
 const Profile = () => {
   const { currentUser } = useContext(AuthContext);
   const [user, setUser] = useState(null);
@@ -63,11 +65,6 @@ const Profile = () => {
     }
   }, [user]);
 
-
-  // user가 null인 경우, Loading 메시지를 표시
-  if (!user) {
-    return <p>Loading...</p>;
-  }
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -140,7 +137,9 @@ const Profile = () => {
           <source src='videos/mainmain15.mp4' type='video/mp4' />
         </video>
       </div>
+      
       <div className='profile_in_box'>
+        {user ? ( <div className='profile_loading'>
         <div className='profile_box_header_box'>
           <div className='profile_box_logo'></div>
           <div className='profile_box_header_name'>Profile</div>
@@ -188,8 +187,8 @@ const Profile = () => {
           </form>
         </div>
         <div className='profile_chainge_button_box'><button onClick={handleSubmit} className='profile_submit_button'>수정하기</button></div>
+        </div> ): <Loading/>}
       </div>
-      
     </div>
   );
 };

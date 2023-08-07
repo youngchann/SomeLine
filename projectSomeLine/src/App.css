@@ -1058,6 +1058,15 @@
   height: 100%;
   object-fit: cover;
 }
+.profile_chainge_button_box{
+  display: flex;
+  justify-content: center;
+}
+
+.profile_loading{
+  width: 100%;
+  height: 100%;
+}
 
 /* -------------------------------------------------채팅리스트 메세지 팝업 */
 .chatlist_popup_page{
@@ -1382,6 +1391,9 @@
   width: 110px;
   height: 110px;
 
+  border: 1px solid #f8f8ffb4;
+  box-sizing: border-box;
+
   overflow: hidden;
   border-radius: 10px;
 
@@ -1462,7 +1474,7 @@
 
 .profile_submit_button {
   position: relative;
-  margin-top: 30px;
+  margin-top: 20px;
   width: 200px;
   height: 50px;
   color: #f8f8ff;

@@ -20,6 +20,7 @@ import {
   arrayUnion
 } from "firebase/firestore";
 import { getStorage, ref, getDownloadURL, uploadBytes} from "firebase/storage";
+import Loading from './Loading';
 
 
 const Matching = () => {
@@ -145,6 +146,7 @@ const Matching = () => {
             </video>
         </div>
         <div className='matching_in_box'>
+        {user ? (
         <Swiper
             effect={'cards'}
             grabCursor={true}
@@ -174,6 +176,7 @@ const Matching = () => {
             )}
   
           </Swiper>
+          ):<Loading/>}
         </div>
     </div>
   )
