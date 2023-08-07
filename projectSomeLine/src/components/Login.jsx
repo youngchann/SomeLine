@@ -44,6 +44,7 @@ const Login = () => {
               <p>사랑해 주셔서 감사합니다.</p><br/>
               <h4>팀원</h4>
               <p>제작  :  이찬용, 전도희, 국지호, 임영찬</p>
+              <Link to='/teammember'><button className="teammember_button">팀원 소개</button></Link>
             </div>
           </div>
           <div className="login_bgm_b">

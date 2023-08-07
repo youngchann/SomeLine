@@ -17,29 +17,32 @@ const TeamMember = () => {
               spaceBetween={0}
               centeredSlides={true}
               autoplay={{
-                delay: 700,
+                delay: 0,
                 disableOnInteraction: false,
               }}
-              speed={650}
+              speed={1500}
               modules={[Autoplay, Pagination, Navigation]}
               id="loading_text_box"
             >
-              <SwiperSlide className='box4'>만든 사람들!</SwiperSlide>
-              <SwiperSlide className='box4'>이찬용</SwiperSlide>
-              <SwiperSlide className='box4'>임영찬</SwiperSlide>
-              <SwiperSlide className='box4'>전도희</SwiperSlide>
-              <SwiperSlide className='box4'>국지호</SwiperSlide>
-              <SwiperSlide className='box4'>이찬용</SwiperSlide>
-              <SwiperSlide className='box4'>임영찬</SwiperSlide>
-              <SwiperSlide className='box4'>전도희</SwiperSlide>
-              <SwiperSlide className='box4'>국지호</SwiperSlide>
-              <SwiperSlide className='box4'>이찬용</SwiperSlide>
-              <SwiperSlide className='box4'>임영찬</SwiperSlide>
-              <SwiperSlide className='box4'>전도희</SwiperSlide>
-              <SwiperSlide className='box4'>국지호</SwiperSlide>
-              <SwiperSlide className='box4'>감사합니다.</SwiperSlide>
+              <SwiperSlide className='box4'>만든 사람들</SwiperSlide>
+              <SwiperSlide className='box4'>이 찬용</SwiperSlide>
+              <SwiperSlide className='box4'>임 영찬</SwiperSlide>
+              <SwiperSlide className='box4'>전 도희</SwiperSlide>
+              <SwiperSlide className='box4'>국 지호</SwiperSlide>
+              <SwiperSlide className='box4'>Lee.Chanyong</SwiperSlide>
+              <SwiperSlide className='box4'>Lim.Youngchan</SwiperSlide>
+              <SwiperSlide className='box4'>Jeon.Dohui</SwiperSlide>
+              <SwiperSlide className='box4'>Kook.JiHo</SwiperSlide>
+              <SwiperSlide className='box4'>이 찬용</SwiperSlide>
+              <SwiperSlide className='box4'>임 영찬</SwiperSlide>
+              <SwiperSlide className='box4'>전 도희</SwiperSlide>
+              <SwiperSlide className='box4'>국 지호</SwiperSlide>
+              <SwiperSlide className='box4'>Lee.Chanyong</SwiperSlide>
+              <SwiperSlide className='box4'>Lim.Youngchan</SwiperSlide>
+              <SwiperSlide className='box4'>Jeon.Dohui</SwiperSlide>
+              <SwiperSlide className='box4'>Kook.JiHo</SwiperSlide>
+              <SwiperSlide className='box4'>Thank You.</SwiperSlide>
             </Swiper>
-            <div className='loading_shadow'></div>
         </div>
     </div>
   )
