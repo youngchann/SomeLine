@@ -8,10 +8,10 @@ import 'swiper/css/navigation';
 
 const TeamMember = () => {
   return (
-    <div className='loading_bg'>
-        <div className='loading_container'>
-            <div className='loading_box'>
-                <div className='loading_cube'></div>
+    <div className='teammember_bg'>
+        <div className='teammember_container'>
+            <div className='teammember_box'>
+                <div className='teammember_cube'></div>
             </div>
             <Swiper
               spaceBetween={0}
@@ -22,7 +22,7 @@ const TeamMember = () => {
               }}
               speed={1500}
               modules={[Autoplay, Pagination, Navigation]}
-              id="loading_text_box"
+              id="teammember_text_box"
             >
               <SwiperSlide className='box4'>만든 사람들</SwiperSlide>
               <SwiperSlide className='box4'>이 찬용</SwiperSlide>

@@ -25,7 +25,7 @@ const Header = () => {
                     <Link to="/signup" 
                         className={currentUser === null ? 'nav_login_btn' : 'hidden'}>Sign up</Link>
                     <Link to="/" onClick={()=>signOut(auth)} 
-                        className={currentUser != null ? 'nav_login_btn' : 'hidden'}>logout</Link>
+                        className={currentUser != null ? 'nav_login_btn' : 'hidden'}>Logout</Link>
                 </li>
             </ul>
         </header>

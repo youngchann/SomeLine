@@ -13,6 +13,7 @@ import Sidebar from './components/Sidebar';
 
 import TeamMember from './components/TeamMember';
 import TendencyMain from './components/TendencyMain';
+import Loading from './components/Loading';
 
 
 import { Route, Routes, useLocation, Navigate } from 'react-router-dom';
@@ -44,6 +45,7 @@ function App() {
         {/* 테스트용 */}
         <Route path='/teammember' element={<TeamMember/>}></Route>
         <Route path='/tendency' element={<TendencyMain/>}></Route>
+        <Route path='/loading' element={<Loading/>}></Route>
       </Routes>
 
       {/* <Footer/> */}
