@@ -5,7 +5,7 @@
 /.pnp
 .pnp.js
 /node_modules/.cache/.eslintcache
-firebase-config.js
+projectSomeLine\.gitignore
 
 # testing
 /coverage
