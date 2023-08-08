@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase-config";
+import {signOut} from "firebase/auth"
 
 
 const Login = () => {
@@ -11,7 +12,7 @@ const Login = () => {
 
   // 팝업창을 끄기 위해 만든 함수안에 들어가는 변수를 담기위한 것.-작업자 : 이찬용 
   const [isVisible, setIsVisible] = useState(true);
-
+  signOut(auth)
   
   // main_popup_page_close 안에 들어가는 함수, 팝업창을 끄기 위한 함수.-작업자 : 이찬용
   const closePopup = () => {
