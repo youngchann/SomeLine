@@ -104,26 +104,6 @@ const ChatList = () => {
     nav('/chatbox')
   }
 
-  // const removeUserToList = async(index) => {
-
-  //   // alert(`채팅리스트에서 ${user.chatListName[index]}님이 삭제되었습니다😥`)
-
-  //   const usersRef = collection(db, "users");
-  //   const querySnapshot = await getDocs(
-  //     query(usersRef, where("id", "==", currentUser.email))
-  //   );
-  //   querySnapshot.forEach((doc) => {
-  //     updateDoc(doc.ref, {
-  //       chatListName : arrayRemove(doc.data().chatListName[index]),
-  //       chatListProfileUrl : arrayRemove(doc.data().chatListProfileUrl[index]),
-  //       chatListCreatedAt : arrayRemove(doc.data().chatListCreatedAt[index]),
-  //     });
-  //   });
-
-  //   setHiddenDisplay(index);
-  //   nav('/chatlist#');
-  // };
-
   const removeUserToList = async(index) => {
     // 해당 인덱스의 사용자를 제거
     const updatedChatListName = user.chatListName.filter((_, i) => i !== index);
