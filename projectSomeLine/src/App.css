@@ -1283,6 +1283,19 @@
   background: linear-gradient(135deg, #e9e9e9 20%, #d16767 110%);
 
 }
+
+.mat_info_card_men{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+
+  /* background-color: #e9e9e9;b35353 */
+
+  background: linear-gradient(135deg, #e9e9e9 20%, #454699 110%);
+}
 .info_img_box{
   width: 90%;
   height: 60%;
@@ -2068,4 +2081,26 @@ svg{
   50%,100%{
     transform: rotate(360deg);
   }
+}
+
+/* 푹죽 효과를 위한 내용입니다. */
+.canvas {
+  height: 100vh;
+  left: 0px;
+  pointer-events: none;
+  position: fixed;
+  top: 0px;
+  width: 100vw;
+}
+.fire_jump{
+  position:absolute;
+  /* background-color: #03e9f4; */
+  left: 0px;
+  pointer-events: none;
+
+  /* background-color: #03e9f4; */
+
+  z-index: 200;
+  height: 100%;
+  width: 100%;
 }

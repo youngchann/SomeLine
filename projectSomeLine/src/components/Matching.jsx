@@ -1,4 +1,4 @@
-import React, { useRef, useState, useContext, useEffect } from 'react';
+import React, { useRef, useState, useContext, useEffect, useCallback } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/effect-cards';
@@ -20,7 +20,9 @@ import {
   arrayUnion
 } from "firebase/firestore";
 import { getStorage, ref, getDownloadURL, uploadBytes} from "firebase/storage";
+
 import Loading from './Loading';
+import ReactCanvasConfetti from 'react-canvas-confetti';
 
 
 const Matching = () => {
@@ -34,6 +36,9 @@ const Matching = () => {
   const [maleUsers, setMaleUsers] = useState([])
   const [check, setCheck] = useState(false)
   const [btnCheck, setBtnCheck] = useState([])
+
+  // 폭죽 효과를 위한 ...
+  const [fire, setFire] = useState(new Date().getTime());
 
   const [isVisiblePopup, setIsVisiblePopup] = useState(true);
   const matClosePopup = () => {
@@ -124,6 +129,12 @@ const Matching = () => {
     });
   };
 
+
+  const handleClick = useCallback((user) => {
+    addUserToList(user);
+    setFire(new Date().getTime()); // 폭죽 효과
+  }, [user, addUserToList, fire]); 
+
       
       
   
@@ -162,16 +173,22 @@ const Matching = () => {
                       <div className='matching_success_um'>
                         <p>◦ {user.name},  {user.age}세</p>
                         <p>자기소개 내용!</p>
-                        <button className='matching_submit_button' onClick={()=>addUserToList(user)} disabled={btnCheck.includes(user.name)} >매칭하기</button>
+                        <button className='matching_submit_button' onClick={() => handleClick(user)} disabled={btnCheck.includes(user.name)} >매칭하기</button>
                       </div>) }
                   </div>
                 </div>
               </SwiperSlide>
             )}
-  
           </Swiper>
           ):<Loading/>}
         </div>
+        <ReactCanvasConfetti
+                          fire={fire}
+                          particleCount={300}
+                          spread={300}
+                          origin={{ y: 0.5 }}
+                          className='fire_jump'
+                        />
     </div>
   )
 }
