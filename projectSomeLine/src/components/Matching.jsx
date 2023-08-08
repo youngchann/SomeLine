@@ -109,7 +109,6 @@ const Matching = () => {
 
   const addUserToList = async(userName) => {
     setBtnCheck(prevCheck => [...prevCheck,userName.name])
-    alert(`채팅리스트에 ${userName.name}님이 추가되었습니다😊`)
     
     const usersRef = collection(db, "users");
     const querySnapshot = await getDocs(
