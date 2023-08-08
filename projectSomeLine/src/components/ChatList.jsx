@@ -63,9 +63,6 @@ const ChatList = () => {
   
   const [selectedUser, setSelectedUser] = useState("")
 
-  // 삭제된 미리보기 챗방을 지우기 위한 공간.
-  const [hiddenDisplay,setHiddenDisplay] = useState(false);
-
   useEffect(() => {
     if (currentUser && currentUser.email) {
       const q = query(collection(db, "users"), where("id", "==", currentUser.email));
@@ -107,24 +104,55 @@ const ChatList = () => {
     nav('/chatbox')
   }
 
+  // const removeUserToList = async(index) => {
+
+  //   // alert(`채팅리스트에서 ${user.chatListName[index]}님이 삭제되었습니다😥`)
+
+  //   const usersRef = collection(db, "users");
+  //   const querySnapshot = await getDocs(
+  //     query(usersRef, where("id", "==", currentUser.email))
+  //   );
+  //   querySnapshot.forEach((doc) => {
+  //     updateDoc(doc.ref, {
+  //       chatListName : arrayRemove(doc.data().chatListName[index]),
+  //       chatListProfileUrl : arrayRemove(doc.data().chatListProfileUrl[index]),
+  //       chatListCreatedAt : arrayRemove(doc.data().chatListCreatedAt[index]),
+  //     });
+  //   });
+
+  //   setHiddenDisplay(index);
+  //   nav('/chatlist#');
+  // };
+
   const removeUserToList = async(index) => {
-
-    // alert(`채팅리스트에서 ${user.chatListName[index]}님이 삭제되었습니다😥`)
-
+    // 해당 인덱스의 사용자를 제거
+    const updatedChatListName = user.chatListName.filter((_, i) => i !== index);
+    const updatedChatListProfileUrl = user.chatListProfileUrl.filter((_, i) => i !== index);
+    const updatedChatListCreatedAt = user.chatListCreatedAt.filter((_, i) => i !== index);
+  
+    // 사용자 정보를 업데이트
     const usersRef = collection(db, "users");
     const querySnapshot = await getDocs(
       query(usersRef, where("id", "==", currentUser.email))
     );
     querySnapshot.forEach((doc) => {
       updateDoc(doc.ref, {
-        chatListName : arrayRemove(doc.data().chatListName[index]),
-        chatListProfileUrl : arrayRemove(doc.data().chatListProfileUrl[index]),
-        chatListCreatedAt : arrayRemove(doc.data().chatListCreatedAt[index]),
+        chatListName: updatedChatListName,
+        chatListProfileUrl: updatedChatListProfileUrl,
+        chatListCreatedAt: updatedChatListCreatedAt,
       });
     });
-
-    setHiddenDisplay(index);
-    nav('/chatlist#');
+  
+    // 로컬 상태 업데이트 (랜더링 트리거)
+    setUser({
+      ...user,
+      chatListName: updatedChatListName,
+      chatListProfileUrl: updatedChatListProfileUrl,
+      chatListCreatedAt: updatedChatListCreatedAt,
+    });
+  
+    // 필요하다면 다른 동작 수행
+    nav('/chatlist');
   };
 
   return (
@@ -159,7 +187,7 @@ const ChatList = () => {
                 <p className='chat_list_talk_preview'>반가워요 ^^</p>
               </Tilt>
             {user.chatListName?.map((chat, index) => (
-              <Tilt key={index} options={options} className={`chat_list_contents ${hiddenDisplay === (index) ? "hidden" : ''}`} >
+              <Tilt key={index} options={options} className="chat_list_contents" >
                 {/* onClick={()=>handleClick(user, index)}*/}
                 
                 <div className='chat_list_profile_img_box'><img className='chat_list_profile_img' src={user.chatListProfileUrl[index]}/></div>
