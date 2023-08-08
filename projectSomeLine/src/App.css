@@ -368,7 +368,7 @@
   transform: rotate(-40deg);
   z-index: -90;
 
-  bottom: -45%;
+  bottom: -50%;
   left: 10%;
 
   color: #f8f8ffdb;
@@ -381,7 +381,7 @@
   font-family: "Borel";
   font-size: 280px;
   transform: rotate(-40deg);
-  bottom: -42%;
+  bottom: -51%;
   left: 60%;
 
   z-index: -90;
