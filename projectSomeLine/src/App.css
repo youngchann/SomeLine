@@ -887,10 +887,12 @@
 }
 
 .imotion_box{
-  padding: 6px;
+  padding: 3px;
+
+  margin-right: 10px;
 
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   border-radius: 10px;
   background: linear-gradient(130deg, #625be5c0 0%, #cc42d1b2 99%);
 
@@ -898,11 +900,11 @@
 }
 .imotion_btn{
   margin: 2px;
-  height: 25px;
+  height: 35px;
+  width: 35px;
   border-radius: 22.5px;
   border: 1px solid #4d4d4d;
 
-  
   transition: all .2s ease;
 }
 .imotion_btn:hover{
