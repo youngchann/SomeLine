@@ -225,9 +225,9 @@ const ChatBox = ({room}) => {
         
         <div className='imotion_box'>
 
-          <button className='imotion_btn imotion_btn_hart_btn' onClick={hart_Click}>💕좋아</button>
-          <button className='imotion_btn imotion_btn_sad_btn' onClick={sad_Click}>😢슬퍼</button>
-          <button className='imotion_btn imotion_btn_angry_btn' onClick={angry_Click}>👿화나</button>
+          <button className='imotion_btn imotion_btn_hart_btn' onClick={hart_Click}>💕</button>
+          <button className='imotion_btn imotion_btn_sad_btn' onClick={sad_Click}>😢</button>
+          <button className='imotion_btn imotion_btn_angry_btn' onClick={angry_Click}>👿</button>
         </div>
       </div>
 
