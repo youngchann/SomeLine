@@ -30,10 +30,11 @@ const Matching = () => {
   // 현재 유저의 db 정보
   const [user, setUser] = useState(null);
 
-  const [femaleUsers, setFemaleUsers] = useState([])
+  const [genderUsers, setGenderUsers] = useState([])
   const [maleUsers, setMaleUsers] = useState([])
   const [check, setCheck] = useState(false)
   const [btnCheck, setBtnCheck] = useState([])
+  const [requestStatus, setRequestStatus] = useState({});
 
   const [isVisiblePopup, setIsVisiblePopup] = useState(true);
   const matClosePopup = () => {
@@ -42,14 +43,11 @@ const Matching = () => {
 
   const swiperRef = useRef(null);
 
-  const goNextSlide = () => {
-    if (swiperRef.current && swiperRef.current.swiper) {
-      swiperRef.current.swiper.slideNext();
-      console.log(users[0].matchId);
-      console.log(matchUsers);
-      console.log(users[0]);
-    }
-  };
+  // const goNextSlide = () => {
+  //   if (swiperRef.current && swiperRef.current.swiper) {
+  //     swiperRef.current.swiper.slideNext();
+  //   }
+  // };
 
   const [users, setUsers] = useState([])
   const [matchUsers, setMatchUsers] = useState([])
@@ -89,17 +87,13 @@ const Matching = () => {
     getDocs(genderQuery).then((querySnapshot) => {
       const usersList = [];
       querySnapshot.forEach((doc) => {
-        if (doc.exists() && !user.chatListName.includes(doc.data().name)) {
+        if (doc.exists()) {
           usersList.push({ ...doc.data(), id: doc.id });
         }
       });
-      if (user.gender === 'male') {
-        setFemaleUsers(usersList);
-        setCheck(true);
-      } else {
-        setMaleUsers(usersList);
-        setCheck(true);
-      }
+      setGenderUsers(usersList);
+      setCheck(true);
+
     });
   }
 }, [user]);
@@ -109,8 +103,7 @@ const Matching = () => {
 
   const addUserToList = async(userName) => {
     setBtnCheck(prevCheck => [...prevCheck,userName.name])
-    alert(`채팅리스트에 ${userName.name}님이 추가되었습니다😊`)
-    
+    setRequestStatus(prevStatus => ({ ...prevStatus, [userName.name]: 'accepted' }))
     const usersRef = collection(db, "users");
     const querySnapshot = await getDocs(
       query(usersRef, where("id", "==", currentUser.email))
@@ -120,7 +113,43 @@ const Matching = () => {
         chatListName : arrayUnion(userName.name),
         chatListProfileUrl : arrayUnion(userName.profileUrl),
         chatListCreatedAt : arrayUnion(userName.createdAt),
-        chatTest : arrayUnion(userName.name)
+        requestList : arrayUnion(userName.name)
+      });
+    });
+
+    const querySnapshot2 = await getDocs(
+      query(usersRef, where("name", "==", userName.name))
+    );
+    querySnapshot2.forEach((doc) => {
+      updateDoc(doc.ref, {
+        chatListName : arrayUnion(user.name),
+        chatListProfileUrl : arrayUnion(user.profileUrl),
+        chatListCreatedAt : arrayUnion(user.createdAt),
+        responseList : arrayUnion(user.name)
+      });
+    });
+  };
+
+  const tryUserToList = async(userName) => {
+    setBtnCheck(prevCheck => [...prevCheck,userName.name])
+    setRequestStatus(prevStatus => ({ ...prevStatus, [userName.name]: 'requested' }))
+    console.log(`requestStatus: ${JSON.stringify(requestStatus)}`);
+    const usersRef = collection(db, "users");
+    const querySnapshot = await getDocs(
+      query(usersRef, where("id", "==", currentUser.email))
+    );
+    querySnapshot.forEach((doc) => {
+      updateDoc(doc.ref, {
+        requestList : arrayUnion(userName.name)
+      });
+    });
+
+    const querySnapshot2 = await getDocs(
+      query(usersRef, where("name", "==", userName.name))
+    );
+    querySnapshot2.forEach((doc) => {
+      updateDoc(doc.ref, {
+        responseList : arrayUnion(user.name)
       });
     });
   };
@@ -152,19 +181,45 @@ const Matching = () => {
             className="mySwiper"
             ref={swiperRef}
           >
-            {femaleUsers.map((user)=>
-              <SwiperSlide key={user.name}>
+            {genderUsers
+            // 추천된 유저의 매칭 요청을 받은 리스트에 내 이름이 있으면 안보이게함
+            // 즉, 한번 매칭 요청했으면 다시 안보이게 함
+            .filter((temp)=>!user.requestList?.includes(temp.name))
+            .map((genderuser)=>
+              <SwiperSlide key={genderuser.name}>
                 <div className='mat_info_card'>
                   <div className='info_img_box'>
-                    <img className='matching_img'  src={user.profileUrl} />
+                    <img className='matching_img' src={genderuser.profileUrl} />
                   </div>
                   <div className='info_info_box'>
-                      { btnCheck.includes(user.name) ? <p>매칭된 상대방입니다.🥰</p> : (
-                      <div className='matching_success_um'>
-                        <p>◦ {user.name},  {user.age}세</p>
-                        <p>자기소개 내용!</p>
-                        <button className='matching_submit_button' onClick={()=>addUserToList(user)} disabled={btnCheck.includes(user.name)} >매칭하기</button>
-                      </div>) }
+                    {genderuser.requestList?.includes(currentUser.displayName) ? (
+                        // 현재 유저 이름이 matchedList에 있으면 "수락하기" 표시
+                        <div className='matching_success_um'>
+                          <p>◦ {genderuser.name}, {genderuser.age}세</p>
+                          <p>자기소개 내용!</p>
+                          <button
+                            className='matching_submit_button'
+                            onClick={() => addUserToList(genderuser)}
+                            disabled={btnCheck.includes(genderuser.name)}
+                          >
+                            매칭하기
+                          </button>
+                        </div>
+                      ) : (
+                        // 현재 유저 이름이 matchedList에 없으면 "매칭하기" 표시
+                        requestStatus[genderuser.name] === 'requested' ? <p>요청완료</p> :
+                        <div className='matching_success_um'>                           
+                          <p>◦ {genderuser.name}, {genderuser.age}세</p>
+                          <p>자기소개 내용!</p>
+                          <button
+                            className='matching_submit_button'
+                            onClick={() => tryUserToList(genderuser)}
+                            disabled={requestStatus[genderuser.name] === 'requested'}
+                          >
+                            요청하기
+                          </button>
+                        </div>
+                      )}
                   </div>
                 </div>
               </SwiperSlide>

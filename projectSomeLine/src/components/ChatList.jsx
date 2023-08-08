@@ -82,15 +82,15 @@ const ChatList = () => {
   const prevChats = useRef(chats);
 
 
-  const handleClick = (user, index) => {
-    setSelectedUser(user)
-    sessionStorage.setItem('selectedUserName', user.chatListName[index])
-    sessionStorage.setItem('selectedUserProfileUrl', user.chatListProfileUrl[index])
+  const handleClick = (users, index) => {
+    setSelectedUser(users)
+    sessionStorage.setItem('selectedUserName', users.chatListName[index])
+    sessionStorage.setItem('selectedUserProfileUrl', users.chatListProfileUrl[index])
     
-    if (user.chatListProfileUrl[index] > currentUser.displayName) {
-      sessionStorage.setItem('selectedRoom', `${user.chatListName[index]}+${currentUser.displayName}`)
+    if (users.chatListProfileUrl[index] > user.createdAt) {
+      sessionStorage.setItem('selectedRoom', `${users.chatListName[index]}+${currentUser.displayName}`)
     } else {
-      sessionStorage.setItem('selectedRoom', `${currentUser.displayName}+${user.chatListName[index]}`)
+      sessionStorage.setItem('selectedRoom', `${currentUser.displayName}+${users.chatListName[index]}`)
     }
     nav('/chatbox')
   }

@@ -62,8 +62,6 @@ const Signup = () => {
             alert('회원가입이 완료되었습니다.')
             // 회원가입이 완료되면 회원가입 프로세스를 종료하고 로그인 화면으로 돌아감
             signOut(auth);
-            console.log(`res: ${res}`);
-            console.log(`res.user: ${res.user}`);
             nav('/');
             setSignupState(true)
         } catch (error) {
