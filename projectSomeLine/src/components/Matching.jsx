@@ -1,4 +1,4 @@
-import React, { useRef, useState, useContext, useEffect } from 'react';
+import React, { useRef, useState, useContext, useEffect, useCallback } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/effect-cards';
@@ -20,7 +20,9 @@ import {
   arrayUnion
 } from "firebase/firestore";
 import { getStorage, ref, getDownloadURL, uploadBytes} from "firebase/storage";
+
 import Loading from './Loading';
+import ReactCanvasConfetti from 'react-canvas-confetti';
 
 
 const Matching = () => {
@@ -35,6 +37,9 @@ const Matching = () => {
   const [check, setCheck] = useState(false)
   const [btnCheck, setBtnCheck] = useState([])
   const [requestStatus, setRequestStatus] = useState({});
+
+  // 폭죽 효과를 위한 ...
+  const [fire, setFire] = useState(new Date().getTime());
 
   const [isVisiblePopup, setIsVisiblePopup] = useState(true);
   const matClosePopup = () => {
@@ -154,6 +159,12 @@ const Matching = () => {
     });
   };
 
+
+  const handleClick = useCallback((user) => {
+    addUserToList(user);
+    setFire(new Date().getTime()); // 폭죽 효과
+  }, [user, addUserToList, fire]); 
+
       
       
   
@@ -207,7 +218,7 @@ const Matching = () => {
                         </div>
                       ) : (
                         // 현재 유저 이름이 matchedList에 없으면 "매칭하기" 표시
-                        requestStatus[genderuser.name] === 'requested' ? <p>요청완료</p> :
+                        requestStatus[genderuser.name] === 'requested' ? <p>요청완료🥰</p> :
                         <div className='matching_success_um'>                           
                           <p>◦ {genderuser.name}, {genderuser.age}세</p>
                           <p>자기소개 내용!</p>
@@ -224,10 +235,16 @@ const Matching = () => {
                 </div>
               </SwiperSlide>
             )}
-  
           </Swiper>
           ):<Loading/>}
         </div>
+        <ReactCanvasConfetti
+                          fire={fire}
+                          particleCount={300}
+                          spread={300}
+                          origin={{ y: 0.5 }}
+                          className='fire_jump'
+                        />
     </div>
   )
 }

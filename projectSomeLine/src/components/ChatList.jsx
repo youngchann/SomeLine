@@ -43,7 +43,7 @@ const ChatList = () => {
   const nav = useNavigate()
 
   // isVisible의 초기값을 false로 설정하여 새로운 메시지가 없을 때는 팝업이 뜨지 않도록 했습니다.
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(null);
   const closePopup = () => {
     setIsVisible(false);
   };
@@ -105,23 +105,34 @@ const ChatList = () => {
   }
 
   const removeUserToList = async(index) => {
-
-    // alert(`채팅리스트에서 ${user.chatListName[index]}님이 삭제되었습니다😥`)
-    
+    // 해당 인덱스의 사용자를 제거
+    const updatedChatListName = user.chatListName.filter((_, i) => i !== index);
+    const updatedChatListProfileUrl = user.chatListProfileUrl.filter((_, i) => i !== index);
+    const updatedChatListCreatedAt = user.chatListCreatedAt.filter((_, i) => i !== index);
+  
+    // 사용자 정보를 업데이트
     const usersRef = collection(db, "users");
     const querySnapshot = await getDocs(
       query(usersRef, where("id", "==", currentUser.email))
     );
     querySnapshot.forEach((doc) => {
       updateDoc(doc.ref, {
-        chatListName : arrayRemove(doc.data().chatListName[index]),
-        chatListProfileUrl : arrayRemove(doc.data().chatListProfileUrl[index]),
-        chatListCreatedAt : arrayRemove(doc.data().chatListCreatedAt[index]),
+        chatListName: updatedChatListName,
+        chatListProfileUrl: updatedChatListProfileUrl,
+        chatListCreatedAt: updatedChatListCreatedAt,
       });
     });
-
-    nav('/chatlist')
-
+  
+    // 로컬 상태 업데이트 (랜더링 트리거)
+    setUser({
+      ...user,
+      chatListName: updatedChatListName,
+      chatListProfileUrl: updatedChatListProfileUrl,
+      chatListCreatedAt: updatedChatListCreatedAt,
+    });
+  
+    // 필요하다면 다른 동작 수행
+    nav('/chatlist');
   };
 
   return (
@@ -156,12 +167,13 @@ const ChatList = () => {
                 <p className='chat_list_talk_preview'>반가워요 ^^</p>
               </Tilt>
             {user.chatListName?.map((chat, index) => (
-              <Tilt key={index} options={options} className='chat_list_contents' onClick={()=>handleClick(user, index)}>
+              <Tilt key={index} options={options} className="chat_list_contents" >
+                {/* onClick={()=>handleClick(user, index)}*/}
                 
                 <div className='chat_list_profile_img_box'><img className='chat_list_profile_img' src={user.chatListProfileUrl[index]}/></div>
                 
                 <p className='chat_list_name'>{user.chatListName[index]}</p>
-                <p className='chat_list_talk_preview'>최근 메시지</p>
+                <p className='chat_list_talk_preview' onClick={()=>handleClick(user, index)}>최근 메시지</p>
                 <button className='chatlist_chat_del_btn' onClick={()=>removeUserToList(index)}>나가기</button>
               </Tilt>
             ))}
