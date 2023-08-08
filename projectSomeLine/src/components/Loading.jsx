@@ -14,7 +14,7 @@ const Loading = () => {
         </div>
         <svg>
             <filter id="gooey">
-                <feGaussianBlur in="SourceGraphic" stDeviation="10"/>
+                <feGaussianBlur in="SourceGraphic" stdeviation="10"/>
                 <feColorMatrix values='
                     1 0 0 0 0
                     0 1 0 0 0

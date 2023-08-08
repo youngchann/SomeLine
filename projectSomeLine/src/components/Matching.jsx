@@ -26,7 +26,15 @@ import Loading from './Loading';
 const Matching = () => {
 
   const { currentUser } = useContext(AuthContext);
+
+  // 현재 유저의 db 정보
   const [user, setUser] = useState(null);
+
+  const [femaleUsers, setFemaleUsers] = useState([])
+  const [maleUsers, setMaleUsers] = useState([])
+  const [check, setCheck] = useState(false)
+  const [btnCheck, setBtnCheck] = useState([])
+
   const [isVisiblePopup, setIsVisiblePopup] = useState(true);
   const matClosePopup = () => {
     setIsVisiblePopup(false);
@@ -75,41 +83,32 @@ const Matching = () => {
     }
   }, [currentUser]);
 
-
   useEffect(() => {
-    if (users.length > 0 && users[0].matchId) {
-      const matchIdQueries = users[0].matchId.map((id) => (
-        query(userRef, where("id", "==", id))
-      ));
+  if (currentUser && currentUser.email && user && (user.gender === 'male' || user.gender === 'female')) {
+    const genderQuery = query(userRef, where("gender", "==", user.gender === 'male' ? 'female' : 'male'));
+    getDocs(genderQuery).then((querySnapshot) => {
+      const usersList = [];
+      querySnapshot.forEach((doc) => {
+        if (doc.exists() && !user.chatListName.includes(doc.data().name)) {
+          usersList.push({ ...doc.data(), id: doc.id });
+        }
+      });
+      if (user.gender === 'male') {
+        setFemaleUsers(usersList);
+        setCheck(true);
+      } else {
+        setMaleUsers(usersList);
+        setCheck(true);
+      }
+    });
+  }
+}, [user]);
 
-      Promise.all(matchIdQueries.map((q) => getDocs(q)))
-        .then((querySnapshots) => {
-          const matchedUsers = [];
-          querySnapshots.forEach((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-              if (doc.exists()) {
-                matchedUsers.push({ ...doc.data(), id: doc.id });
-              }
-            });
-          });
-          setMatchUsers(matchedUsers);
 
-          swiperRef.current.swiper.update();
-        });
 
-      const storage = getStorage();
-
-      // 수정된 부분: matchedUsers 배열 순회로 변경합니다.
-    
-    }
-  }, [users]);
-
-  const [addedUsers, setAddedUsers] = useState([]);
-  
 
   const addUserToList = async(userName) => {
-    setAddedUsers((prevUsers) => [...prevUsers, userName]);
-    
+    setBtnCheck(prevCheck => [...prevCheck,userName.name])
     alert(`채팅리스트에 ${userName.name}님이 추가되었습니다😊`)
     
     const usersRef = collection(db, "users");
@@ -127,9 +126,8 @@ const Matching = () => {
   };
 
       
-
       
-
+  
 
   return (
     <div className='matching_bg'>
@@ -146,7 +144,7 @@ const Matching = () => {
             </video>
         </div>
         <div className='matching_in_box'>
-        {user ? (
+        {check ? (
         <Swiper
             effect={'cards'}
             grabCursor={true}
@@ -154,22 +152,18 @@ const Matching = () => {
             className="mySwiper"
             ref={swiperRef}
           >
-            {matchUsers.map((user)=>
+            {femaleUsers.map((user)=>
               <SwiperSlide key={user.name}>
                 <div className='mat_info_card'>
                   <div className='info_img_box'>
                     <img className='matching_img'  src={user.profileUrl} />
                   </div>
                   <div className='info_info_box'>
-                    {matchUsers.length > 0 && matchUsers[0] ? (
                       <>
                         <p>이름: {user.name}</p>
                         <p>나이: {user.age}</p>
-                        <button className='matching_submit_button' onClick={()=>addUserToList(user)}>매칭하기</button>
+                        <button className='matching_submit_button' onClick={()=>addUserToList(user)} disabled={btnCheck.includes(user.name)} >매칭하기</button>
                       </>
-                    ) : (
-                      <p>Loading or no matched users found.</p>
-                    )}
                   </div>
                 </div>
               </SwiperSlide>
