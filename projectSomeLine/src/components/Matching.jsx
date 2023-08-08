@@ -210,7 +210,7 @@ const Matching = () => {
                           <p>자기소개 내용!</p>
                           <button
                             className='matching_submit_button'
-                            onClick={() => addUserToList(genderuser)}
+                            onClick={() => handleClick(genderuser)}
                             disabled={btnCheck.includes(genderuser.name)}
                           >
                             매칭하기
