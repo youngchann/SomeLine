@@ -296,7 +296,7 @@
 
   border: none;
 
-  border: #f8f8ff;
+  border:1px solid #f8f8ffb7;
 
   background-color: #b2b2b23f;
 
@@ -681,8 +681,8 @@
   padding-bottom: 8px;
 }
 .chatbox_in_top_btn{
-  width: 10;
-  padding: 5px;
+  width: auto;
+  height: 35px;
   border: none;
   background: none;
 
