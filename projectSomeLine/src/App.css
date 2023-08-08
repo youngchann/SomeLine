@@ -1050,7 +1050,7 @@
   margin-left: 10px;
   font-size: large;
   color: #f8f8ff;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
 }
 .chat_list_talk_preview{
@@ -1138,7 +1138,8 @@
   text-align: center
 }
 .chatlist_chat_del_btn{
-  position: relative;
+  position: absolute;
+  right: 20px;
   width: 60px;
   height: 35px;
 
@@ -1148,6 +1149,7 @@
   background-color: #80808039;
   border-radius: 15px;
   box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+
 }
 .chatlist_chat_del_btn:hover{
   background-color: #4d4d4d43;
@@ -1239,9 +1241,9 @@
   justify-content: center;
   background: none;
   border-radius: 10px;
-  border: 1px solid #f8f8ff97;
+  border: 1px solid #f8f8ff61;
 
-  background-color: rgba(115, 24, 115, 0.16);
+  background-color: rgba(186, 186, 186, 0.576);
   backdrop-filter: blur(80px);
   box-shadow: 0 0 40px rgba(0, 0, 0, .5);
   width: 600px;
@@ -1260,11 +1262,11 @@
 }
 
 .swiper-slide {
-  border-radius: 10px;
+  border-radius: 15px;
   font-size: 17px;
   font-weight: bold;
 
-  box-shadow: 0 0 30px rgba(0, 0, 0, .7);
+  box-shadow: 0 0 30px rgba(0, 0, 0, .5);
 }
 .mat_info_card{
   display: flex;
@@ -1274,23 +1276,28 @@
   width: 100%;
   height: 100%;
 
-  background-color: #e9e9e9;
+  /* background-color: #e9e9e9;b35353 */
+
+  background: linear-gradient(135deg, #e9e9e9 20%, #d16767 110%);
 
 }
 .info_img_box{
   width: 90%;
   height: 60%;
   background-color: #ae6464;
-  border-radius: 10px;
+  border-radius: 20px;
   overflow: hidden;
   
   display: flex;
   align-items: center;
   justify-content: center;
+
+  border: 2px solid #f7c8c8c8;
+
+  box-sizing: border-box;
 }
 .matching_img{
-  /* width: 100%; */
-  height: 100%;
+  width: 100%;
   height: 100%;
   object-fit: cover;
 }
@@ -1339,11 +1346,11 @@
 }
 .matching_submit_button{
   border: none;
-  width: 100px;
-  height: 60px;
-  border-radius: 10px;
+  width: 130px;
+  height: 40px;
+  border-radius: 20px;
 
-  font-size: 19px;
+  font-size: 20px;
   font-weight: 900;
   color: #f2f2f2c9;
 

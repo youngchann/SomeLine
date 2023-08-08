@@ -159,11 +159,12 @@ const Matching = () => {
                     <img className='matching_img'  src={user.profileUrl} />
                   </div>
                   <div className='info_info_box'>
-                      <>
-                        <p>이름: {user.name}</p>
-                        <p>나이: {user.age}</p>
+                      { btnCheck.includes(user.name) ? <p>매칭된 상대방입니다.🥰</p> : (
+                      <div className='matching_success_um'>
+                        <p>◦ {user.name},  {user.age}세</p>
+                        <p>자기소개 내용!</p>
                         <button className='matching_submit_button' onClick={()=>addUserToList(user)} disabled={btnCheck.includes(user.name)} >매칭하기</button>
-                      </>
+                      </div>) }
                   </div>
                 </div>
               </SwiperSlide>
