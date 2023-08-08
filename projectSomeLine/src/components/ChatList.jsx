@@ -43,7 +43,7 @@ const ChatList = () => {
   const nav = useNavigate()
 
   // isVisible의 초기값을 false로 설정하여 새로운 메시지가 없을 때는 팝업이 뜨지 않도록 했습니다.
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(null);
   const closePopup = () => {
     setIsVisible(false);
   };
@@ -62,6 +62,9 @@ const ChatList = () => {
   const userRef = collection(db, "users");
   
   const [selectedUser, setSelectedUser] = useState("")
+
+  // 삭제된 미리보기 챗방을 지우기 위한 공간.
+  const [hiddenDisplay,setHiddenDisplay] = useState(false);
 
   useEffect(() => {
     if (currentUser && currentUser.email) {
@@ -107,7 +110,7 @@ const ChatList = () => {
   const removeUserToList = async(index) => {
 
     // alert(`채팅리스트에서 ${user.chatListName[index]}님이 삭제되었습니다😥`)
-    
+
     const usersRef = collection(db, "users");
     const querySnapshot = await getDocs(
       query(usersRef, where("id", "==", currentUser.email))
@@ -120,8 +123,8 @@ const ChatList = () => {
       });
     });
 
-    nav('/chatlist')
-
+    setHiddenDisplay(index);
+    nav('/chatlist#');
   };
 
   return (
@@ -156,12 +159,13 @@ const ChatList = () => {
                 <p className='chat_list_talk_preview'>반가워요 ^^</p>
               </Tilt>
             {user.chatListName?.map((chat, index) => (
-              <Tilt key={index} options={options} className='chat_list_contents' onClick={()=>handleClick(user, index)}>
+              <Tilt key={index} options={options} className={`chat_list_contents ${hiddenDisplay === (index) ? "hidden" : ''}`} >
+                {/* onClick={()=>handleClick(user, index)}*/}
                 
                 <div className='chat_list_profile_img_box'><img className='chat_list_profile_img' src={user.chatListProfileUrl[index]}/></div>
                 
                 <p className='chat_list_name'>{user.chatListName[index]}</p>
-                <p className='chat_list_talk_preview'>최근 메시지</p>
+                <p className='chat_list_talk_preview' onClick={()=>handleClick(user, index)}>최근 메시지</p>
                 <button className='chatlist_chat_del_btn' onClick={()=>removeUserToList(index)}>나가기</button>
               </Tilt>
             ))}

@@ -1045,6 +1045,7 @@
   box-shadow: 0 0 30px rgba(0, 0, 0, .4);
   width: 100%;
   height: 70px;
+
 }
 .chat_list_name{
   margin-left: 10px;
@@ -1062,11 +1063,12 @@
   width: 55%;
   height: 50px;
   
-  
   font-size: large;
   border-left: 1px solid #f8f8ff;
   margin-left: 20px;
   color: #eaeaea;
+
+  transition-duration: 0.5s;
 }
 .chat_list_contents:hover{
   box-sizing: border-box;
@@ -1659,8 +1661,6 @@
 
   z-index: -222;
 }
-
-
 
 /* ------------------------------------------media */
 @media (max-width: 1000px) {
