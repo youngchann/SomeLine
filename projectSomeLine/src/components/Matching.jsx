@@ -206,8 +206,10 @@ const Matching = () => {
                     {genderuser.requestList?.includes(currentUser.displayName) ? (
                         // 현재 유저 이름이 matchedList에 있으면 "수락하기" 표시
                         <div className='matching_success_um'>
-                          <p>◦ {genderuser.name}, {genderuser.age}세</p>
-                          <p>자기소개 내용!</p>
+                          <div className='info_info_box_name_info'>
+                            <p>◦ {genderuser.name} • {genderuser.age}세 ✨<br/>자기소개 내용!<br/>관심사</p>
+                            <div className='mat_Interest_list'><p>관심사</p><p>관심사공간</p></div>
+                          </div>
                           <button
                             className='matching_submit_button'
                             onClick={() => handleClick(genderuser)}
@@ -221,9 +223,11 @@ const Matching = () => {
                         requestStatus[genderuser.name] === 'requested' ? <p className='mat_p_align'>요청완료🥰<br/>
                           <span >응답을 기다리는 중</span><span className='matching_requesting_text'>....</span>
                         </p> :
-                        <div className='matching_success_um'>                           
-                          <p>◦ {genderuser.name}, {genderuser.age}세</p>
-                          <p>자기소개 내용!</p>
+                        <div className='matching_success_um'> 
+                          <div className='info_info_box_name_info'>                          
+                            <p>{genderuser.name} • {genderuser.age}세 ✨<br/>한줄 자기소개 내용!</p>
+                            <div className='mat_Interest_list'><p>관심사</p><p>관심사공간</p><p>관심사공간</p></div>
+                          </div>
                           <button
                             className='matching_submit_button'
                             onClick={() => tryUserToList(genderuser)}
