@@ -207,8 +207,8 @@ const Matching = () => {
                         // 현재 유저 이름이 matchedList에 있으면 "수락하기" 표시
                         <div className='matching_success_um'>
                           <div className='info_info_box_name_info'>
-                            <p>◦ {genderuser.name} • {genderuser.age}세 ✨<br/>자기소개 내용!<br/>관심사</p>
-                            <div className='mat_Interest_list'><p>관심사</p><p>관심사공간</p></div>
+                            <p>◦ {genderuser.name} • {genderuser.age}세 ✨</p>
+                            <div className='mat_Interest_list'><p>관심사</p><p>관심사공간</p><p>관심사공간</p></div>
                           </div>
                           <button
                             className='matching_submit_button'
@@ -225,7 +225,7 @@ const Matching = () => {
                         </p> :
                         <div className='matching_success_um'> 
                           <div className='info_info_box_name_info'>                          
-                            <p>{genderuser.name} • {genderuser.age}세 ✨<br/>한줄 자기소개 내용!</p>
+                            <p>{genderuser.name} • {genderuser.age}세 • 서울 ✨</p>
                             <div className='mat_Interest_list'><p>관심사</p><p>관심사공간</p><p>관심사공간</p></div>
                           </div>
                           <button
