@@ -1402,7 +1402,40 @@
 .matching_submit_button:active{
   box-shadow: 0 0 10px rgba(0, 0, 0, .5);
 }
+.mat_p_align{
+  text-align: center;
+  font-size: 20px;
+}
+/* 폰트 써졌다가 지워지는 효과 아이템 */
+.matching_requesting_text{
+  color: transparent;
+  margin: 0;
+  white-space: nowrap;
+  position: fixed;
+  transform: translate(-50%, -50%);
+}
+.matching_requesting_text::before{
+  content: "....";
+  position: absolute;
 
+  bottom: -11px;
+  left: 13px;
+  color: #4d4d4d;
+  overflow: hidden;
+
+  animation: typing 2s steps(31) infinite;
+}
+@keyframes typing{
+  0% {
+    width: 0%;
+  }
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
+  }
+}
 /* ------------------------------------------프로필 페이지 */
 
 .profile_in_box{

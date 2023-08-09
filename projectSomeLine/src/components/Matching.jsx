@@ -218,7 +218,9 @@ const Matching = () => {
                         </div>
                       ) : (
                         // 현재 유저 이름이 matchedList에 없으면 "매칭하기" 표시
-                        requestStatus[genderuser.name] === 'requested' ? <p>요청완료🥰</p> :
+                        requestStatus[genderuser.name] === 'requested' ? <p className='mat_p_align'>요청완료🥰<br/>
+                          <span >응답을 기다리는 중</span><span className='matching_requesting_text'>....</span>
+                        </p> :
                         <div className='matching_success_um'>                           
                           <p>◦ {genderuser.name}, {genderuser.age}세</p>
                           <p>자기소개 내용!</p>
