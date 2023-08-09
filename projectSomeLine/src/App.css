@@ -1080,6 +1080,8 @@
 
 }
 .chat_list_name{
+
+  width: 80px;
   margin-left: 10px;
   font-size: large;
   color: #f8f8ff;
@@ -1393,7 +1395,7 @@
 }
 .info_info_box_name_info>p{
   font-size: 19px;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 }
 .mat_popup{
   position: absolute;
