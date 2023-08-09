@@ -31,7 +31,7 @@ const ChatBox = ({room}) => {
   const [selectedRoom, setSelectedRoom] = useState(sessionStorage.getItem('selectedRoom' || ''))
   const [messagesText, setMessagesText] = useState([])
   const [prediction, setPrediction] = useState('');
-  const [emojiState, setEmojiState] = useState(false)
+  const [emojiState, setEmojiState] = useState("")
 
   
   useEffect(() => {
@@ -114,7 +114,7 @@ const ChatBox = ({room}) => {
 
   const handlePrediction = async(messagesText) => {
     try {
-    const response = axios.post('http://localhost:5000/get_chatbot_messages', 
+    const response = axios.post('http://192.168.70.70:5000/get_chatbot_messages', 
     { "data": messagesText })
     console.log(`response.data.message: ${JSON.stringify((await response).data)}`);} catch (error) {
       console.error('An error occurred:', error);
@@ -123,7 +123,7 @@ const ChatBox = ({room}) => {
 
   const sendToChatBot = async(message) => {
     try {
-    const response = axios.post('http://localhost:5000/chatbot_message', 
+    const response = axios.post('http://192.168.70.70:5000/chatbot_message', 
     { "data": newMessage })
     message.preventDefault();
 
@@ -155,7 +155,7 @@ const ChatBox = ({room}) => {
 
   const handleEmoji = async(emoji) => {
     try {
-    const response = axios.get('http://localhost:5000/get_chatbot_messages', 
+    const response = axios.post('http://192.168.70.70:5000/emoji', 
     { "data": emoji })
     console.log(`response.data.message: ${JSON.stringify((await response).data)}`);} catch (error) {
       console.error('An error occurred:', error);
@@ -190,23 +190,25 @@ const ChatBox = ({room}) => {
   const [angryKey, setAngryKey] = useState(Math.random());
 
   const hart_Click = () => {
+    handleEmoji("hart")
     hartIsClicked(true);
     setHartKey(Math.random()); 
     setTimeout(() => hartIsClicked(false), 3000);
   };
 
   const sad_Click = () => {
+    handleEmoji("sad")
     sadIsClicked(true);
     setSadKey(Math.random()); 
     setTimeout(() => sadIsClicked(false), 3000);
   };
 
   const angry_Click = () => {
+    handleEmoji("angry")
     angryIsClicked(true);
-
     setAngryKey(Math.random()); 
     setTimeout(() => angryIsClicked(false), 3000);
-  };;
+  };
 
 
   return (
