@@ -417,7 +417,6 @@
   text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px rgb(212, 0, 255),
     0 0 82px rgb(212, 0, 255), 0 0 92px rgb(212, 0, 255), 0 0 102px rgb(212, 0, 255), 0 0 151px rgb(212, 0, 255); */
 
-
 }
 
 
@@ -1026,12 +1025,37 @@
   height: 50px;
 }
 .chatlist_list_header>h1{
-  color: #f8f8ff;
+  /* color: #f8f8ff; */
   font-family: "Exo 2";
-
 
   font-size: 35px;
   font-weight: 300;
+
+  color: #ffffff;
+  text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px rgb(212, 0, 255),
+    0 0 82px rgb(212, 0, 255), 0 0 92px rgb(212, 0, 255), 0 0 102px rgb(212, 0, 255), 0 0 151px rgb(212, 0, 255);
+
+    animation: flicker 3s infinite alternate; 
+}
+@keyframes flicker {
+    
+  0%, 18%, 22%, 25%, 53%, 57%, 100% {
+
+      text-shadow:
+      0 0 4px #e4e4e4,
+      0 0 11px #e4e4e4,
+      0 0 19px #e4e4e4,
+      0 0 40px rgb(212, 0, 255),
+      0 0 80px rgb(212, 0, 255),
+      0 0 90px rgb(212, 0, 255),
+      0 0 100px rgb(212, 0, 255),
+      0 0 150px rgb(212, 0, 255);
+  
+  }
+  
+  20%, 24%, 55% {        
+      text-shadow: none;
+  }    
 }
 .chat_list_contents{
   display: flex;
@@ -1245,7 +1269,7 @@
   border-radius: 10px;
   border: 1px solid #f8f8ff61;
 
-  background-color: rgba(186, 186, 186, 0.576);
+  background-color: rgba(186, 186, 186, 0.458);
   backdrop-filter: blur(80px);
   box-shadow: 0 0 40px rgba(0, 0, 0, .5);
   width: 600px;
@@ -1365,9 +1389,10 @@
   height: 40px;
   border-radius: 20px;
 
+  font-family: 'Noto Sans KR', sans-serif;
   font-size: 20px;
   font-weight: 900;
-  color: #f2f2f2c9;
+  color: #f2f2f2dc;
 
   background:linear-gradient(90deg,#845EC2 0%,#D65DB1 99%);
 
@@ -1396,9 +1421,7 @@
 
   overflow:hidden;
   margin-top: 120px;
-
 }
-
 
 .profile_box_header_box, .profile_img_chainge_box {
   display: flex;
@@ -1428,11 +1451,14 @@
   font-size: 100px;
   color: #f2f2f2e5;
 }
-
+@import url('https://fonts.googleapis.com/css2?family=Borel&family=Exo+2:wght@300&family=Noto+Sans+KR:wght@300&display=swap');
 .profile_img_text, .profile_name_chainge_text, .profile_myinfo_box_text{
   padding-left: 20px;
   font-size: 12px;
   color: #efefef;
+
+  font-family: 'Noto Sans KR', sans-serif;
+  /* text-decoration: underline; */
 }
 .profile_img_chainge_input_box{
   width: 70%;
@@ -1916,7 +1942,6 @@
   font-family: "Borel";
 
   color: #f8f8ff;
-
   border-bottom: 1px solid #f8f8ff6e;
 
   -webkit-box-reflect: below 1px linear-gradient(transparent,#0004);
