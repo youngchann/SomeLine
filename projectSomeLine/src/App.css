@@ -1436,7 +1436,7 @@
 
   position: relative;
   right: -190px;
-  bottom: 17px;
+  bottom: 16px;
 
   font-family: 'Noto Sans KR', sans-serif;
   font-size: 20px;
@@ -1618,6 +1618,8 @@
   /* justify-content: center; */
 }
 .profile_name_input_in{
+  margin-top: 5px;
+
   width: 80%;
   height: 40px;
   border-radius: 10px;
@@ -1641,19 +1643,27 @@
   width: 70%;
   display: flex;
   /* justify-content: center; */
-  align-items: center;
+  /* align-items: center; */
 }
 .profile_myinfo_box_input_in{
+  margin-top: 20px;
+
   width: 80%;
-  height: 80%;
+  height: 40px;
   border-radius: 10px;
   background-color: #5f5f5f5a;
   font-size: 20px;
   color: #f8f8ff;
 
-  padding: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+
   border: 1px solid #4d4d4d8c ;
-  box-shadow: 0 0 17px rgba(0, 0, 0, .5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+}
+.profile_myinfo_box_input_in::placeholder{
+  color: rgba(198, 198, 198, 0.783);
+  font-size: 19px;
 }
 
 .profile_submit_button {
@@ -1701,12 +1711,7 @@
   box-sizing: border-box;
   transition: 0.5s;
 }
-/* 로딩중 박스 만들기입니다. */
-/* *{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-} */
+
 .teammember_bg{
   min-height: 100vh;
 

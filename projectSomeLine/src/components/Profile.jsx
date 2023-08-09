@@ -177,13 +177,18 @@ const Profile = () => {
           </form>
         </div>
         <div  className='profile_myinfo_box'>
-          <div className='profile_myinfo_box_text'><h1>자기 소개</h1></div>
+          <div className='profile_myinfo_box_text'><h1>한줄 소개</h1></div>
           <form className="profile_myinfo_box_input">
-            <textarea
+            {/* <textarea
             className="profile_myinfo_box_input_in"
             // id="id"
             type='textarea'
-            ></textarea>
+            ></textarea> */}
+            <input
+            className="profile_myinfo_box_input_in"
+            placeholder= {"한줄 소개 공간"}
+            maxLength={30}
+            ></input>
           </form>
         </div>
         <div className='profile_chainge_button_box'><button onClick={handleSubmit} className='profile_submit_button'>수정하기</button></div>
