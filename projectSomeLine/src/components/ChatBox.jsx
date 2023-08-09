@@ -31,7 +31,7 @@ const ChatBox = ({room}) => {
   const [selectedRoom, setSelectedRoom] = useState(sessionStorage.getItem('selectedRoom' || ''))
   const [messagesText, setMessagesText] = useState([])
   const [prediction, setPrediction] = useState('');
-  const [axiosState, setAxiosState] = useState(true)
+  const [emojiState, setEmojiState] = useState(false)
 
   
   useEffect(() => {
@@ -81,7 +81,6 @@ const ChatBox = ({room}) => {
         .then((url) => {
           const img = document.getElementById('myPhoto');
           img.setAttribute('src', url);
-          console.log(url);
         })
         .catch((error) => {
           alert(`에러 : ${error}`);
@@ -117,6 +116,47 @@ const ChatBox = ({room}) => {
     try {
     const response = axios.post('http://localhost:5000/get_chatbot_messages', 
     { "data": messagesText })
+    console.log(`response.data.message: ${JSON.stringify((await response).data)}`);} catch (error) {
+      console.error('An error occurred:', error);
+    }
+  };
+
+  const sendToChatBot = async(message) => {
+    try {
+    const response = axios.post('http://localhost:5000/chatbot_message', 
+    { "data": newMessage })
+    message.preventDefault();
+
+    if (newMessage === "") return;
+    const newMessageDoc = {
+      text: newMessage,
+      createdAt: serverTimestamp(),
+      user: currentUser.displayName,
+      room: selectedRoom
+    };
+    await addDoc(messagesRef, newMessageDoc);
+
+    const newMessageDoc2 = {
+      text: JSON.stringify((await response).data),
+      createdAt: serverTimestamp(),
+      user: "SomeLine",
+      room: selectedRoom
+    };
+    await addDoc(messagesRef, newMessageDoc2);
+
+    // Update the updateAt timestamp in sessionStorage
+    sessionStorage.setItem('updateAt', newMessageDoc.createdAt);
+
+    setNewMessage("");
+    console.log(`response.data.message: ${JSON.stringify((await response).data)}`);} catch (error) {
+      console.error('An error occurred:', error);
+    }
+  };
+
+  const handleEmoji = async(emoji) => {
+    try {
+    const response = axios.get('http://localhost:5000/get_chatbot_messages', 
+    { "data": emoji })
     console.log(`response.data.message: ${JSON.stringify((await response).data)}`);} catch (error) {
       console.error('An error occurred:', error);
     }
@@ -182,6 +222,9 @@ const ChatBox = ({room}) => {
           <img className='chat_Profil_img' src={selectedProfileUrl}/>
         </div>
         <h2 className='you_chat_Profil_name'>{selectedUserName}</h2>
+        <div key={hartKey} className={`emt_hart ${hartClicked ? 'moveFadeOut' : ''}`}>💕</div>
+        <div key={sadKey} className={`emt_sad ${sadClicked ? 'moveFadeOut' : ''}`}>😢</div>
+        <div key={angryKey} className={`emt_angry ${angryClicked ? 'moveFadeOut' : ''}`}>👿</div>
       </div>
       <div className='chatbox_box'>
         <div className='chatbox_btn_box'>
@@ -197,20 +240,37 @@ const ChatBox = ({room}) => {
             </div>
           ))}
         </div>
-        <form className='chatbox_input' onSubmit={handleSubmit}>
-          <input 
-            className='chat_input_text' 
-            type="text" 
-            value={newMessage}
-            onChange={(event) => setNewMessage(event.target.value)}
-          />
-          <button 
-            className="chat_send_btn" 
-            type="submit"
-          >
-            보내기
-          </button>
-        </form>
+        {selectedUserName=="SomeLine" ?
+          <form className='chatbox_input' onSubmit={sendToChatBot}>
+            <input 
+              className='chat_input_text' 
+              type="text" 
+              value={newMessage}
+              onChange={(event) => setNewMessage(event.target.value)}
+            />
+            <button 
+              className="chat_send_btn" 
+              type="submit"
+            >
+              SomeLine말걸기
+            </button>
+          </form> 
+        : 
+          <form className='chatbox_input' onSubmit={handleSubmit}>
+            <input 
+              className='chat_input_text' 
+              type="text" 
+              value={newMessage}
+              onChange={(event) => setNewMessage(event.target.value)}
+            />
+            <button 
+              className="chat_send_btn" 
+              type="submit"
+            >
+              보내기
+            </button>
+          </form>
+        }
       </div>
       <div className='my_chat_Profil'>
         <div  className='chat_Profil_img_box'>

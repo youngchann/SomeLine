@@ -87,19 +87,19 @@ const ChatList = () => {
     sessionStorage.setItem('selectedUserName', users.chatListName[index])
     sessionStorage.setItem('selectedUserProfileUrl', users.chatListProfileUrl[index])
     
-    if (users.chatListProfileUrl[index] > user.createdAt) {
-      sessionStorage.setItem('selectedRoom', `${users.chatListName[index]}+${currentUser.displayName}`)
+    if (user.chatListCreatedAt[index] > user.createdAt) {
+      sessionStorage.setItem('selectedRoom', `${user.chatListName[index]}+${currentUser.displayName}`)
     } else {
-      sessionStorage.setItem('selectedRoom', `${currentUser.displayName}+${users.chatListName[index]}`)
+      sessionStorage.setItem('selectedRoom', `${currentUser.displayName}+${user.chatListName[index]}`)
     }
     nav('/chatbox')
   }
 
   const handleClickBot = () => {
-    setSelectedUser('챗봇:지호')
-    sessionStorage.setItem('selectedUserName', '챗봇:지호')
-    sessionStorage.setItem('selectedUserProfileUrl', 'https://firebasestorage.googleapis.com/v0/b/chatapp2-aa1ab.appspot.com/o/images%2F%EA%B5%AD2.jpg?alt=media&token=1e4d4b55-f1b1-4e6f-a030-e06ca28a99d2')
-    sessionStorage.setItem('selectedRoom', `챗봇:지호+${currentUser.displayName}`)
+    setSelectedUser('SomeLine')
+    sessionStorage.setItem('selectedUserName', 'SomeLine')
+    sessionStorage.setItem('selectedUserProfileUrl', 'https://firebasestorage.googleapis.com/v0/b/chatapp2-aa1ab.appspot.com/o/images%2FSomeLineLogobackground.png?alt=media&token=0ebf728e-0272-4554-b743-f46f635edf95')
+    sessionStorage.setItem('selectedRoom', `SomeLine+${currentUser.displayName}`)
     
     nav('/chatbox')
   }
@@ -161,9 +161,9 @@ const ChatList = () => {
           {user ? (
             <div>
               <Tilt options={options} className='chat_list_contents' onClick={()=>handleClickBot()}>
-                <div className='chat_list_profile_img_box'><img className='chat_list_profile_img' src='https://firebasestorage.googleapis.com/v0/b/chatapp2-aa1ab.appspot.com/o/images%2F%EA%B5%AD2.jpg?alt=media&token=1e4d4b55-f1b1-4e6f-a030-e06ca28a99d2' /></div>
+                <div className='chat_list_profile_img_box'><img className='chat_list_profile_img' src='https://firebasestorage.googleapis.com/v0/b/chatapp2-aa1ab.appspot.com/o/images%2FSomeLineLogobackground.png?alt=media&token=0ebf728e-0272-4554-b743-f46f635edf95' /></div>
                 
-                <p className='chat_list_name'>챗봇:지호</p>
+                <p className='chat_list_name'>SomeLine</p>
                 <p className='chat_list_talk_preview'>반가워요 ^^</p>
               </Tilt>
             {user.chatListName?.map((chat, index) => (
