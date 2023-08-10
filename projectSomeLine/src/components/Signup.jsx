@@ -59,6 +59,8 @@ const Signup = () => {
                 name : name,
                 gender : gender,
                 age : age,
+                address : address,
+                job : job,
                 profileUrl : downloadUrl,
                 createdAt: serverTimestamp()
             });
@@ -86,7 +88,7 @@ const Signup = () => {
     };
 
     const isFormValid = () => {
-    return email && password && name && gender && age && imageUpload;} 
+    return email && password && name && gender && age && imageUpload && address && job;} 
     
 
   return (

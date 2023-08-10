@@ -227,7 +227,7 @@ const Matching = () => {
                         <div className='matching_success_um'> 
                           <div className='info_info_box_name_info'>                          
                             <p>{genderuser.name} • {genderuser.age}세 ✨</p>
-                            <p >서울 • 프리랜서 ✨</p>
+                            <p >{genderuser.address} • {genderuser.job} ✨</p>
                             <div className='mat_Interest_list'><p>관심사</p><p>관심사공간</p><p>관심사공간</p></div>
                           </div>
                           <button
