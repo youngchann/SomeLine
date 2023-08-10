@@ -204,7 +204,8 @@ const Matching = () => {
                   </div>
                   <div className='info_info_box'>
                     {genderuser.requestList?.includes(currentUser.displayName) ? (
-                        // 현재 유저 이름이 matchedList에 있으면 "수락하기" 표시
+                      btnCheck.includes(genderuser.name) ? <p>매칭 완료</p> :
+                        // 현재 유저 이름이 matchedList에 있으면 "매칭하기" 표시
                         <div className='matching_success_um'>
                           <div className='info_info_box_name_info'>
                             <p>◦ {genderuser.name} • {genderuser.age}세 ✨</p>
@@ -220,7 +221,7 @@ const Matching = () => {
                           </button>
                         </div>
                       ) : (
-                        // 현재 유저 이름이 matchedList에 없으면 "매칭하기" 표시
+                        // 현재 유저 이름이 matchedList에 없으면 "요청하기" 표시
                         requestStatus[genderuser.name] === 'requested' ? <p className='mat_p_align'>요청완료🥰<br/>
                           <span >응답을 기다리는 중</span><span className='matching_requesting_text'>....</span>
                         </p> :
