@@ -25,7 +25,7 @@ const Profile = () => {
   const [imageUpload, setImageUpload] = useState(null);
   const [profileImage, setProfileImage] = useState(null);
   const [name, setName] = useState("");
-  const [age, setAge] = useState("");
+  const [job, setJob] = useState("");
   const [address, setAddress] = useState("");
 
   const [originalUser, setOriginalUser] = useState(null); // 작업자 : 이찬용 8월 5일 12시
@@ -45,7 +45,7 @@ const Profile = () => {
   
           // 초기 이름과 사진 상태 설정
           setName(userData.name);
-          setAge(userData.age);
+          setJob(userData.job);
           setAddress(userData.address);
           setProfileImage(userData.profileUrl);  // 이미지 URL 저장, Firebase Storage에서 가져옵니다.
         });
@@ -86,11 +86,11 @@ const Profile = () => {
 
     // 이름과 이미지가 비어 있는지를 확인 하기 위해 존재합니다.
     const isNameChanged = name !== originalUser.name;
-    const isAgeChanged = age !== originalUser.age;
+    const isJobChanged = job !== originalUser.age;
     const isAddressChanged = address !== originalUser.address;
     const isImageChanged = imageUpload !== null;
 
-    if (isNameChanged || isImageChanged || isAgeChanged || isAddressChanged) {      //프로필 내용추가되면. 여기도 추가, 이찬용: 8월 5일 12시
+    if (isNameChanged || isImageChanged || isJobChanged || isAddressChanged) {      //프로필 내용추가되면. 여기도 추가, 이찬용: 8월 5일 12시
       try {
         let downloadUrl;
         if (isImageChanged) {
@@ -118,7 +118,7 @@ const Profile = () => {
         querySnapshot.forEach((doc) => {
           updateDoc(doc.ref, {
             name: isNameChanged ? name : originalUser.name,
-            age: isAgeChanged ? age : originalUser.age,
+            job: isJobChanged ? job : originalUser.job,
             addres: isAddressChanged ? address : originalUser.address,
             profileUrl: downloadUrl,
           });
@@ -206,9 +206,9 @@ const Profile = () => {
             <input
             className="profile_myinfo_box_input_in"
             id="profile_myinfo_address"
-            placeholder= {user.age}
-            onChange={(e) => setAge(e.target.value)}
-            maxLength={2}
+            placeholder= {user.job}
+            onChange={(e) => setJob(e.target.value)}
+            maxLength={6}
             ></input>
             <input
             className="profile_myinfo_box_input_in"
