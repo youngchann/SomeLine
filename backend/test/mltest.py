@@ -74,20 +74,20 @@ def chatbot_message():
         return jsonify({"error": f"An Error Occurred: {str(e)}"}), 500
     
 
-# @app.route('/emoji', methods=['POST'])
-# def emoji():
-#     try:
-#         # 클라이언트로부터 JSON 데이터 수신
-#         data = request.json
-#         emoji_data = data.get('data')
+@app.route('/emoji', methods=['POST'])
+def emoji():
+    try:
+        # 클라이언트로부터 JSON 데이터 수신
+        data = request.json
+        emoji_data = data.get('data')
 
-#         # 수신된 데이터를 처리하고 응답을 반환
-#         response_data = {"message": f"Received data for room: {emoji_data}"}
-#         print(response_data)
-#         return jsonify(predict_response(emoji_data)), 200
+        # 수신된 데이터를 처리하고 응답을 반환
+        response_data = {"message": f"Received data for room: {emoji_data}"}
+        print(response_data)
+        return jsonify(predict_response(emoji_data)), 200
 
-#     except Exception as e:
-#         return jsonify({"error": f"An Error Occurred: {str(e)}"}), 500
+    except Exception as e:
+        return jsonify({"error": f"An Error Occurred: {str(e)}"}), 500
 
 
 
