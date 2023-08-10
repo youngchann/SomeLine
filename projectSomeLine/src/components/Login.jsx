@@ -50,7 +50,7 @@ const Login = () => {
           </div>
           <div className="login_bgm_b">
             <video className="login_bgm" autoPlay muted loop>
-              <source src='videos/mainmain8.mp4' type='video/mp4' />
+              <source src='videos/mainmain9.mp4' type='video/mp4' />
             </video>
           </div>
           <div className='login_box'>
