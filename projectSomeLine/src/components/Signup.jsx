@@ -14,6 +14,9 @@ const Signup = () => {
     const [name, setName] = useState("");
     const [gender, setGender] = useState("");
     const [age, setAge] = useState("");
+    const [address,setAddress] = useState("");
+    const [job,setJob] = useState("");
+
     const usersRef = collection(db, "users");
     const nav = useNavigate()
 
@@ -133,8 +136,20 @@ const Signup = () => {
                 
                 ></input>
                 <div className="signup_location_jop_box">
-                    <input className="signup_location_box" placeholder="사는 곳"></input>
-                    <input className="signup_job_box" placeholder="직업"></input>
+                    <input 
+                    className="signup_location_box" 
+                    job="address"
+                    onChange={(e) => setAddress(e.target.value)}
+                    value={address}
+                    placeholder="사는 곳"
+                    ></input>
+                    <input 
+                    className="signup_job_box"
+                    id="job"
+                    onChange={(e) => setJob(e.target.value)}
+                    value={job}
+                    placeholder="직업"
+                    ></input>
                 </div>
                 <div className='gender_box'>
                     <h3 className='gender_box_name'>⁃ 성별</h3>
