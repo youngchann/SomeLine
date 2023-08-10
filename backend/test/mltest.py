@@ -5,12 +5,17 @@ from nltk.corpus import stopwords
 import joblib
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+import openai
 
 app = Flask(__name__)
-CORS(app, origins="http://localhost:3000")
+# CORS(app, origins="http://localhost:3000")
+CORS(app)
 
 # 라벨 인코딩을 위한 객체 생성
 label_encoder = joblib.load('label_encoder.joblib')
+
+openai.api_key = "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"
+
 
 # 텍스트 전처리를 위한 함수 정의
 def preprocess_text(text):
@@ -63,13 +68,38 @@ def chatbot_message():
         # 클라이언트로부터 JSON 데이터 수신
         data = request.json
         message_data = data.get('data')
+        newMessage_data = data.get('newData')
+        name = data.get('name')
+
 
         # 수신된 데이터를 처리하고 응답을 반환
-        response_data = {"message": f"Received data for room: {''.join(message_data)}"}
-        print(predict_response(''.join(message_data)))
-        print(response_data)
-        return jsonify(predict_response(''.join(message_data))), 200
+        messages = [{
+          "role": "system",
+          "content": f"you are korean,Do not use honorifics and do not use profanity, my name is {name}, your name is SomeLine."
+        }]
+        for i in range(len(message_data)):
+            content = message_data[i]
+            if i % 2 == 0:
+                messages.append({"role":"user", "content":content})
+            else:
+                messages.append({"role":"assistant", "content":content})
+        messages.append({"role":"user", "content":newMessage_data})
+        print(newMessage_data)
+        print(messages)
 
+        response = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=messages,
+        temperature=1,
+        max_tokens=256,
+        top_p=1,
+        frequency_penalty=0,
+        presence_penalty=0
+        )
+
+        chat_response = response.choices[0].message.content
+
+        return jsonify(chat_response), 200
     except Exception as e:
         return jsonify({"error": f"An Error Occurred: {str(e)}"}), 500
     
@@ -84,12 +114,13 @@ def emoji():
         # 수신된 데이터를 처리하고 응답을 반환
         response_data = {"message": f"Received data for room: {emoji_data}"}
         print(response_data)
-        return jsonify(predict_response(emoji_data)), 200
+        return jsonify(emoji_data), 200
 
     except Exception as e:
         return jsonify({"error": f"An Error Occurred: {str(e)}"}), 500
+    
 
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host = '0.0.0.0', port = '5000', debug=True)

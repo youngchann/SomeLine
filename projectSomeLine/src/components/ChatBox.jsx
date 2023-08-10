@@ -106,25 +106,24 @@ const ChatBox = ({room}) => {
     setNewMessage("");
 
     // 챗봇과 대화일 때 15번 대화가 생성되면 메시지 리스트를 서버로 보냄
-    if (messages.filter(message => message.room === `챗봇:지호+${currentUser.displayName}`).length !=0 && messages.length % 15 == 0) {
-      console.log(`${currentUser.displayName}님과 챗봇의 대화 데이터를 서버에 보냅니다.`)
-      handlePrediction(messagesText)
-    }
   };
 
   const handlePrediction = async(messagesText) => {
     try {
     const response = axios.post('http://localhost:5000/get_chatbot_messages', 
     { "data": messagesText })
-    console.log(`response.data.message: ${JSON.stringify((await response).data)}`);} catch (error) {
-      console.error('An error occurred:', error);
+    console.log(`관심사: ${JSON.stringify((await response).data)}`);} catch (error) {
+      console.error('관심사 error occurred:', error);
     }
   };
 
   const sendToChatBot = async(message) => {
     try {
     const response = axios.post('http://localhost:5000/chatbot_message', 
-    { "data": newMessage })
+    { "data": messagesText,
+      "newData" : newMessage,
+      "name" : currentUser.displayName
+     })
     message.preventDefault();
 
     if (newMessage === "") return;
@@ -148,6 +147,11 @@ const ChatBox = ({room}) => {
     sessionStorage.setItem('updateAt', newMessageDoc.createdAt);
 
     setNewMessage("");
+
+    if (messages.length !=0 && messages.length % 10 == 0) {
+      console.log(`${currentUser.displayName}님과 챗봇의 대화 데이터를 서버에 보냅니다.`)
+      handlePrediction(messagesText)
+    }
     console.log(`response.data.message: ${JSON.stringify((await response).data)}`);} catch (error) {
       console.error('An error occurred:', error);
     }
@@ -157,9 +161,13 @@ const ChatBox = ({room}) => {
     try {
     const response = axios.post('http://localhost:5000/emoji', 
     { "data": emoji })
-    console.log(`response.data.message: ${JSON.stringify((await response).data)}`);} catch (error) {
+    console.log(`response.data.message: ${JSON.stringify((await response).data)}`);
+    setEmojiState(JSON.stringify((await response).data))
+    } 
+    catch (error) {
       console.error('An error occurred:', error);
     }
+    
   };
 
   const handleClearChat = async () => {
@@ -224,9 +232,12 @@ const ChatBox = ({room}) => {
           <img className='chat_Profil_img' src={selectedProfileUrl}/>
         </div>
         <h2 className='you_chat_Profil_name'>{selectedUserName}</h2>
-        <div key={hartKey} className={`emt_hart ${hartClicked ? 'moveFadeOut' : ''}`}>💕</div>
-        <div key={sadKey} className={`emt_sad ${sadClicked ? 'moveFadeOut' : ''}`}>😢</div>
-        <div key={angryKey} className={`emt_angry ${angryClicked ? 'moveFadeOut' : ''}`}>👿</div>
+        {emojiState == "hart" && 
+        <div key={hartKey} className={`emt_hart ${hartClicked ? 'moveFadeOut' : ''}`}>💕</div>}
+        {emojiState == "sad" &&
+        <div key={sadKey} className={`emt_sad ${sadClicked ? 'moveFadeOut' : ''}`}>😢</div>}
+        {emojiState == "angry" &&
+        <div key={angryKey} className={`emt_angry ${angryClicked ? 'moveFadeOut' : ''}`}>👿</div>}
       </div>
       <div className='chatbox_box'>
         <div className='chatbox_btn_box'>
@@ -254,7 +265,7 @@ const ChatBox = ({room}) => {
               className="chat_send_btn" 
               type="submit"
             >
-              SomeLine말걸기
+              보내기
             </button>
           </form> 
         : 
