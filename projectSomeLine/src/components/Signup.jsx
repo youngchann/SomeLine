@@ -132,6 +132,10 @@ const Signup = () => {
                     onChange={handleAgeChange}
                 
                 ></input>
+                <div className="signup_location_jop_box">
+                    <input className="signup_location_box" placeholder="사는 곳"></input>
+                    <input className="signup_job_box" placeholder="직업"></input>
+                </div>
                 <div className='gender_box'>
                     <h3 className='gender_box_name'>⁃ 성별</h3>
                     <form className='gender_choice' action="action.jsp">
