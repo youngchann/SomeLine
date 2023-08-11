@@ -186,8 +186,6 @@ const ChatBox = ({room}) => {
   };
 
  
-
-
   // 감정 이모티콘이 올라가게 올라가게 만드는 함수들입니다.
   const [hartClicked, hartIsClicked] = useState(false);
   const [sadClicked, sadIsClicked] = useState(false);
@@ -196,6 +194,30 @@ const ChatBox = ({room}) => {
   const [hartKey, setHartKey] = useState(Math.random());
   const [sadKey, setSadKey] = useState(Math.random());
   const [angryKey, setAngryKey] = useState(Math.random());
+
+  // 프로필 팝업을 띄우기 위한 코드입니다.~~~
+  const [isVisible, setIsVisible] = useState(false);
+
+  const handleProfileClick = (e) => {
+    // 마우스 클릭한 위치의 x, y 좌표를 추출
+    const x = e.clientX;
+    const y = e.clientY;
+
+    // CSS 변수 값을 변경
+    const popupBox = document.querySelector('.mychat_Profil_click_box');
+    if (popupBox) {
+      popupBox.style.setProperty('--popup-x', `${x}px`);
+      popupBox.style.setProperty('--popup-y', `${y}px`);
+    }
+    
+    setIsVisible(true);
+  };
+
+  const profilPopupClose = () => {
+    setIsVisible(false);
+  }
+
+  //  팝업을 띄우기 위한 코드는 여기까지 입니다.
 
   const hart_Click = () => {
     handleEmoji("hart")
@@ -228,7 +250,7 @@ const ChatBox = ({room}) => {
         </video>
       </div>
       <div className='you_chat_Profil'>
-        <div className='chat_Profil_img_box'>
+        <div className='chat_Profil_img_box' onClick={handleProfileClick}>
           <img className='chat_Profil_img' src={selectedProfileUrl}/>
         </div>
         <h2 className='you_chat_Profil_name'>{selectedUserName}</h2>
@@ -303,7 +325,15 @@ const ChatBox = ({room}) => {
           <button className='imotion_btn imotion_btn_angry_btn' onClick={angry_Click}>👿</button>
         </div>
       </div>
-
+      <div className={isVisible ? 'mychat_Profil_click_box active' : 'mychat_Profil_click_box'}>
+        <button className='mychat_Profil_click_box_close_btn' onClick={profilPopupClose}>X</button>
+        <div className='mychat_Profil_click_box_img_box'>
+          <img src={selectedProfileUrl} alt="Profile"/>
+        </div>
+        <div className='mychat_Profil_click_box_info'>
+          <h4>{selectedUserName}</h4>
+        </div>
+      </div>
     </div>
   )
 }

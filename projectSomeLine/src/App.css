@@ -364,18 +364,18 @@
   /* font-size: 300px; */
   font-size: 280px;
 
-  transform: rotate(-40deg);
+  transform: rotate(0deg);
   z-index: -90;
 
   bottom: -50%;
-  left: 10%;
+  left: -5%;
 
-  color: #f8f8ffdb;
-  /* color: #fff;
-  text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px rgb(212, 0, 255),
+  color: #e26fe8b6;
+  color: #cacacad3;
+  text-shadow: 0 0 7px #cacacad3, 0 0 10px #cacacad3, 0 0 21px #cacacad3, 0 0 42px rgb(212, 0, 255),
     0 0 82px rgb(212, 0, 255), 0 0 92px rgb(212, 0, 255), 0 0 102px rgb(212, 0, 255), 0 0 151px rgb(212, 0, 255);
 
-    animation: flicker 1.5s infinite alternate; */
+    /* animation: flicker 1.5s infinite alternate; */
 }
 /* @keyframes flicker {
     
@@ -405,16 +405,16 @@
   position: absolute;
   font-family: "Borel";
   font-size: 280px;
-  transform: rotate(-40deg);
+  transform: rotate(0deg);
   bottom: -51%;
   left: 60%;
 
   z-index: -90;
 
-  color: #f8f8ffdb;
-  /* color: #ffffff;
-  text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px rgb(212, 0, 255),
-    0 0 82px rgb(212, 0, 255), 0 0 92px rgb(212, 0, 255), 0 0 102px rgb(212, 0, 255), 0 0 151px rgb(212, 0, 255); */
+  color: #e26fe8b6;
+  color: #cacacad3;
+  text-shadow: 0 0 7px #cacacad3, 0 0 10px #cacacad3, 0 0 21px #cacacad3, 0 0 42px rgb(212, 0, 255),
+    0 0 82px rgb(212, 0, 255), 0 0 92px rgb(212, 0, 255), 0 0 102px rgb(212, 0, 255), 0 0 151px rgb(212, 0, 255);
 
 }
 
@@ -1005,8 +1005,100 @@
 .imotion_btn:active{
   box-shadow: inset 0 0 3px 5px #999, inset 0 0 8px #aaa;
 }
+.mychat_Profil_click_box{
+  position: absolute;
 
+  width: 190px;
+  height: 270px;
 
+  overflow: hidden;
+
+  left: var(--popup-x, 0px);
+  top: var(--popup-y, 0px);
+  transform: translateX(-50%) translateY(-50%) scale(0); /* 초기 상태에서 팝업을 작게 시작 */
+  transition: transform 0.3s ease-out; /* 애니메이션 효과 추가 */
+  opacity: 0; /* 초기 상태에서 팝업을 투명하게 */
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out; /* 투명도 변경에도 애니메이션 효과 추가 */
+
+  border-radius: 15px ;
+  border-bottom-left-radius: 0px;
+
+  border: 1px solid #6f6f6f2a;
+
+  box-shadow: 0 0 20px #000000b1;
+}
+.mychat_Profil_click_box.active {
+  transform: translateX(0%) translateY(-100%) scale(1); /* 팝업을 원래 크기로 복원 */
+  opacity: 1; /* 팝업을 완전히 불투명하게 */
+}
+.mychat_Profil_click_box_close_btn{
+  position:absolute;
+  top: 0px;
+  right: 0px;
+
+  border: none;
+
+  width: 30px;
+  height: 30px;
+
+  background-color: rgba(29, 29, 29, 0.643);
+  
+  font-size: 27px;
+  text-align: center;
+
+  padding-bottom: 3px;
+  box-sizing: border-box;
+
+  color: #f8f8ff;
+
+  border-bottom-left-radius: 10px;
+
+  display: flex;
+  flex-direction: column;
+
+  z-index: 2;
+  box-shadow: 0 0 10px #000000b1;
+
+}
+.mychat_Profil_click_box_img_box{
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  border-radius: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+}
+.mychat_Profil_click_box_img_box>img{
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+.mychat_Profil_click_box_info{
+  position: absolute;
+  bottom: 0px;
+  background:linear-gradient(to bottom,transparent 0%, rgba(0, 0, 0, 0.8) 90%);
+
+  width: 100%;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+
+  /* text-align: center; */
+  color: #f8f8ff;
+}
+.mychat_Profil_click_box_info>h4{
+  position: relative;
+  left: 10px;
+  top:65px;
+  font-size: 20px;
+}
 
 
 /* ------------------------------------------footer */
@@ -1739,6 +1831,10 @@
   color: #f8f8ff;
   border: none;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   border-top: 1px solid #f8f8ff7f;
   border-bottom: 1px solid #f8f8ff7f;
   /* 배경 색임. */
@@ -1973,6 +2069,9 @@
   .my_chat_Profil_name, .you_chat_Profil_name{
     font-size: 20px;
     transition-duration: 0.2s;
+  }
+  .mychat_Profil_click_box{
+    display: none;
   }
 }
 
@@ -2229,15 +2328,15 @@
 
 .tendencymain_box{
   position: relative;
-  width:  700px;
-  height: 600px;
+  width:  600px;
+  height: 540px;
   padding: 10px;
-  margin-top: 120px;
+  margin-top: 100px;
 
   /* background-color: #878f9d5c; */
   backdrop-filter: blur(80px);
 
-  border-radius: 20px;
+  border-radius: 10px;
   box-shadow: 0 0 25px rgba(0, 0, 0, .4);
 
   display: flex;
@@ -2283,7 +2382,7 @@
   margin: 5px;
   box-sizing: border-box;
   width: 50%;
-  height: 510px;
+  height: 460px;
   
   backdrop-filter: blur(80px);
   box-shadow: 0 0 25px rgba(0, 0, 0, .3) inset;
