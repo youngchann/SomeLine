@@ -242,7 +242,7 @@ const Matching = () => {
                             <p>{genderuser.name} • {genderuser.age}세 ✨</p>
                             <p >{genderuser.address} • {genderuser.job} ✨</p>
                             <div className='mat_Interest_list'>
-                              {genderuser.interest.map((item)=>(user.interest.includes(item) ? <p style={{color: '#e65ae6'}}>{item}</p> : <p>{item}</p>))}  
+                              {genderuser.interest?.map((item)=>(user.interest.includes(item) ? <p style={{color: '#e65ae6'}}>{item}</p> : <p>{item}</p>))}  
                             </div>
                           </div>
                           <button
@@ -263,7 +263,7 @@ const Matching = () => {
                             <p>{genderuser.name} • {genderuser.age}세 ✨</p>
                             <p >{genderuser.address} • {genderuser.job} ✨</p>
                             <div className='mat_Interest_list'>
-                              {genderuser.interest.map((item)=>(user.interest.includes(item) ? <p style={{color: '#e65ae6'}}>{item}</p> : <p>{item}</p>))}
+                              {genderuser.interest?.map((item)=>(user.interest.includes(item) ? <p style={{color: '#e65ae6'}}>{item}</p> : <p>{item}</p>))}
                             </div>
                           </div>
                           <button
