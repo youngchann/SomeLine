@@ -96,12 +96,42 @@ const Matching = () => {
           usersList.push({ ...doc.data(), id: doc.id });
         }
       });
-      setGenderUsers(usersList);
+
+      const calculateOverlapCount = (set1, set2) => {
+        let count = 0;
+        set1.forEach(item => {
+          if (set2.has(item)) {
+            count++;
+          }
+        });
+        return count;
+      };
+
+      const sortedLists = usersList.sort((a,b)=> {
+        const overlapA = calculateOverlapCount(new Set(user.interest), new Set(a.interest))
+        const overlapB = calculateOverlapCount(new Set(user.interest), new Set(b.interest))
+        return overlapB-overlapA
+      })
+
+      console.log(`sortedLists: ${JSON.stringify(sortedLists[0]?.name)}`);
+      // setGenderUsers(usersList);
+      setGenderUsers(sortedLists);
+      console.log(`genderUsers: ${JSON.stringify(genderUsers[0]?.name)}`);
       setCheck(true);
 
     });
   }
 }, [user]);
+
+  const findOverlappingElements = (set1, set2) => {
+    const overlappingElements = [];
+    set1.forEach(item => {
+      if (set2.has(item)) {
+        overlappingElements.push(item);
+      }
+    });
+    return overlappingElements;
+  };
 
 
 
@@ -210,7 +240,9 @@ const Matching = () => {
                           <div className='info_info_box_name_info'>
                             <p>{genderuser.name} • {genderuser.age}세 ✨</p>
                             <p >{genderuser.address} • {genderuser.job} ✨</p>
-                            <div className='mat_Interest_list'><p>관심사</p><p>관심사공간</p><p>관심사공간</p></div>
+                            <div className='mat_Interest_list'>
+                              {genderuser.interest.map((item)=>(user.interest.includes(item) ? <p style={{color: '#e65ae6'}}>{item}</p> : <p>{item}</p>))}  
+                            </div>
                           </div>
                           <button
                             className='matching_submit_button'
@@ -229,7 +261,9 @@ const Matching = () => {
                           <div className='info_info_box_name_info'>                          
                             <p>{genderuser.name} • {genderuser.age}세 ✨</p>
                             <p >{genderuser.address} • {genderuser.job} ✨</p>
-                            <div className='mat_Interest_list'><p>관심사</p><p>관심사공간</p><p>관심사공간</p></div>
+                            <div className='mat_Interest_list'>
+                              {genderuser.interest.map((item)=>(user.interest.includes(item) ? <p style={{color: '#e65ae6'}}>{item}</p> : <p>{item}</p>))}
+                            </div>
                           </div>
                           <button
                             className='matching_submit_button'

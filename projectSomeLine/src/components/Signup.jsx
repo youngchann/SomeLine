@@ -145,6 +145,7 @@ const Signup = () => {
                     value={address}
                     placeholder="사는 곳"
                     ></input>
+
                     <input 
                     className="signup_job_box"
                     id="job"

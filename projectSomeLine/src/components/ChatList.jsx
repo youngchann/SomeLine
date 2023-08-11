@@ -10,7 +10,9 @@ import {
   orderBy,
   getDocs,
   arrayRemove,
-  updateDoc
+  updateDoc,
+  addDoc,
+  serverTimestamp
 } from "firebase/firestore";
 import { AuthContext } from "../context/AuthContext";
 import { chatList } from './Matching';
@@ -41,6 +43,7 @@ const ChatList = () => {
 
   const { currentUser } = useContext(AuthContext);
   const nav = useNavigate()
+  const messagesRef = collection(db, "messages");
 
   // isVisible의 초기값을 false로 설정하여 새로운 메시지가 없을 때는 팝업이 뜨지 않도록 했습니다.
   const [isVisible, setIsVisible] = useState(null);
@@ -109,7 +112,17 @@ const ChatList = () => {
     const updatedChatListName = user.chatListName.filter((_, i) => i !== index);
     const updatedChatListProfileUrl = user.chatListProfileUrl.filter((_, i) => i !== index);
     const updatedChatListCreatedAt = user.chatListCreatedAt.filter((_, i) => i !== index);
-  
+    
+    const newMessageDoc = {
+      text: `${currentUser.displayName}님이 나가셨습니다.`,
+      createdAt: serverTimestamp(),
+      user: user.chatListName[index],
+      room: (user.chatListCreatedAt[index] > user.createdAt) 
+      ? `${user.chatListName[index]}+${currentUser.displayName}`
+      : `${currentUser.displayName}+${user.chatListName[index]}`
+    };
+    await addDoc(messagesRef, newMessageDoc);
+
     // 사용자 정보를 업데이트
     const usersRef = collection(db, "users");
     const querySnapshot = await getDocs(
@@ -122,6 +135,7 @@ const ChatList = () => {
         chatListCreatedAt: updatedChatListCreatedAt,
       });
     });
+
   
     // 로컬 상태 업데이트 (랜더링 트리거)
     setUser({
