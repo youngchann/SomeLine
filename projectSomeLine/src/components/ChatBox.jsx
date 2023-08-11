@@ -332,6 +332,9 @@ const ChatBox = ({room}) => {
         </div>
         <div className='mychat_Profil_click_box_info'>
           <h4>{selectedUserName}</h4>
+          <div className='mychat_Profil_click_box_info_heart'>
+            <span>❤️</span>
+          </div>
         </div>
       </div>
     </div>
