@@ -19,7 +19,6 @@ function TendencyMain() {
       <div className="tendencymain_box">
         <div className='tendencymain_header'><h1>~ 성향 커스텀 ~</h1></div>
         <Tendency data={Data} />
-        
       </div>
     </div>
   );
