@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext} from 'react';
+import React, { useState, useEffect, useContext,useCallback} from 'react';
 import { AuthContext } from "../context/AuthContext";
 import { db, auth } from "../firebase-config";
 import {
@@ -17,6 +17,8 @@ import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import { Link } from 'react-router-dom';
 import axios from 'axios'
 
+import ReactCanvasConfetti from 'react-canvas-confetti';
+
 
 
 const ChatBox = ({room}) => {
@@ -32,14 +34,22 @@ const ChatBox = ({room}) => {
   const [messagesText, setMessagesText] = useState([])
   const [prediction, setPrediction] = useState('');
   const [emojiState, setEmojiState] = useState("")
+  // 눈 내리는 효과를 위한 useState
 
-  
+  const [snow, setSnow] = useState(new Date().getTime());
+  const [sakura, setSakura] = useState(new Date().getTime());
+
+  const handleClickSnow = () => {
+    setSnow(new Date().getTime());
+  };
+  const handleClickSakura = () => {
+    setSakura(new Date().getTime());
+  };
+  // 눈 내리는 효과 여기까지다.
   useEffect(() => {
     if (!selectedRoom) {
       return
     }
-
-    
 
     const queryMessages = query(
       messagesRef,
@@ -195,6 +205,10 @@ const ChatBox = ({room}) => {
   const [sadKey, setSadKey] = useState(Math.random());
   const [angryKey, setAngryKey] = useState(Math.random());
 
+  const [hearts, setHearts] = useState([]);
+  const [sads, setSads] = useState([]);
+  const [angrys, setAngrys] = useState([]);
+
   // 프로필 팝업을 띄우기 위한 코드입니다.~~~
   const [isVisible, setIsVisible] = useState(false);
 
@@ -217,26 +231,26 @@ const ChatBox = ({room}) => {
     setIsVisible(false);
   }
 
-  //  팝업을 띄우기 위한 코드는 여기까지 입니다.
 
   const hart_Click = () => {
-    handleEmoji("hart")
+    handleEmoji("hart");
     hartIsClicked(true);
     setHartKey(Math.random()); 
+    setHearts(prevHearts => [...prevHearts, Math.random()]);
     setTimeout(() => hartIsClicked(false), 3000);
   };
-
   const sad_Click = () => {
-    handleEmoji("sad")
+    handleEmoji("sad");
     sadIsClicked(true);
     setSadKey(Math.random()); 
+    setSads(prevHearts => [...prevHearts, Math.random()]);
     setTimeout(() => sadIsClicked(false), 3000);
   };
-
   const angry_Click = () => {
-    handleEmoji("angry")
+    handleEmoji("angry");
     angryIsClicked(true);
     setAngryKey(Math.random()); 
+    setAngrys(prevHearts => [...prevHearts, Math.random()]);
     setTimeout(() => angryIsClicked(false), 3000);
   };
 
@@ -267,6 +281,26 @@ const ChatBox = ({room}) => {
           <button className='chatbox_in_top_btn' onClick={handleClearChat}>{"대화내용 지우기 >"}</button>
         </div>
         <div className='messages'>
+        <ReactCanvasConfetti
+          fire={snow}
+          particleCount={400}
+          spread={400}
+          origin={{ x: Math.random(), y: -1.1 }} 
+          drift={Math.random() * 0.2 - 0.1}
+          className='fire_jump'
+          colors={['#ffffff']}
+          width={800}
+        />
+        <ReactCanvasConfetti
+          fire={sakura}
+          particleCount={400}
+          spread={400}
+          origin={{ x: Math.random(), y: -1.1 }} 
+          drift={Math.random() * 0.2 - 0.1}
+          className='fire_jump'
+          colors={['#FF9DB2']}
+          width={800}
+        />
           {messages
           .filter(message=> message.removeText != '이 메시지는 삭제되었습니다.')
           .map((message) => (
@@ -314,15 +348,16 @@ const ChatBox = ({room}) => {
         
         <h2 className='my_chat_Profil_name'>{currentUser.displayName}</h2>
         {/* 해당 코드는 하트 이모션이 올라옵니다. */}
-        <div key={hartKey} className={`emt_hart ${hartClicked ? 'moveFadeOut' : ''}`}>💕</div>
-        <div key={sadKey} className={`emt_sad ${sadClicked ? 'moveFadeOut' : ''}`}>😢</div>
-        <div key={angryKey} className={`emt_angry ${angryClicked ? 'moveFadeOut' : ''}`}>👿</div>
-        
+        {hearts.map((hartKey) => (<div key={hartKey} className="emt_hart moveFadeOut">💕</div>))}
+        {sads.map((sadKey) => (<div key={sadKey} className="emt_sad moveFadeOut">😢</div>))}
+        {angrys.map((angryKey) => (<div key={angryKey} className="emt_angry moveFadeOut">👿</div>))}
+  
         <div className='imotion_box'>
-
           <button className='imotion_btn imotion_btn_hart_btn' onClick={hart_Click}>💕</button>
           <button className='imotion_btn imotion_btn_sad_btn' onClick={sad_Click}>😢</button>
           <button className='imotion_btn imotion_btn_angry_btn' onClick={angry_Click}>👿</button>
+          <button className='imotion_btn imotion_btn_angry_btn' onClick={handleClickSnow}>❄️</button>
+          <button className='imotion_btn imotion_btn_angry_btn' onClick={handleClickSakura}>🌸</button>
         </div>
       </div>
       <div className={isVisible ? 'mychat_Profil_click_box active' : 'mychat_Profil_click_box'}>

@@ -189,6 +189,7 @@ const ChatList = () => {
                 <p className='chat_list_name'>{user.chatListName[index]}</p>
                 <p className='chat_list_talk_preview' onClick={()=>handleClick(user, index)}>최근 메시지</p>
                 <button className='chatlist_chat_del_btn' onClick={()=>removeUserToList(index)}>나가기</button>
+                
 
               </Tilt>
             ))}
