@@ -371,11 +371,11 @@
   left: -5%;
 
   color: #e26fe8b6;
-  color: #cacacad3;
-  text-shadow: 0 0 7px #cacacad3, 0 0 10px #cacacad3, 0 0 21px #cacacad3, 0 0 42px rgb(212, 0, 255),
+  color: #c5c5c5c5;
+  text-shadow: 0 0 7px #c5c5c5c5, 0 0 10px #c5c5c5c5, 0 0 21px #c5c5c5c5, 0 0 42px rgb(212, 0, 255),
     0 0 82px rgb(212, 0, 255), 0 0 92px rgb(212, 0, 255), 0 0 102px rgb(212, 0, 255), 0 0 151px rgb(212, 0, 255);
 
-    /* animation: flicker 1.5s infinite alternate; */
+    /* animation: flicker 4s infinite alternate; */
 }
 /* @keyframes flicker {
     
@@ -412,8 +412,8 @@
   z-index: -90;
 
   color: #e26fe8b6;
-  color: #cacacad3;
-  text-shadow: 0 0 7px #cacacad3, 0 0 10px #cacacad3, 0 0 21px #cacacad3, 0 0 42px rgb(212, 0, 255),
+  color: #c5c5c5c5;
+  text-shadow: 0 0 7px #c5c5c5c5, 0 0 10px #c5c5c5c5, 0 0 21px #c5c5c5c5, 0 0 42px rgb(212, 0, 255),
     0 0 82px rgb(212, 0, 255), 0 0 92px rgb(212, 0, 255), 0 0 102px rgb(212, 0, 255), 0 0 151px rgb(212, 0, 255);
 
 }
@@ -1098,6 +1098,42 @@
   left: 10px;
   top:65px;
   font-size: 20px;
+}
+.mychat_Profil_click_box_info_heart{
+  position: absolute;
+  width: 40px;
+  height: 40px;
+
+  bottom: 10px;
+  right: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 25px;
+
+  animation: heartbreak 1s infinite alternate;
+  cursor: -webkit-grabbing; cursor: grabbing; 
+}
+/* .mychat_Profil_click_box_info_heart:hover{
+  font-size: 30px;
+
+  animation: heartbreak 1s infinite alternate;
+  cursor: -webkit-grabbing; cursor: grabbing;
+} */
+@keyframes heartbreak {
+    
+  0%, 50%, 100% {
+    font-size: 30px;
+    text-shadow: 0 0 15px red;
+  
+  }
+  
+  25%, 75% {    
+    font-size: 25px;
+    text-shadow: 0 0 10px red;
+  }    
 }
 
 
