@@ -1,4 +1,5 @@
 import React, { useRef, useState, useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom'
 import 'swiper/css';
 import 'swiper/css/effect-cards';
 import {v4} from 'uuid'
@@ -221,7 +222,7 @@ const Profile = () => {
         </div>
         <div  className='profile_myinfo_box'>
           <div className='profile_myinfo_box_text'><h1>성향</h1></div>
-          <button className='profile_info_customer_button'>나의 성향</button>
+          <Link to='/tendency' className='profile_info_customer_button'>나의 성향</Link>
           <button className='profile_mat_customer_button'>매칭 설정</button>
         </div>
         <div className='profile_chainge_button_box'><button onClick={handleSubmit} className='profile_submit_button'>수정하기</button></div>

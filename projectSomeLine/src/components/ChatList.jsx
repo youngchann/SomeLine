@@ -184,11 +184,12 @@ const ChatList = () => {
               <Tilt key={index} options={options} className="chat_list_contents" >
                 {/* onClick={()=>handleClick(user, index)}*/}
                 
-                <div className='chat_list_profile_img_box'><img className='chat_list_profile_img' src={user.chatListProfileUrl[index]}/></div>
+                <div className='chat_list_profile_img_box' ><img className='chat_list_profile_img' src={user.chatListProfileUrl[index]}/></div>
                 
                 <p className='chat_list_name'>{user.chatListName[index]}</p>
                 <p className='chat_list_talk_preview' onClick={()=>handleClick(user, index)}>최근 메시지</p>
                 <button className='chatlist_chat_del_btn' onClick={()=>removeUserToList(index)}>나가기</button>
+
               </Tilt>
             ))}
             </div>

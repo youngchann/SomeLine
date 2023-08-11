@@ -234,7 +234,8 @@ const Matching = () => {
                   </div>
                   <div className='info_info_box'>
                     {genderuser.requestList?.includes(currentUser.displayName) ? (
-                      btnCheck.includes(genderuser.name) ? <p>매칭 완료</p> :
+                      btnCheck.includes(genderuser.name) ? <p className='mat_p_align'>매칭 완료 🥰🎉<br/>
+                      <span >대화를 시작하세요</span><span className='matching_requesting_text'>....</span></p> :
                         // 현재 유저 이름이 matchedList에 있으면 "매칭하기" 표시
                         <div className='matching_success_um'>
                           <div className='info_info_box_name_info'>

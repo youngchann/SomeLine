@@ -24,7 +24,7 @@ import { Route, Routes, useLocation, Navigate } from 'react-router-dom';
 function App() {
 
   const location = useLocation();
-  const showSideMenu = location.pathname === '/chatbox' || location.pathname === '/chatlist' || location.pathname === '/matching' || location.pathname === '/profile';
+  const showSideMenu = location.pathname === '/chatbox' || location.pathname === '/chatlist' || location.pathname === '/matching' || location.pathname === '/profile' || location.pathname === '/tendency';
 
 
   return (
