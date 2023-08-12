@@ -13,7 +13,8 @@ import Sidebar from './components/Sidebar';
 
 import TeamMember from './components/TeamMember';
 import TendencyMain from './components/TendencyMain';
-import Loading from './components/Loading';
+import CommunitySpace from './components/CommunitySpace';
+
 
 
 import { Route, Routes, useLocation, Navigate } from 'react-router-dom';
@@ -24,7 +25,7 @@ import { Route, Routes, useLocation, Navigate } from 'react-router-dom';
 function App() {
 
   const location = useLocation();
-  const showSideMenu = location.pathname === '/chatbox' || location.pathname === '/chatlist' || location.pathname === '/matching' || location.pathname === '/profile' || location.pathname === '/tendency';
+  const showSideMenu = location.pathname === '/chatbox' || location.pathname === '/chatlist' || location.pathname === '/matching' || location.pathname === '/profile' || location.pathname === '/tendency' || location.pathname === '/community' ;
 
 
   return (
@@ -45,7 +46,9 @@ function App() {
         {/* 테스트용 */}
         <Route path='/teammember' element={<TeamMember/>}></Route>
         <Route path='/tendency' element={<TendencyMain/>}></Route>
-        <Route path='/loading' element={<Loading/>}></Route>
+
+        <Route path='/community' element={<CommunitySpace/>}></Route>
+
       </Routes>
 
       {/* <Footer/> */}

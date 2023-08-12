@@ -275,11 +275,12 @@
   left: 0;
   height: 100%;
   width: 100%;
-  z-index: -99;
+  z-index: -999;
 }
 .login_bgm{
   height: 100%;
   width: 100%;
+  z-index: -99%;
   object-fit: cover;
 }
 .find_ps_id{
@@ -1423,6 +1424,7 @@
 }
 
 .side_menus_menu{
+  z-index: 30;
   text-align: center;
   
   font-family: 'HakgyoansimWoojuR';
@@ -2546,5 +2548,122 @@ svg{
   width: 100%;
 }
 
+/* 커뮤니티 공간 */
+
+.communityspace_bg{
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+
+  overflow: hidden;
+}
+.communityspace_bg_shadow{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100vh;
+  z-index: -50px;
+
+  background: linear-gradient(to bottom, rgb(41, 41, 55) 0%, transparent 50%);
+  /* background: linear-gradient(to bottom, rgb(207, 204, 207) 0%, transparent 99%); */
+
+}
+.communityspace_bg_shadow>p{
+  cursor: pointer;
+  position:absolute;
+}
+.communityspace_bg_shadow>p:nth-child(1){
+  top: 10%;
+  left: 10%;
+}
+.communityspace_bg_shadow>p:nth-child(2){
+  top: 18%;
+  left: 4%;
+}
+.communityspace_bg_shadow>p:nth-child(3){
+  top: 10%;
+  right: 14%;
+}
+.communityspace_bg_shadow>p:nth-child(4){
+  top: 15%;
+  right: 7%;
+}
+
+.communityspace_box{
+  margin-top: 120px;
+  position: relative;
+  width: 700px;
+  height: 700px;
+  background: none;
+  border: 1px solid #b9b9b939;
+
+  backdrop-filter: blur(80px);
+  border-radius: 10px;
+
+  box-shadow: 0 0 30px rgba(0, 0, 0, .4);
+  padding: 10px;
+  box-sizing: border-box;
+}
+.communityspace_box_header{
+  width: 100%;
+  height: 60px;
+  border-bottom: 1px solid #f8f8ff66;
+
+  padding-bottom: 10px;
+  display: flex;
+}
+.communityspace_box_header>h1{
+  color: #f8f8ff;
+  font-family: 'Exo 2';
+  font-size: 40px;
+
+  margin-left: 30px;
+}
+.communityspace_box_header>p{
+  color: #f8f8ff;
+  position: relative;
+  top: 35px;
+  margin-left: 10px;
+}
+
+
+@media (max-width: 800px) {
+  .communityspace_box{
+    width: 98%;
+    margin-top: 70px;
+  }
+}
+.communityspace_box_in_box2{
+  padding-top: 10px;
+  width: 100%;
+  height: 310px;
+
+  display: flex;
+  justify-content: space-between;
+}
+.communityspace_box_in_best_page{
+  width: 40%;
+  height: 300px;
+
+  padding: 5px;
+  box-sizing: border-box;
+
+  border: 1px solid #f8f8ff;
+
+}
+
+.communityspace_box_in_best_page>div{
+  
+  color: #f8f8ff;
+  width: 100%;
+  height: 10%;
+  font-weight: 400;
+
+  border-bottom: 1px solid #858585;
+}
 
 
