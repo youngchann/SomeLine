@@ -1002,7 +1002,7 @@
   width: 35px;
   border-radius: 22.5px;
   border: 1px solid #4d4d4d;
-  background-color: #fddbff;
+  background-color: #e2e2e2;
 
   transition: all .2s ease;
 }
@@ -1291,6 +1291,8 @@
   color: #eaeaea;
 
   transition-duration: 0.5s;
+
+  cursor: pointer;
 }
 .chat_list_contents:hover{
   box-sizing: border-box;
@@ -2260,6 +2262,7 @@
 }
 
 .moveFadeOut {
+  display: block;
   animation: moveFadeOut 3s linear forwards;
 }
 

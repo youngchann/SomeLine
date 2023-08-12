@@ -34,8 +34,9 @@ const ChatBox = ({room}) => {
   const [messagesText, setMessagesText] = useState([])
   const [prediction, setPrediction] = useState('');
   const [emojiState, setEmojiState] = useState("")
-  // 눈 내리는 효과를 위한 useState
 
+
+  // 눈 내리는 효과를 위한 useState, 배경페이지 변경
   const [snow, setSnow] = useState(new Date().getTime());
   const [sakura, setSakura] = useState(new Date().getTime());
 
@@ -46,11 +47,12 @@ const ChatBox = ({room}) => {
     setSakura(new Date().getTime());
   };
   // 눈 내리는 효과 여기까지다.
+
+
   useEffect(() => {
     if (!selectedRoom) {
       return
     }
-
     const queryMessages = query(
       messagesRef,
       where("room", "==", selectedRoom),
@@ -231,27 +233,24 @@ const ChatBox = ({room}) => {
     setIsVisible(false);
   }
 
-
+  // 감정 이모션을 실행하는 함수들.,
+  const handleEmojiClick = (emoji, setIsClicked, setKey, setEmojis) => {
+    handleEmoji(emoji);
+    setIsClicked(true);
+    setKey(Math.random());
+    setEmojis(prev => [...prev, Math.random()]);
+    setTimeout(() => setIsClicked(false), 3000);
+  };
   const hart_Click = () => {
-    handleEmoji("hart");
-    hartIsClicked(true);
-    setHartKey(Math.random()); 
-    setHearts(prevHearts => [...prevHearts, Math.random()]);
-    setTimeout(() => hartIsClicked(false), 3000);
+    handleEmojiClick("hart", hartIsClicked, setHartKey, setHearts);
   };
+  
   const sad_Click = () => {
-    handleEmoji("sad");
-    sadIsClicked(true);
-    setSadKey(Math.random()); 
-    setSads(prevHearts => [...prevHearts, Math.random()]);
-    setTimeout(() => sadIsClicked(false), 3000);
+    handleEmojiClick("sad", sadIsClicked, setSadKey, setSads);
   };
+  
   const angry_Click = () => {
-    handleEmoji("angry");
-    angryIsClicked(true);
-    setAngryKey(Math.random()); 
-    setAngrys(prevHearts => [...prevHearts, Math.random()]);
-    setTimeout(() => angryIsClicked(false), 3000);
+    handleEmojiClick("angry", angryIsClicked, setAngryKey, setAngrys);
   };
 
 
@@ -260,7 +259,7 @@ const ChatBox = ({room}) => {
       <div className="login_bgm_b">
         {/* <img src="img/main_photo.jpeg" type='video/mp4' /> */}
         <video className="login_bgm" autoPlay muted loop>
-            <source src='videos/mainmain8.mp4' type='video/mp4' />
+          <source src='videos/mainmain9.mp4' type='video/mp4' />
         </video>
       </div>
       <div className='you_chat_Profil'>
@@ -358,6 +357,7 @@ const ChatBox = ({room}) => {
           <button className='imotion_btn imotion_btn_angry_btn' onClick={angry_Click}>👿</button>
           <button className='imotion_btn imotion_btn_angry_btn' onClick={handleClickSnow}>❄️</button>
           <button className='imotion_btn imotion_btn_angry_btn' onClick={handleClickSakura}>🌸</button>
+          <button className='imotion_btn imotion_btn_angry_btn' >🌆</button>
         </div>
       </div>
       <div className={isVisible ? 'mychat_Profil_click_box active' : 'mychat_Profil_click_box'}>
