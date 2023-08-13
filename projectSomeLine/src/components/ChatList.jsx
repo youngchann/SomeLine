@@ -12,7 +12,8 @@ import {
   arrayRemove,
   updateDoc,
   addDoc,
-  serverTimestamp
+  serverTimestamp,
+  getDoc
 } from "firebase/firestore";
 import { AuthContext } from "../context/AuthContext";
 import { chatList } from './Matching';
@@ -65,6 +66,7 @@ const ChatList = () => {
   const userRef = collection(db, "users");
   
   const [selectedUser, setSelectedUser] = useState("")
+  const [recentMessages, setRecentMessages] = useState([]);
 
   useEffect(() => {
     if (currentUser && currentUser.email) {
@@ -76,6 +78,22 @@ const ChatList = () => {
       });
     }
   }, [currentUser]);
+
+  useEffect(() => {
+    // Fetch recent messages here and update the state
+    if (user && user.chatListName) {
+      const fetchRecentMessages = async () => {
+        const recentMessageArray = [];
+        for (let index = 0; index < user.chatListName.length; index++) {
+          const message = await recentMessage(index);
+          recentMessageArray.push(message);
+        }
+        setRecentMessages(recentMessageArray);
+      };
+
+      fetchRecentMessages();
+    }
+  }, [user]);
     
   
 
@@ -97,6 +115,24 @@ const ChatList = () => {
     }
     nav('/chatbox')
   }
+
+  const recentMessage = async (index) => {
+    const room = (user.chatListCreatedAt[index] > user.createdAt)
+      ? `${user.chatListName[index]}+${currentUser.displayName}`
+      : `${currentUser.displayName}+${user.chatListName[index]}`;
+  
+    const querySnapshot = await getDocs(
+      query(messagesRef, where('room', '==', room), orderBy('createdAt'))
+    );
+  
+    // Assuming you want to retrieve the most recent message
+    if (!querySnapshot.empty) {
+      const mostRecentMessage = querySnapshot.docs[querySnapshot.docs.length - 1].data();
+      return mostRecentMessage.text; // Return the text of the most recent message
+    } else {
+      return "No messages yet";
+    }
+  };
 
   const handleClickBot = () => {
     setSelectedUser('SomeLine')
@@ -149,6 +185,7 @@ const ChatList = () => {
     nav('/chatlist');
   };
 
+
   return (
     <div>
       {/* {user? ( */}
@@ -180,14 +217,14 @@ const ChatList = () => {
                 <p className='chat_list_name'>SomeLine</p>
                 <p className='chat_list_talk_preview'>반가워요 ^^</p>
               </Tilt>
-            {user.chatListName?.map((chat, index) => (
+            {user?.chatListName?.map((chat, index) => (
               <Tilt key={index} options={options} className="chat_list_contents" >
                 {/* onClick={()=>handleClick(user, index)}*/}
                 
                 <div className='chat_list_profile_img_box' ><img className='chat_list_profile_img' src={user.chatListProfileUrl[index]}/></div>
                 
                 <p className='chat_list_name'>{user.chatListName[index]}</p>
-                <p className='chat_list_talk_preview' onClick={()=>handleClick(user, index)}>최근 메시지</p>
+                <p className='chat_list_talk_preview' onClick={()=>handleClick(user, index)}>최근 메시지: {recentMessages[index]}</p>
                 <button className='chatlist_chat_del_btn' onClick={()=>removeUserToList(index)}>나가기</button>
                 
 

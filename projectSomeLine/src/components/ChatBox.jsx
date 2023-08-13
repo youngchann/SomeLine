@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext,useCallback} from 'react';
+import React, { useState, useEffect, useContext,useCallback, useRef} from 'react';
 import { AuthContext } from "../context/AuthContext";
 import { db, auth } from "../firebase-config";
 import {
@@ -34,6 +34,7 @@ const ChatBox = ({room}) => {
   const [messagesText, setMessagesText] = useState([])
   const [prediction, setPrediction] = useState('');
   const [emojiState, setEmojiState] = useState("")
+  const messagesContainerRef = useRef(null);
 
 
   // 눈 내리는 효과를 위한 useState, 배경페이지 변경
@@ -197,6 +198,12 @@ const ChatBox = ({room}) => {
     await batch.commit();
   };
 
+  useEffect(() => {
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
+    }
+  }, [messages]);
+
  
   // 감정 이모티콘이 올라가게 올라가게 만드는 함수들입니다.
   const [hartClicked, hartIsClicked] = useState(false);
@@ -279,7 +286,7 @@ const ChatBox = ({room}) => {
           <Link to='/chatlist'><button className='chatbox_in_top_btn'>{"< 나가기"}</button></Link>
           <button className='chatbox_in_top_btn' onClick={handleClearChat}>{"대화내용 지우기 >"}</button>
         </div>
-        <div className='messages'>
+        <div className='messages' ref={messagesContainerRef}>
         <ReactCanvasConfetti
           fire={snow}
           particleCount={400}
