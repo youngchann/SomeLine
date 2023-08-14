@@ -41,11 +41,15 @@ const ChatBox = ({room}) => {
   const [snow, setSnow] = useState(new Date().getTime());
   const [sakura, setSakura] = useState(new Date().getTime());
 
-  const handleClickSnow = () => {
+  const handleClickSnow = async() => {
     setSnow(new Date().getTime());
+    await addDoc(messagesRef, 
+      {emoji: "snow", user: currentUser.displayName, room: selectedRoom, createdAt: serverTimestamp()})
   };
-  const handleClickSakura = () => {
+  const handleClickSakura = async() => {
     setSakura(new Date().getTime());
+    await addDoc(messagesRef, 
+      {emoji: "sakura", user: currentUser.displayName, room: selectedRoom, createdAt: serverTimestamp()})
   };
   // 눈 내리는 효과 여기까지다.
 
@@ -62,14 +66,26 @@ const ChatBox = ({room}) => {
     const unsuscribe = onSnapshot(queryMessages, (snapshot) => {
       let messages = [];
       let messagesText = []
+      let emojiState = ""
       snapshot.forEach((doc) => {
+        if (doc.data().emoji && doc.data().user != currentUser.displayName){
+          emojiState = doc.data().emoji
+        }else if(doc.data().emoji && doc.data().user == currentUser.displayName){
+          emojiState = ""
+        }else{
         messages.push({ ...doc.data(), id: doc.id });
-        messagesText.push(doc.data().text)
+        messagesText.push(doc.data().text)}
       });
       // console.log(`messages: ${JSON.stringify(messages)}`);
       // console.log(`messagesText: ${JSON.stringify(messagesText)}`);
       setMessages(messages);
       setMessagesText(messagesText)
+      setEmojiState(emojiState)
+      if (emojiState==='snow'){
+        setSnow(new Date().getTime());
+      } else if (emojiState==='sakura'){
+        setSakura(new Date().getTime());
+      } 
     });
     // console.log(`selected: ${selectedUser}`);
     return () => unsuscribe();
@@ -170,18 +186,6 @@ const ChatBox = ({room}) => {
     }
   };
 
-  const handleEmoji = async(emoji) => {
-    try {
-    const response = axios.post('http://localhost:5000/emoji', 
-    { "data": emoji })
-    console.log(`response.data.message: ${JSON.stringify((await response).data)}`);
-    setEmojiState(JSON.stringify((await response).data))
-    } 
-    catch (error) {
-      console.error('An error occurred:', error);
-    }
-    
-  };
 
   const handleClearChat = async () => {
     const querySnapshot = await getDocs(
@@ -242,23 +246,29 @@ const ChatBox = ({room}) => {
 
   // 감정 이모션을 실행하는 함수들.,
   const handleEmojiClick = (emoji, setIsClicked, setKey, setEmojis) => {
-    handleEmoji(emoji);
     setIsClicked(true);
     setKey(Math.random());
     setEmojis(prev => [...prev, Math.random()]);
     setTimeout(() => setIsClicked(false), 3000);
   };
-  const hart_Click = () => {
+  const hart_Click = async() => {
     handleEmojiClick("hart", hartIsClicked, setHartKey, setHearts);
+    await addDoc(messagesRef, 
+      {emoji: "hart", user: currentUser.displayName, room: selectedRoom, createdAt: serverTimestamp()})
   };
   
-  const sad_Click = () => {
+  const sad_Click = async() => {
     handleEmojiClick("sad", sadIsClicked, setSadKey, setSads);
+    await addDoc(messagesRef, 
+      {emoji: "sad", user: currentUser.displayName, room: selectedRoom, createdAt: serverTimestamp()})
   };
   
-  const angry_Click = () => {
+  const angry_Click = async() => {
     handleEmojiClick("angry", angryIsClicked, setAngryKey, setAngrys);
+    await addDoc(messagesRef, 
+      {emoji: "angry", user: currentUser.displayName, room: selectedRoom, createdAt: serverTimestamp()})
   };
+
 
 
   return (
@@ -274,12 +284,11 @@ const ChatBox = ({room}) => {
           <img className='chat_Profil_img' src={selectedProfileUrl}/>
         </div>
         <h2 className='you_chat_Profil_name'>{selectedUserName}</h2>
-        {emojiState == "hart" && 
-        <div key={hartKey} className={`emt_hart ${hartClicked ? 'moveFadeOut' : ''}`}>💕</div>}
-        {emojiState == "sad" &&
-        <div key={sadKey} className={`emt_sad ${sadClicked ? 'moveFadeOut' : ''}`}>😢</div>}
-        {emojiState == "angry" &&
-        <div key={angryKey} className={`emt_angry ${angryClicked ? 'moveFadeOut' : ''}`}>👿</div>}
+        
+        {emojiState === 'hart' && <div className="emt_hart moveFadeOut">💕</div>}
+        {emojiState === 'sad' && <div className="emt_sad moveFadeOut">😢</div>}
+        {emojiState === 'angry' && <div className="emt_angry moveFadeOut">👿</div>}
+
       </div>
       <div className='chatbox_box'>
         <div className='chatbox_btn_box'>
