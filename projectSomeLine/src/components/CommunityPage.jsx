@@ -24,6 +24,7 @@ const CommunityPageLove = () => {
       <div className='communityspace_bg_shadow'><p title='이찬용'>✨</p><p title='전도희'>✨</p><p title='국지호'>✨</p><p title='임영찬'>✨</p></div>
       <div className='communityspace_box'>
         <div className='communityspace_box_header' ><h1>썸·연애</h1><p>community ➤</p><Link to={'/community'} title='메인으로 가기'>⍇</Link></div>
+        <div className='communityspace_box_advertisement'>광고 페이지/ 광고문의는 이찬용에게</div>
         <div className='commu_page_board'>
           <div className='commu_page_board_contents'>
             <div className='commu_page_board_contents_number'>번호</div>
@@ -34,13 +35,17 @@ const CommunityPageLove = () => {
           </div>
           {boardData.map((item, index) => (
             <div className='commu_page_board_contents' key={index}>
-              <div className='commu_page_board_contents_number'>{item.number + index}</div>
+              <div className='commu_page_board_contents_number'>{item.number + 19-index}</div>
               <div className='commu_page_board_contents_id'>{item.id}</div>
               <div className='commu_page_board_contents_text'>{item.text}</div>
               <div className='commu_page_board_contents_date'>{item.date}</div>
-              <div className='commu_page_board_contents_count'>{item.count + index}</div>
+              <div className='commu_page_board_contents_count'>{item.count}</div>
             </div>
           ))}
+          <div className='commu_page_board_location'>
+            <div className='commu_page_board_location_keys'>1 2 3 4 5 6 7 다음페이지▶︎</div>
+            <div className='commu_page_board_location_writing'><Link>글쓰기</Link></div>
+          </div>
         </div>        
       </div>
     </div>

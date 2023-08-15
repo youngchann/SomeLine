@@ -2798,6 +2798,14 @@ svg{
 
   color: #f8f8ff;
 }
+.communityspace_box_advertisement{
+  width: 100%;
+  height: 90px;
+
+  margin-top: 10px;
+
+  background-color: #f8f8ff;
+}
 .commu_page_board{
   margin-top: 10px;
   padding-top: 10px;
@@ -2810,6 +2818,7 @@ svg{
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 
   box-shadow:  0 0 20px #2f2f2f74 inset;
 }
@@ -2844,4 +2853,40 @@ svg{
 .commu_page_board_contents_count{
   width: 10%;
   text-align: center;
+}
+
+.commu_page_board_location{
+
+  border-top: 1px solid #f8f8ff;
+
+  padding-top: 20px;
+  width: 98%;
+  height: 40px;
+
+  display: flex;
+
+  justify-content: space-between;
+}
+.commu_page_board_location_keys{
+  font-size: 20px;
+  color: #f8f8ff;
+
+  padding-left: 100px;
+  padding-bottom: 25px;
+}
+.commu_page_board_location_writing{
+  padding-right: 50px;
+}
+.commu_page_board_location_writing>a{
+  font-size: 20px;
+  color: #f8f8ff;
+  border: 1px solid #f8f8ff;
+  padding: 5px;
+
+  background-color: none;
+
+  border-radius: 5px;
+}
+.commu_page_board_location_writing>a:hover{
+  background-color: #6b6b6b;
 }
