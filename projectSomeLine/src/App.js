@@ -15,6 +15,7 @@ import TeamMember from './components/TeamMember';
 import TendencyMain from './components/TendencyMain';
 import CommunitySpace from './components/CommunitySpace';
 import CommunityPageLove from './components/CommunityPage';
+import CommunityInPage from './components/CommunityInPage';
 
 
 
@@ -26,7 +27,8 @@ import { Route, Routes, useLocation, Navigate } from 'react-router-dom';
 function App() {
 
   const location = useLocation();
-  const showSideMenu = location.pathname === '/chatbox' || location.pathname === '/chatlist' || location.pathname === '/matching' || location.pathname === '/profile' || location.pathname === '/tendency' || location.pathname === '/community' ;
+  const showSideMenu = location.pathname === '/chatbox' || location.pathname === '/chatlist' || location.pathname === '/matching' || location.pathname === '/profile' || location.pathname === '/tendency' || location.pathname === '/community' 
+  || location.pathname === '/communitypagelove' || location.pathname === '/communitypageloveinpage1' ;
 
 
   return (
@@ -50,6 +52,7 @@ function App() {
 
         {/* 테스트용 */}
         <Route path='/communitypagelove' element={<CommunityPageLove/>}></Route>
+        <Route path='/communitypageloveinpage1' element={<CommunityInPage/>}></Route>
       </Routes>
 
       {/* <Footer/> */}

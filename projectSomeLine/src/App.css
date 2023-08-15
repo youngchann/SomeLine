@@ -2846,6 +2846,9 @@ svg{
 .commu_page_board_contents_text{
   width: 53%;
 }
+.commu_page_board_contents_text>a{
+  color: #f8f8ff;
+}
 .commu_page_board_contents_date{
   width: 15%;
   text-align: center;

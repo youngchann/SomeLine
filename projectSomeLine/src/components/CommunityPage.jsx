@@ -37,7 +37,7 @@ const CommunityPageLove = () => {
             <div className='commu_page_board_contents' key={index}>
               <div className='commu_page_board_contents_number'>{item.number + 19-index}</div>
               <div className='commu_page_board_contents_id'>{item.id}</div>
-              <div className='commu_page_board_contents_text'>{item.text}</div>
+              <div className='commu_page_board_contents_text'><Link to={'/communitypageloveinpage1'}>{item.text}</Link></div>
               <div className='commu_page_board_contents_date'>{item.date}</div>
               <div className='commu_page_board_contents_count'>{item.count}</div>
             </div>
