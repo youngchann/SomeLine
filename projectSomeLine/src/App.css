@@ -2208,7 +2208,7 @@
   }
   .side_menus_menu{
     margin-top: -40px;
-    width: 30%;
+    width: 22%;
   }
 }
 @media (max-width: 680px) {
@@ -2548,7 +2548,7 @@ svg{
   width: 100%;
 }
 
-/* 커뮤니티 공간 */
+/* ----------------------------------------커뮤니티 공간 */
 
 .communityspace_bg{
   width: 100%;
@@ -2585,7 +2585,7 @@ svg{
   left: 4%;
 }
 .communityspace_bg_shadow>p:nth-child(3){
-  top: 10%;
+  top: 7%;
   right: 14%;
 }
 .communityspace_bg_shadow>p:nth-child(4){
@@ -2607,6 +2607,23 @@ svg{
   box-shadow: 0 0 30px rgba(0, 0, 0, .4);
   padding: 10px;
   box-sizing: border-box;
+  
+  overflow-y: scroll;
+}
+.communityspace_box::-webkit-scrollbar {
+
+  width: 10px;
+}
+.communityspace_box::-webkit-scrollbar-track {
+  /* background-color: #ccc6c688; */
+
+  background-color: none;
+  border-radius: 100px;
+}
+.communityspace_box::-webkit-scrollbar-thumb {
+
+  background-color: #bababa70;
+  border-radius: 100px;
 }
 .communityspace_box_header{
   width: 100%;
@@ -2619,14 +2636,16 @@ svg{
 .communityspace_box_header>h1{
   color: #f8f8ff;
   font-family: 'Exo 2';
-  font-size: 40px;
+  font-size: 50px;
 
-  margin-left: 30px;
+  position: relative;
+  top: -30px;
+  margin-left: 20px;
 }
 .communityspace_box_header>p{
   color: #f8f8ff;
   position: relative;
-  top: 35px;
+  top: 25px;
   margin-left: 10px;
 }
 
@@ -2646,24 +2665,116 @@ svg{
   justify-content: space-between;
 }
 .communityspace_box_in_best_page{
-  width: 40%;
+  width: 49%;
   height: 300px;
 
   padding: 5px;
   box-sizing: border-box;
 
   border: 1px solid #f8f8ff;
+  text-justify:newspaper;
+
+  border-radius: 5px;
 
 }
 
-.communityspace_box_in_best_page>div{
+
+.comu_best_box_contents{
   
   color: #f8f8ff;
   width: 100%;
-  height: 10%;
+  height: 9.8%;
   font-weight: 400;
 
   border-bottom: 1px solid #858585;
 }
 
+.comu_best_box_header{
+  width: 100%;
+  height: 54px;
+  font-size: 30px;
 
+  font-weight: bold;
+  color: #f8f8ff;
+}
+
+.communityspace_animated-title {
+  font-size:60px; 
+  position: relative;
+
+  font-family: 'Exo 2';
+  width: 100%;
+  max-width:100%; 
+  height: auto;
+  padding: 100px 0px;
+
+  margin-top: -100px;
+
+  overflow-x: hidden; 
+  overflow-y: hidden;
+
+  color: #f8f8ff;
+}
+.communityspace_animated-title .communityspace_title_track {
+  position: absolute; 
+  white-space: nowrap;
+  will-change: transform;
+  animation: marquee 30s linear infinite; 
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.communityspace_box_in_box3{
+  position: relative;
+  width: 100%;
+  height: auto;
+
+  display: flex;
+  justify-content: center;
+
+  flex-wrap: wrap;
+}
+.comu_boxs{
+  width: 200px;
+  height: 200px;
+
+  background-color: #d4a8a852 ;
+  margin: 10px;
+
+  border-radius: 10px;
+
+  box-shadow:  0 0 10px #00000075 ;
+  display: flex;
+  flex-direction: column;
+  
+  align-items: center;
+  justify-content: center;
+
+}
+.comu_boxs:hover .comu_boxs_icon{
+  font-size: 100px;
+  transition-duration: 0.5s;
+}
+.comu_boxs_icon{
+  width: 140px;
+  height: 140px;
+
+  border: 1px solid #f8f8ff;
+  border-radius: 50%;
+  box-shadow:  0 0 20px #00000060 ;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 80px;
+  transition-duration: 0.5s;
+}
+.comu_boxs_title{
+  font-size: 20px;
+  font-weight: 500;
+
+  color: #f8f8ff;
+}
