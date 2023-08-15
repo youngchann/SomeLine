@@ -26,7 +26,7 @@ const CommunityWrite = () => {
 
             <div className='commu_page_write_btn_place'>
                 <button>작성완료</button>
-                <button>취소하기</button>
+                <Link to={'/communitypagelove'}>취소하기</Link>
 
             </div>
         </from>

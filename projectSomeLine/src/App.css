@@ -2982,6 +2982,20 @@ svg{
 
   border: 1px solid #f8f8ff;
 }
+.commu_page_write_btn_place>a{
+  color: #f8f8ff;
+
+  background: none;
+
+  font-size: 18px;
+  padding: 7px;
+  margin-left: 20px;
+
+  border-radius: 10px;
+  border: none;
+
+  border: 1px solid #f8f8ff;
+}
 .commu_page_write_btn_place>button:hover{
   background-color: #525252;
 }
