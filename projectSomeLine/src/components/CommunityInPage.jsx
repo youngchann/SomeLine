@@ -11,10 +11,25 @@ const CommunityInPage = () => {
     </div>
     <div className='communityspace_bg_shadow'><p title='이찬용'>✨</p><p title='전도희'>✨</p><p title='국지호'>✨</p><p title='임영찬'>✨</p></div>
     <div className='communityspace_box'>
-      <div className='communityspace_box_header' ><h1>썸·연애</h1><p>community ➤</p><Link to={'/communitypagelove'} title='메인으로 가기'>⍇</Link></div>
+      <div className='communityspace_box_header' ><h1>썸·연애</h1><p>community➤love➤write</p><Link to={'/communitypagelove'} title='메인으로 가기'>⍇</Link></div>
       <div className='communityspace_box_advertisement'>광고 페이지/ 광고문의는 이찬용에게</div>
       <div className='commu_page_board'>
-        
+        <from className='commu_page_write_box'>
+            <input 
+            className='commu_page_write_title'
+            placeholder='글의 제목을 입력하세요.'
+            >
+            </input>
+            <textarea 
+            className='commu_page_write_text'
+            ></textarea>
+
+            <div className='commu_page_write_btn_place'>
+                <button>작성완료</button>
+                <button>취소하기</button>
+
+            </div>
+        </from>
       </div>
     </div>
   </div>

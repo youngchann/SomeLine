@@ -8,7 +8,7 @@ const CommunityPageLove = () => {
     number: 1,
     id: '이찬용',
     text: '냠냠입니다.',
-    date: '2023-8-15',
+    date: '2023·8·15',
     count: 1
   });
 
@@ -23,7 +23,7 @@ const CommunityPageLove = () => {
       </div>
       <div className='communityspace_bg_shadow'><p title='이찬용'>✨</p><p title='전도희'>✨</p><p title='국지호'>✨</p><p title='임영찬'>✨</p></div>
       <div className='communityspace_box'>
-        <div className='communityspace_box_header' ><h1>썸·연애</h1><p>community ➤</p><Link to={'/community'} title='메인으로 가기'>⍇</Link></div>
+        <div className='communityspace_box_header' ><h1>썸·연애</h1><p>community➤love</p><Link to={'/community'} title='메인으로 가기'>⍇</Link></div>
         <div className='communityspace_box_advertisement'>광고 페이지/ 광고문의는 이찬용에게</div>
         <div className='commu_page_board'>
           <div className='commu_page_board_contents'>

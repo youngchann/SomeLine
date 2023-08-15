@@ -2812,7 +2812,7 @@ svg{
   width: 100%;
   height: auto;
 
-  background-color: #45454590;
+  background-color: #4545454b;
 
   border-radius: 10px ;
   display: flex;
@@ -2890,4 +2890,97 @@ svg{
 }
 .commu_page_board_location_writing>a:hover{
   background-color: #6b6b6b;
+}
+
+
+/* 게시판 쓰기.공간 */
+.commu_page_write_box{
+  width: 100%;
+  height: auto;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+.commu_page_write_title{
+  width: 95%;
+  height: 40px;
+
+  background: none;
+  border-radius: 10px;
+  margin-top: 10px;
+
+  border: none;
+
+  border: 1px solid #f8f8ff ;
+
+  font-size: 17px;
+  padding-left: 10px;
+
+  box-sizing: border-box;
+  color: #f8f8ff;
+}
+.commu_page_write_title::placeholder {
+  color: #f8f8ff61;
+}
+.commu_page_write_title:focus {
+  outline: none;
+  background-color: #64646438;
+}
+.commu_page_write_text{
+
+  margin-top: 10px;
+
+  width: 95%;
+  height: 500px;
+
+  border: none;
+  background: none;
+
+  border: 1px solid #f8f8ff;
+  border-radius: 10px;
+
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: 17px;
+
+  color: #f8f8ff;
+}
+.commu_page_write_text::placeholder {
+  color: #f8f8ff61;
+}
+.commu_page_write_text:focus {
+  outline: none;
+  background-color: #64646438;
+}
+.commu_page_write_btn_place{
+  width: 95%;
+
+  margin-top: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 10px;
+}
+.commu_page_write_btn_place>button{
+  color: #f8f8ff;
+
+  background: none;
+
+  font-size: 18px;
+  padding: 7px;
+  margin-left: 20px;
+
+  border-radius: 10px;
+  border: none;
+
+  border: 1px solid #f8f8ff;
+}
+.commu_page_write_btn_place>button:hover{
+  background-color: #525252;
 }
