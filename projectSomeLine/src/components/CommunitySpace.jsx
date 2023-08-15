@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import VanillaTilt from 'vanilla-tilt';
 import { Link } from 'react-router-dom';
+import Footer from './Footer';
 
 
 function Tilt(props) {
@@ -113,6 +114,7 @@ const CommunitySpace = () => {
               <div className='comu_boxs_title'>다이어트·헬스</div>
           </Tilt>
         </div>
+        <Footer/>
       </div>
     </div>
   )

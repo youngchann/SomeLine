@@ -16,6 +16,7 @@ import TendencyMain from './components/TendencyMain';
 import CommunitySpace from './components/CommunitySpace';
 import CommunityPageLove from './components/CommunityPage';
 import CommunityInPage from './components/CommunityInPage';
+import CommunityWrite from './components/CommunityWrite';
 
 
 
@@ -52,7 +53,8 @@ function App() {
 
         {/* 테스트용 */}
         <Route path='/communitypagelove' element={<CommunityPageLove/>}></Route>
-        <Route path='/communitypageloveinpage1' element={<CommunityInPage/>}></Route>
+        <Route path='/communityinpage' element={<CommunityInPage/>}></Route>
+        <Route path='/communitywrite' element={<CommunityWrite/>}></Route>
       </Routes>
 
       {/* <Footer/> */}

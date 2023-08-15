@@ -37,14 +37,14 @@ const CommunityPageLove = () => {
             <div className='commu_page_board_contents' key={index}>
               <div className='commu_page_board_contents_number'>{item.number + 19-index}</div>
               <div className='commu_page_board_contents_id'>{item.id}</div>
-              <Link to={'/communitypageloveinpage1'} className='commu_page_board_contents_text'>{item.text}</Link>
+              <Link to={'/communityinpage'} className='commu_page_board_contents_text'>{item.text}</Link>
               <div className='commu_page_board_contents_date'>{item.date}</div>
               <div className='commu_page_board_contents_count'>{item.count}</div>
             </div>
           ))}
           <div className='commu_page_board_location'>
             <div className='commu_page_board_location_keys'>1 2 3 4 5 6 7 다음페이지▶︎</div>
-            <div className='commu_page_board_location_writing'><Link>글쓰기</Link></div>
+            <div className='commu_page_board_location_writing'><Link to={'/communitywrite'}>글쓰기</Link></div>
           </div>
         </div>        
       </div>
