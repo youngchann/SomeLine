@@ -14,6 +14,7 @@ import Sidebar from './components/Sidebar';
 import TeamMember from './components/TeamMember';
 import TendencyMain from './components/TendencyMain';
 import CommunitySpace from './components/CommunitySpace';
+import CommunityPageLove from './components/CommunityPage';
 
 
 
@@ -43,12 +44,12 @@ function App() {
         <Route path='/chatlist' element={<ChatList/>}></Route>
         <Route path='/matching' element={<Matching/>}></Route>
         <Route path='/profile' element={<Profile/>}></Route>
-        {/* 테스트용 */}
         <Route path='/teammember' element={<TeamMember/>}></Route>
         <Route path='/tendency' element={<TendencyMain/>}></Route>
-
         <Route path='/community' element={<CommunitySpace/>}></Route>
 
+        {/* 테스트용 */}
+        <Route path='/communitypagelove' element={<CommunityPageLove/>}></Route>
       </Routes>
 
       {/* <Footer/> */}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import VanillaTilt from 'vanilla-tilt';
+import { Link } from 'react-router-dom';
 
 
 function Tilt(props) {
@@ -64,7 +65,7 @@ const CommunitySpace = () => {
         </div>
         <div className='communityspace_box_in_box3'>
           <Tilt options={options} className='comu_boxs'>
-              <div className='comu_boxs_icon'>💕</div>
+              <Link to={'/communitypagelove'}><div className='comu_boxs_icon'>💕</div></Link>
               <div className='comu_boxs_title'>썸·연애</div>
           </Tilt>
           <Tilt options={options} className='comu_boxs'>

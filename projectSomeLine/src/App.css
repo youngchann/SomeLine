@@ -10,6 +10,9 @@
   min-height: 100%;
   overflow: hidden;
 }
+*{
+  text-decoration: none;
+}
 
 /* -------------------------------------------- 상단바 */
 /* 탑 상단바. */
@@ -2645,8 +2648,10 @@ svg{
 .communityspace_box_header>p{
   color: #f8f8ff;
   position: relative;
-  top: 25px;
+  top: 15px;
   margin-left: 10px;
+
+  font-size: 20px;
 }
 
 
@@ -2752,6 +2757,8 @@ svg{
   align-items: center;
   justify-content: center;
 
+  cursor: pointer;
+
 }
 .comu_boxs:hover .comu_boxs_icon{
   font-size: 100px;
@@ -2777,4 +2784,64 @@ svg{
   font-weight: 500;
 
   color: #f8f8ff;
+}
+
+/* 커뮤니티 게시판.!!! */
+
+.communityspace_box_header>a{
+  position: absolute;
+  top: 10px;
+  right: 20px;
+
+  text-decoration: none;
+  font-size: 50px;
+
+  color: #f8f8ff;
+}
+.commu_page_board{
+  margin-top: 10px;
+  padding-top: 10px;
+  width: 100%;
+  height: auto;
+
+  background-color: #45454590;
+
+  border-radius: 10px ;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  box-shadow:  0 0 20px #2f2f2f74 inset;
+}
+.commu_page_board_contents{
+  position: relative;
+  width: 98%;
+  height: 30px;
+  border-top: 1px solid #f8f8ff;
+
+  display: flex;
+  flex-direction:row;
+}
+.commu_page_board_contents>div{
+  color: #f8f8ff;
+  font-size: 17px;
+}
+.commu_page_board_contents_number{
+  width: 8%;
+  text-align: center;
+}
+.commu_page_board_contents_id{
+  width: 14%;
+  text-align: center;
+}
+.commu_page_board_contents_text{
+  width: 53%;
+}
+.commu_page_board_contents_date{
+  width: 15%;
+  text-align: center;
+}
+.commu_page_board_contents_count{
+  width: 10%;
+  text-align: center;
 }
