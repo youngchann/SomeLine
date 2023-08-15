@@ -84,7 +84,7 @@ const CommunitySpace = () => {
               <div className='comu_boxs_title'>회사 생활</div>
           </Tilt>
           <Tilt options={options} className='comu_boxs'>
-              <div className='comu_boxs_icon'>🎳</div>
+              <div className='comu_boxs_icon'>🏄🏻‍♂️</div>
               <div className='comu_boxs_title'>취미 생활</div>
           </Tilt>
           <Tilt options={options} className='comu_boxs'>
@@ -108,7 +108,7 @@ const CommunitySpace = () => {
               <div className='comu_boxs_title'>여행·맛집</div>
           </Tilt>
           <Tilt options={options} className='comu_boxs'>
-              <div className='comu_boxs_icon'>🏄🏻‍♂️</div>
+              <div className='comu_boxs_icon'>🏋🏻‍♀️</div>
               <div className='comu_boxs_title'>다이어트·헬스</div>
           </Tilt>
         </div>
