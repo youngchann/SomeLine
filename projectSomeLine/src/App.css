@@ -1878,7 +1878,7 @@
 .profile_myinfo_box_interest{
   position: relative;
   top: 30px;
-  left: -10px;
+  left: -5px;
   
   width: 70%;
   height: 100%;
@@ -1890,9 +1890,11 @@
   font-weight: 600;
   background-color: #8888884b;
 
-  margin-left: 10px;
+  margin-left: 5px;
 
-  padding: 10px;
+  padding: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
   border-radius: 30px;
 
   cursor: grab;
