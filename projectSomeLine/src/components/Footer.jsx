@@ -6,8 +6,6 @@ const Footer = () => {
       <div className='source'>
         <hr/>
         <img src='https://gj-aischool.or.kr/wp-content/uploads/2023/04/ais_dark.png'/>
-        <img src='https://www.data.go.kr/images/biz/common/logo/logo-footer-01.png'/>
-        <img src = 'https://knto.or.kr/humanframe/theme/kto/assets/image/_layout/logo_kto.svg'/>
       </div>
       <div className='member'>
         <hr/>
