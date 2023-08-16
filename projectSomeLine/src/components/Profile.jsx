@@ -221,7 +221,7 @@ const Profile = () => {
           </form>
         </div>
         <div  className='profile_myinfo_box'>
-          <div className='profile_myinfo_box_text'><h1>성향</h1></div>
+          <div className='profile_myinfo_box_text'><h1>나의 성향</h1></div>
           <div className='profile_myinfo_box_interest'>
           {user.interest.slice(-3).map((item)=><span className='profile_myinfo_box_interest_span'>{item}</span>)}
           </div>
