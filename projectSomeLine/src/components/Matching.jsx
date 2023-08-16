@@ -243,8 +243,8 @@ const Matching = () => {
                             <p >{genderuser.address} • {genderuser.job} ✨</p>
                             <div className='mat_Interest_list'>
                             { genderuser.interest && genderuser.interest.length >= 3 
-                              ? genderuser.interest.slice(-3).map((item, index) => (user.interest.includes(item) ? <p key={index} style={{ color: '#e65ae6' }}>{item}</p> : <p key={index}>{item}</p>))
-                              :genderuser.interest?.map((item)=>(user.interest.includes(item) ? <p style={{color: '#e65ae6'}}>{item}</p> : <p>{item}</p>))}
+                              ? genderuser.interest.slice(-3).map((item, index) => (user.interest?.includes(item) ? <p key={index} style={{ color: '#e65ae6' }}>{item}</p> : <p key={index}>{item}</p>))
+                              :genderuser.interest?.map((item)=>(user.interest?.includes(item) ? <p style={{color: '#e65ae6'}}>{item}</p> : <p>{item}</p>))}
                             </div>
                           </div>
                           <button
@@ -266,8 +266,8 @@ const Matching = () => {
                             <p >{genderuser.address} • {genderuser.job} ✨</p>
                             <div className='mat_Interest_list'>
                               { genderuser.interest && genderuser.interest.length >= 3 
-                              ? genderuser.interest.slice(-3).map((item, index) => (user.interest.includes(item) ? <p key={index} style={{ color: '#e65ae6' }}>{item}</p> : <p key={index}>{item}</p>))
-                              :genderuser.interest?.map((item)=>(user.interest.includes(item) ? <p style={{color: '#e65ae6'}}>{item}</p> : <p>{item}</p>))}
+                              ? genderuser.interest.slice(-3).map((item, index) => (user.interest?.includes(item) ? <p key={index} style={{ color: '#e65ae6' }}>{item}</p> : <p key={index}>{item}</p>))
+                              :genderuser.interest?.map((item)=>(user.interest?.includes(item) ? <p style={{color: '#e65ae6'}}>{item}</p> : <p>{item}</p>))}
                             </div>
                           </div>
                           <button
