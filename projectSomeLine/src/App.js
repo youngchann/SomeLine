@@ -29,7 +29,8 @@ function App() {
 
   const location = useLocation();
   const showSideMenu = location.pathname === '/chatbox' || location.pathname === '/chatlist' || location.pathname === '/matching' || location.pathname === '/profile' || location.pathname === '/tendency' || location.pathname === '/community' 
-  || location.pathname === '/communitypagelove' || location.pathname === '/communitypageloveinpage1' ;
+  || location.pathname === '/communitypagelove' || location.pathname === '/communitypageloveinpage1' || location.pathname === '/communitywrite'
+  || location.pathname === '/communityinpage' ;
 
 
   return (

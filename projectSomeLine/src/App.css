@@ -3027,6 +3027,8 @@ svg{
   padding-left: 20px;
   padding-top: 30px;
 
+  box-sizing: border-box;
+
   color: #f8f8ff;
 }
 .commu_page_ripple_box{
@@ -3055,12 +3057,12 @@ svg{
   height: auto;
 
   color: #f8f8ff;
-  border-right: 1px solid #f8f8ff79;;
 }
 .commu_page_ripple_contents_text{
   padding-left: 20px;
   width: 70%;
   height: auto;
+  border-left: 1px solid #f8f8ff79;;
 
   color: #f8f8ff;
 }
