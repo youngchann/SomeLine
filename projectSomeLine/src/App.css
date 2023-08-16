@@ -8,7 +8,6 @@
   width: 100%;
   height: 100vh;
   min-height: 100%;
-  overflow: hidden;
 }
 *{
   text-decoration: none;
@@ -1298,6 +1297,7 @@
   transition-duration: 0.5s;
 
   cursor: pointer;
+  overflow: hidden;
 }
 .chat_list_contents:hover{
   box-sizing: border-box;
@@ -2998,4 +2998,61 @@ svg{
 }
 .commu_page_write_btn_place>button:hover{
   background-color: #525252;
+}
+
+.commu_page_info{
+  width: 98%;
+  height: 80px;
+
+  border-bottom: 1px solid #f8f8ff;
+
+}
+.commu_page_info_title{
+  font-size: 30PX;
+  color: #f8f8ff;
+  font-weight: 800;
+
+  padding-left: 10px;
+}
+.commu_page_info_id{
+  color: #f8f8ff;
+  font-size: 15px;
+
+  padding-left: 10px;
+}
+.commu_page_text_contents{
+  width: 98%;
+  height: 400px;
+  padding: 10px;
+  padding-left: 20px;
+  padding-top: 30px;
+
+  color: #f8f8ff;
+}
+.commu_page_ripple_box{
+  width: 98%;
+  height: auto;
+  border-top: 1px solid #f8f8ff;
+
+  padding: 20px;
+  box-sizing: border-box;
+}
+.commu_page_ripple_contents{
+  width: 98%;
+  height: 100px;
+
+  display: flex;
+  flex-direction: row;
+}
+.commu_page_ripple_contents_id{
+  width: 30%;
+  height: 100px;
+
+  color: #f8f8ff;
+}
+.commu_page_ripple_contents_text{
+  width: 70%;
+  height: 100px;
+
+  color: #f8f8ff;
 }
