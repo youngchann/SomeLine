@@ -23,7 +23,7 @@ const CommunityInPage = () => {
         </div>
         <div className='commu_page_ripple_box'>
           <div className='commu_page_ripple_contents'>
-            <div className='commu_page_ripple_contents_id'>전도희</div>
+            <div className='commu_page_ripple_contents_id'>▪︎ 전도희</div>
             <div className='commu_page_ripple_contents_text'>뭐예요</div>
           </div>
         </div>

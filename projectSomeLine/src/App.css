@@ -3036,23 +3036,31 @@ svg{
 
   padding: 20px;
   box-sizing: border-box;
+  padding-top: 10px;
 }
 .commu_page_ripple_contents{
   width: 98%;
-  height: 100px;
+  height: auto;
 
   display: flex;
   flex-direction: row;
+
+  border-bottom: 1px solid #f8f8ff79;
+  border-top: 1px solid #f8f8ff79;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 .commu_page_ripple_contents_id{
-  width: 30%;
-  height: 100px;
+  width: 20%;
+  height: auto;
 
   color: #f8f8ff;
+  border-right: 1px solid #f8f8ff79;;
 }
 .commu_page_ripple_contents_text{
+  padding-left: 20px;
   width: 70%;
-  height: 100px;
+  height: auto;
 
   color: #f8f8ff;
 }
