@@ -1875,7 +1875,31 @@
   color: rgba(198, 198, 198, 0.783);
   font-size: 19px;
 }
-.profile_info_customer_button {
+.profile_myinfo_box_interest{
+  position: relative;
+  top: 30px;
+  left: -10px;
+  
+  width: 70%;
+  height: 100%;
+}
+.profile_myinfo_box_interest_span{
+  color: #f8f8ff;
+  border: 2px solid #f8f8ff;
+  font-size: 20px;
+  font-weight: 600;
+
+  margin-left: 10px;
+
+  padding: 10px;
+  border-radius: 30px;
+
+  cursor: grab;
+}
+.profile_myinfo_box_interest_span:hover{
+  background-color: #D65DB1;
+}
+/* .profile_info_customer_button {
   position: relative;
   margin-left: -10px;
 
@@ -1891,7 +1915,7 @@
 
   border-top: 1px solid #f8f8ff7f;
   border-bottom: 1px solid #f8f8ff7f;
-  /* 배경 색임. */
+
   background: rgba(255, 255, 255, 0.05);
   transition: 0.9s;
   text-align: center;
@@ -1902,7 +1926,7 @@
   text-decoration: none;
   transition-duration: 0.5s;
   box-shadow: 0 0 10px rgba(0, 0, 0, .5);
-  /* backdrop-filter: blur(40px); */
+
   overflow: hidden;
 }
 .profile_info_customer_button:hover{
@@ -1925,7 +1949,8 @@
   transform: skewX(45deg) translateX(300%);
   box-sizing: border-box;
   transition: 0.5s;
-}
+} */
+
 .profile_mat_customer_button {
   position: relative;
   margin-top: 20px;
@@ -1938,7 +1963,6 @@
 
   border-top: 1px solid #f8f8ff7f;
   border-bottom: 1px solid #f8f8ff7f;
-  /* 배경 색임. */
   background: rgba(255, 255, 255, 0.05);
   transition: 0.9s;
   text-align: center;
@@ -1949,7 +1973,6 @@
   text-decoration: none;
   transition-duration: 0.5s;
   box-shadow: 0 0 10px rgba(0, 0, 0, .5);
-  /* backdrop-filter: blur(40px); */
   overflow: hidden;
 }
 .profile_mat_customer_button:hover{
