@@ -11,6 +11,8 @@ import {
   orderBy,
   getDocs,
   writeBatch,
+  arrayUnion,
+  updateDoc
 } from "firebase/firestore";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
@@ -35,7 +37,7 @@ const ChatBox = ({room}) => {
   const [prediction, setPrediction] = useState('');
   const [emojiState, setEmojiState] = useState("")
   const messagesContainerRef = useRef(null);
-
+  const usersRef = collection(db, "users");
 
   // 눈 내리는 효과를 위한 useState, 배경페이지 변경
   const [snow, setSnow] = useState(new Date().getTime());
@@ -141,7 +143,8 @@ const ChatBox = ({room}) => {
     try {
     const response = axios.post('http://localhost:5000/get_chatbot_messages', 
     { "data": messagesText })
-    console.log(`관심사: ${JSON.stringify((await response).data)}`);} catch (error) {
+    console.log(`관심사: ${JSON.stringify((await response).data)}`)
+    return JSON.stringify((await response).data)} catch (error) {
       console.error('관심사 error occurred:', error);
     }
   };
@@ -165,7 +168,7 @@ const ChatBox = ({room}) => {
     await addDoc(messagesRef, newMessageDoc);
 
     const newMessageDoc2 = {
-      text: JSON.stringify((await response).data),
+      text: JSON.stringify((await response).data).slice(1,-1),
       createdAt: serverTimestamp(),
       user: "SomeLine",
       room: selectedRoom
@@ -176,10 +179,20 @@ const ChatBox = ({room}) => {
     sessionStorage.setItem('updateAt', newMessageDoc.createdAt);
 
     setNewMessage("");
-
-    if (messages.length !=0 && messages.length % 10 == 0) {
+    console.log(messages.length)
+    if (messages.length !=0 && messages.length % 4 == 0) {
       console.log(`${currentUser.displayName}님과 챗봇의 대화 데이터를 서버에 보냅니다.`)
-      handlePrediction(messagesText)
+      const newMessagesText = messagesText.slice(10*(messages.length/4-1),messages.length-1)
+      let newInterest = await handlePrediction(newMessagesText)
+      const querySnapshot = await getDocs(
+        query(usersRef, where("id", "==", currentUser.email))
+      );
+      querySnapshot.forEach((doc) => {
+        updateDoc(doc.ref, {
+          interest : arrayUnion(newInterest.slice(1,-1))
+        });
+      });
+      console.log(newInterest)
     }
     console.log(`response.data.message: ${JSON.stringify((await response).data)}`);} catch (error) {
       console.error('An error occurred:', error);
@@ -320,7 +333,9 @@ const ChatBox = ({room}) => {
           .filter(message=> message.removeText != '이 메시지는 삭제되었습니다.')
           .map((message) => (
             <div key={message.id} className={`message ${message.user === currentUser.displayName ? "my-message" : "other-message"}`}>
-                <div className='chatbox_talk_box'><span className="user">{message.text}</span> </div>
+                <div className='chatbox_talk_box'>
+                <span className="user" dangerouslySetInnerHTML={{ __html: message.text.replace(/\n/g, '') }}></span> 
+                </div>
             </div>
           ))}
         </div>

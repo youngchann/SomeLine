@@ -110,7 +110,7 @@ const Matching = () => {
       const sortedLists = usersList.sort((a,b)=> {
         const overlapA = calculateOverlapCount(new Set(user.interest), new Set(a.interest))
         const overlapB = calculateOverlapCount(new Set(user.interest), new Set(b.interest))
-        return overlapB-overlapA
+        return overlapB - overlapA
       })
 
       console.log(`sortedLists: ${JSON.stringify(sortedLists[0]?.name)}`);
@@ -242,7 +242,9 @@ const Matching = () => {
                             <p>{genderuser.name} • {genderuser.age}세 ✨</p>
                             <p >{genderuser.address} • {genderuser.job} ✨</p>
                             <div className='mat_Interest_list'>
-                              {genderuser.interest?.map((item)=>(user.interest.includes(item) ? <p style={{color: '#e65ae6'}}>{item}</p> : <p>{item}</p>))}  
+                            { genderuser.interest && genderuser.interest.length >= 3 
+                              ? genderuser.interest.slice(-3).map((item, index) => (user.interest.includes(item) ? <p key={index} style={{ color: '#e65ae6' }}>{item}</p> : <p key={index}>{item}</p>))
+                              :genderuser.interest?.map((item)=>(user.interest.includes(item) ? <p style={{color: '#e65ae6'}}>{item}</p> : <p>{item}</p>))}
                             </div>
                           </div>
                           <button
@@ -263,7 +265,9 @@ const Matching = () => {
                             <p>{genderuser.name} • {genderuser.age}세 ✨</p>
                             <p >{genderuser.address} • {genderuser.job} ✨</p>
                             <div className='mat_Interest_list'>
-                              {genderuser.interest?.map((item)=>(user.interest.includes(item) ? <p style={{color: '#e65ae6'}}>{item}</p> : <p>{item}</p>))}
+                              { genderuser.interest && genderuser.interest.length >= 3 
+                              ? genderuser.interest.slice(-3).map((item, index) => (user.interest.includes(item) ? <p key={index} style={{ color: '#e65ae6' }}>{item}</p> : <p key={index}>{item}</p>))
+                              :genderuser.interest?.map((item)=>(user.interest.includes(item) ? <p style={{color: '#e65ae6'}}>{item}</p> : <p>{item}</p>))}
                             </div>
                           </div>
                           <button
