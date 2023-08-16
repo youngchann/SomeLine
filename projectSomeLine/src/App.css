@@ -2150,12 +2150,12 @@
     font-size: 20px;
     transition-duration: 0.2s;
   }
-  .mychat_Profil_click_box{
-    display: none;
-  }
 }
 
 @media (max-width: 800px) {
+  .mychat_Profil_click_box{
+    display: none;
+  }
   #profile_myinfo_job{
     margin-left: 4%;
   }
