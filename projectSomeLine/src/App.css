@@ -715,6 +715,7 @@
 
   height: 55px;
   color: #f8f8ff;
+  border: none;
 
   border-top: 1px solid #f8f8ff7f;
   border-bottom: 1px solid #f8f8ff7f;
@@ -3115,6 +3116,13 @@ svg{
 
   box-sizing: border-box;
   color: #f8f8ff;
+}
+.commu_page_ripple_contents_write_input::placeholder {
+  color: #f8f8ff61;
+}
+.commu_page_ripple_contents_write_input:focus {
+  outline: none;
+  background-color: #64646438;
 }
 .commu_page_ripple_contents_write_sub{
   width: 100px;
