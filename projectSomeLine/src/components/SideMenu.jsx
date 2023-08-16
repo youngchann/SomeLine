@@ -6,7 +6,7 @@ const SideMenu = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
+      setIsMobile(window.innerWidth <= 800);
     };
 
     window.addEventListener('resize', handleResize);
@@ -27,7 +27,7 @@ const SideMenu = () => {
             {isMobile ? <span className="icon">💬</span> : <span className="text">대화방</span>}
           </Link>
           <Link to='/community' className='side_menus_menu chatbot'>
-            {isMobile ? <span className="icon">🎭🗯</span> : <span className="text">커뮤니티</span>}
+            {isMobile ? <span className="icon">🎭</span> : <span className="text">커뮤니티</span>}
           </Link>
           <Link to='/profile' className='side_menus_menu chatbot'>
             {isMobile ? <span className="icon">⚙️</span> : <span className="text">프로필</span>}

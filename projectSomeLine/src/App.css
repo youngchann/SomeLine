@@ -2781,6 +2781,7 @@ svg{
   transition-duration: 0.5s;
 }
 .comu_boxs_title{
+  margin-top: 2px;
   font-size: 20px;
   font-weight: 500;
 
