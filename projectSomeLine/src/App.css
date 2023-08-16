@@ -2321,7 +2321,7 @@
   overflow: hidden;
 
   box-shadow: 0 0 15px rgba(0, 0, 0, .3);
-
+  cursor: pointer;
 }
 
 .sidebar_button:hover{
@@ -3066,4 +3066,54 @@ svg{
   border-left: 1px solid #f8f8ff79;;
 
   color: #f8f8ff;
+}
+.commu_page_ripple_contents_write{
+  width: 98%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 10px;
+
+  padding-left: 20px;
+  padding-right: 20px;
+
+  box-sizing: border-box;
+
+}
+.commu_page_ripple_contents_write_input{
+  width: 75%;
+  height: 40px;
+
+  background: none;
+  border-radius: 10px;
+
+  border: none;
+
+  border: 1px solid #f8f8ff ;
+
+  font-size: 17px;
+  padding-left: 10px;
+
+  box-sizing: border-box;
+  color: #f8f8ff;
+}
+.commu_page_ripple_contents_write_sub{
+  width: 100px;
+  height: 40px;
+  margin-left: 10px;
+
+  background: none;
+  border-radius: 10px;
+
+  color: #f8f8ff;
+  font-size: 18px;
+
+  border: none;
+  border: 1px solid #f8f8ff;
+  cursor: pointer;
+}
+.commu_page_ripple_contents_write_sub:hover{
+  background-color: #f8f8ff2c;
 }

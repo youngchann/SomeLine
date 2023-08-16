@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom'
 const CommunityPageLove = () => {
 
 
-  const boardData = Array(20).fill({
+  const boardData = Array(15).fill({
     number: 1,
     id: '이찬용',
     text: '냠냠입니다.',
-    date: '2023·8·15',
+    date: '23.8.15',
     count: 1
   });
 

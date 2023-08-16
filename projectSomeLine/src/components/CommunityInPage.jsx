@@ -26,7 +26,19 @@ const CommunityInPage = () => {
             <div className='commu_page_ripple_contents_id'>▪︎ 전도희</div>
             <div className='commu_page_ripple_contents_text'>뭐예요</div>
           </div>
+          <div className='commu_page_ripple_contents'>
+            <div className='commu_page_ripple_contents_id'>▪︎ 국지호</div>
+            <div className='commu_page_ripple_contents_text'>나도 냠냠</div>
+          </div>
         </div>
+        <form className='commu_page_ripple_contents_write'>
+          <input 
+            className='commu_page_ripple_contents_write_input'
+            placeholder='댓글내용을 입력하세요.'
+            >
+          </input>
+          <button className='commu_page_ripple_contents_write_sub'>작성하기</button>
+        </form>
         
       </div>
     </div>
