@@ -70,47 +70,47 @@ const CommunitySpace = () => {
               <div className='comu_boxs_title'>썸·연애</div>
           </Tilt>
           <Tilt options={options} className='comu_boxs'>
-              <div className='comu_boxs_icon'>🔥</div>
+              <Link to={'/communitypagelove'}><div className='comu_boxs_icon'>🔥</div></Link>
               <div className='comu_boxs_title'>인기·핫픽</div>
           </Tilt>
           <Tilt options={options} className='comu_boxs'>
-              <div className='comu_boxs_icon'>🎧</div>
+              <Link to={'/communitypagelove'}><div className='comu_boxs_icon'>🎧</div></Link>
               <div className='comu_boxs_title'>음악</div>
           </Tilt>
           <Tilt options={options} className='comu_boxs'>
-              <div className='comu_boxs_icon'>🐩</div>
+              <Link to={'/communitypagelove'}><div className='comu_boxs_icon'>🐩</div></Link>
               <div className='comu_boxs_title'>반려 동물</div>
           </Tilt>
           <Tilt options={options} className='comu_boxs'>
-              <div className='comu_boxs_icon'>🏙</div>
+              <Link to={'/communitypagelove'}><div className='comu_boxs_icon'>🏙</div></Link>
               <div className='comu_boxs_title'>회사 생활</div>
           </Tilt>
           <Tilt options={options} className='comu_boxs'>
-              <div className='comu_boxs_icon'>🏄🏻‍♂️</div>
+              <Link to={'/communitypagelove'}><div className='comu_boxs_icon'>🏄🏻‍♂️</div></Link>
               <div className='comu_boxs_title'>취미 생활</div>
           </Tilt>
           <Tilt options={options} className='comu_boxs'>
-              <div className='comu_boxs_icon'>🛍</div>
+              <Link to={'/communitypagelove'}><div className='comu_boxs_icon'>🛍</div></Link>
               <div className='comu_boxs_title'>지름·쇼핑</div>
           </Tilt>
           <Tilt options={options} className='comu_boxs'>
-              <div className='comu_boxs_icon'>💋</div>
+              <Link to={'/communitypagelove'}><div className='comu_boxs_icon'>💋</div></Link>
               <div className='comu_boxs_title'>패션·뷰티</div>
           </Tilt>
           <Tilt options={options} className='comu_boxs'>
-              <div className='comu_boxs_icon'>💌</div>
+              <Link to={'/communitypagelove'}><div className='comu_boxs_icon'>💌</div></Link>
               <div className='comu_boxs_title'>셀소 공간</div>
           </Tilt>
           <Tilt options={options} className='comu_boxs'>
-              <div className='comu_boxs_icon'>🎮</div>
+              <Link to={'/communitypagelove'}><div className='comu_boxs_icon'>🎮</div></Link>
               <div className='comu_boxs_title'>게임</div>
           </Tilt>
           <Tilt options={options} className='comu_boxs'>
-              <div className='comu_boxs_icon'>🗽</div>
+              <Link to={'/communitypagelove'}><div className='comu_boxs_icon'>🗽</div></Link>
               <div className='comu_boxs_title'>여행·맛집</div>
           </Tilt>
           <Tilt options={options} className='comu_boxs'>
-              <div className='comu_boxs_icon'>🏋🏻‍♀️</div>
+              <Link to={'/communitypagelove'}><div className='comu_boxs_icon'>🏋🏻‍♀️</div></Link>
               <div className='comu_boxs_title'>다이어트·헬스</div>
           </Tilt>
         </div>
