@@ -15,7 +15,7 @@ const CommunityInPage = () => {
       <div className='communityspace_box_advertisement'>광고 페이지/ 광고문의는 이찬용에게</div>
       <div className='commu_page_board'>
         <div className='commu_page_info' >
-          <div className='commu_page_info_title'>냠냠입니다.</div>
+          <div className='commu_page_info_title'>냠냠입니다1</div>
           <div className='commu_page_info_id'>작성자 · 이찬용</div>
         </div>
         <div className='commu_page_text_contents'>
