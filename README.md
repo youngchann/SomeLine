@@ -7,7 +7,7 @@
 
 <h2>React, Firebase</h2>
 <div style="background-color: beige">
-    <p>> cd someline/projectSomeLine</p>
+    <pre><code>cd someline/projectSomeLine<pre><code>
     <p>> npm install</p>
     <p style="color: red">src 폴더에서 firebase-config.js 파일의 sdk 값을 변경해주세요!</p>
     <p>> npm start</p>
