@@ -9,13 +9,13 @@
 <div style="background-color: beige">
     <p>> cd someline/projectSomeLine</p>
     <p>> npm install</p>
-    <span style="color: red">src 폴더에서 firebase-config.js 파일의 sdk 값을 변경해주세요!</span>
+    <p style="color: red">src 폴더에서 firebase-config.js 파일의 sdk 값을 변경해주세요!</p>
     <p>> npm start</p>
 </div>
 
 <h2>Flask, Machine Laearning, OepnAI API</h2>
 <div style="background-color: beige">
-    <span style="color: red">Python 3.8버전으로 했습니다.</span>
+    <p style="color: red">Python 3.8버전으로 했습니다.</p>
     <br>
     <p>> cd someline/backend/test</p>
     <p>> pip install Flask konlpy nltk joblib openai flask-cors scikit-learn
