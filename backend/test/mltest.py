@@ -16,7 +16,7 @@ CORS(app)
 # label_encoder = joblib.load('label_encoder.joblib')
 label_encoder = load('best_logistic_label_encoder.pkl')
 
-openai.api_key = "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"
+openai.api_key = "api키 입력"
 
 
 # # 텍스트 전처리를 위한 함수 정의
