@@ -1,3 +1,6 @@
+![기능구조도](https://github.com/2023-AISCHOOL-APP/SomeLine/assets/112148400/9a982341-9995-4d6a-b107-c95802b01e0e)
+
+
 <h1>Environment Setup</h1>
 <h2>Git Clone</h2>
 <pre><code>mkdir project</code></pre>
