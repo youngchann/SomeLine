@@ -1,10 +1,11 @@
+<h1>Environment Setup</h1>
 <h2>Git Clone</h2>
 <div style="background-color: beige">
     <p>> mkdir project</p>
     <p>> git clone https://github.com/2023-AISCHOOL-APP/SomeLine.git</p>
 </div>
 
-<h2>Frontend</h2>
+<h2>React, Firebase</h2>
 <div style="background-color: beige">
     <p>> cd someline/projectSomeLine</p>
     <p>> npm install</p>
@@ -12,7 +13,7 @@
     <p>> npm start</p>
 </div>
 
-<h2>Backend</h2>
+<h2>Flask, Machine Laearning, OepnAI API</h2>
 <div style="background-color: beige">
     <p style="color: red">Python 3.8버전으로 했습니다.</p>
     <p>> cd someline/backend/test</p>
