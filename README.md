@@ -16,7 +16,6 @@
 <h2>Flask, Machine Laearning, OepnAI API</h2>
 <div style="background-color: beige">
     <p style="color: red">Python 3.8버전으로 했습니다.</p>
-    <br>
     <p>> cd someline/backend/test</p>
     <p>> pip install Flask konlpy nltk joblib openai flask-cors scikit-learn
     </p>
